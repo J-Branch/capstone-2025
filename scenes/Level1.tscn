@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkwbxfnnk62w4"]
+
+[ext_resource type="Texture2D" uid="uid://c2ervl85i7yus" path="res://assets/maps/Clouds 1/1.png" id="1_i08gq"]
+[ext_resource type="Texture2D" uid="uid://cxy8w1f2ggu3j" path="res://assets/maps/Clouds 1/2.png" id="2_foc5j"]
+[ext_resource type="Texture2D" uid="uid://3r7j17xmvppj" path="res://assets/maps/Clouds 1/3.png" id="3_muabi"]
+[ext_resource type="Texture2D" uid="uid://cx8vvsumroajq" path="res://assets/maps/Clouds 1/4.png" id="4_y3llh"]
+
+[node name="Level1" type="Node2D"]
+position = Vector2(4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(571.875, 325)
+scale = Vector2(2.00043, 2)
+texture = ExtResource("1_i08gq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(571.875, 325)
+scale = Vector2(2, 2)
+texture = ExtResource("2_foc5j")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(571.875, 325)
+scale = Vector2(2, 2)
+texture = ExtResource("3_muabi")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(571.875, 325)
+scale = Vector2(2, 2)
+texture = ExtResource("4_y3llh")
