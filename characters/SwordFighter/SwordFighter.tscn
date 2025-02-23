@@ -1970,6 +1970,7 @@ _data = {
 size = Vector2(21, 24)
 
 [node name="SwordFighter" type="CharacterBody2D"]
+position = Vector2(31, 32)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_2tsoy")
