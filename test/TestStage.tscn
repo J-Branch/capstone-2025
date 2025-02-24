@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmmruvwp2ggu8"]
+
+[ext_resource type="Texture2D" uid="uid://d0rargn5ngd1m" path="res://test/Clouds 1.1/1.png" id="1_hkhi3"]
+[ext_resource type="Texture2D" uid="uid://wpviwxpfeexk" path="res://test/Clouds 1.1/2.png" id="2_tex53"]
+[ext_resource type="Texture2D" uid="uid://gfa62sxfeb47" path="res://test/Clouds 1.1/3.png" id="3_if312"]
+[ext_resource type="Texture2D" uid="uid://cc781pefw55vy" path="res://test/Clouds 1.1/4.png" id="4_0p5tx"]
+[ext_resource type="PackedScene" uid="uid://bolw870xg4wit" path="res://characters/SwordFighter/SwordFighter.tscn" id="5_bc3ak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gakr5"]
+size = Vector2(577.75, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsw6w"]
+size = Vector2(20.5, 267)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1o3y"]
+size = Vector2(24.5, 266.5)
+
+[node name="TestStage" type="Node2D"]
+
+[node name="1" type="Sprite2D" parent="."]
+position = Vector2(287, 162)
+texture = ExtResource("1_hkhi3")
+
+[node name="2" type="Sprite2D" parent="."]
+position = Vector2(288, 162)
+texture = ExtResource("2_tex53")
+
+[node name="3" type="Sprite2D" parent="."]
+position = Vector2(407, 96)
+texture = ExtResource("3_if312")
+
+[node name="4" type="Sprite2D" parent="."]
+position = Vector2(289, 161)
+texture = ExtResource("4_0p5tx")
+
+[node name="FloorBody" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="Floor" type="CollisionShape2D" parent="FloorBody"]
+position = Vector2(288.125, 295.5)
+shape = SubResource("RectangleShape2D_gakr5")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="Wall1" type="CollisionShape2D" parent="Walls"]
+position = Vector2(10.25, 133.5)
+shape = SubResource("RectangleShape2D_bsw6w")
+
+[node name="Wall2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(564.75, 133.75)
+shape = SubResource("RectangleShape2D_o1o3y")
+
+[node name="SwordFighter" parent="." instance=ExtResource("5_bc3ak")]
+position = Vector2(334, 257)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(289, 163)
+zoom = Vector2(3.4, 3.4)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
