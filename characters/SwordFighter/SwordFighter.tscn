@@ -1996,3 +1996,11 @@ shape = SubResource("RectangleShape2D_vup5p")
 [node name="GrounL" type="RayCast2D" parent="Raycasts"]
 
 [node name="GrounR" type="RayCast2D" parent="Raycasts"]
+
+[node name="State" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -37.0
+offset_right = 20.0
+offset_bottom = -14.0
+text = "Test"
+horizontal_alignment = 1

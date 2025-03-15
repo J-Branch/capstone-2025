@@ -20,7 +20,11 @@ func state_logic(delta):
 	parent._physics_process(delta)
 
 func get_transition(delta):
-	#parent.state.text = str(state)
+	parent.set_velocity(parent.velocity)
+	parent.set_up_direction(Vector2.UP)
+	parent.move_and_slide()
+	parent.velocity
+	parent.states.text = str(state)
 	match state:
 		states.STAND:
 			if Input.is_action_pressed("move_right"):
