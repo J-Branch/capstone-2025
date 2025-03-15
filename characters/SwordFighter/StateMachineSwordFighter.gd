@@ -9,51 +9,64 @@ func _ready() -> void:
 	add_state('DASH')
 	add_state('RUN')
 	call_deferred("set_state", states.STAND)
+	print("state set to stand")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	pass	
 	
 func state_logic(delta):
 	parent.updateframes(delta)
 	parent._physics_process(delta)
 
 func get_transition(delta):
-	# Used so that the character can basically float around on the map
-	parent.move_and_slide_with_snap(parent.velocity*2, Vector2.ZERO, Vector2.UP)
+	#parent.state.text = str(state)
 	match state:
 		states.STAND:
-			if Input.get_action_strength("right_%s" % id) == 1:
+			if Input.is_action_pressed("move_right"):
 				parent.velocity.x = parent.RUNSPEED
 				parent._frame()
 				parent.turn(false)
+				print("right stand")
 				return states.RUN
-			if Input.get_action_strength("left_%s" % id) == 1:
+			if Input.is_action_pressed("move_left"):
 				parent.velocity.x = parent.RUNSPEED
 				parent._frame()
 				parent.turn(true)
+				print("left stand")
 				return states.RUN
-			if parent.velocity.x > 0 and state == states.STAND:
+				# Slows the player down if player is in a stand state and is moving right
+			if parent.velocity.x > 0:
 				parent.velocity.x -= parent.TRACTION
 				parent.velocity.x = clampf(parent.velocity.x, 0, parent.velocity.x)
-			elif parent.velocity.x < 0 and state == states.STAND:
+				# Slows the player down if the player is in a stand state and is moving left
+			elif parent.velocity.x < 0:
 				parent.velocity.x += parent.TRACTION
 				parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
 		states.JUMP:
 			pass
 		states.DASH:
+			# When you are in the dash state you cannot go into any other state
+			# You must wait for the dash state to finish
 			if parent.frame >= parent.dash_duration-1:
 				return states.Stand
 		states.RUN:
-			if Input.get_action_strength("right_%s" % id) == 1:
+			if Input.is_action_pressed("move_right"):
 				if parent.velocity.x > 0:
-					parent._frame()
+					parent._frame() # Resets the frame var to 0
 				parent.velocity.x = parent.RUNSPEED
-			if Input.get_action_strength("left_%s" % id) == 1:
+				parent.turn(false)
+				print("right run")
+			if Input.is_action_pressed("move_left"):
 				if parent.velocity.x < 0:
-					parent._frame()
+					parent._frame() # Resets the frame var to 0
 				parent.velocity.x = -parent.RUNSPEED
-	
+				parent.turn(true)
+				print("left run")
+			# If I am not hitting anything else, state should return to stand
+			else:
+				return states.STAND
+
 func enter_state(new_state, old_state):
 	pass
 	

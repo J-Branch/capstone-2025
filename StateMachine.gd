@@ -3,7 +3,7 @@ class_name StateMachine
 
 var state = null: set = set_state
 var previous_state = null 
-var states = {}
+var states = {} # Dictionary for states
 
 
 @onready var parent = get_parent()
@@ -17,11 +17,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if state != null:
-		state_logic(delta)
-		var transition = get_transition(delta)
-		if transition != null:
-			set_state(transition)
+	state_logic(delta)
+	var transition = get_transition(delta)
+	if transition != null:
+		set_state(transition)
 			
 func state_logic(delta):
 	pass 

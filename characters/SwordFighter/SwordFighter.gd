@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var dash_duration = 10
 
+@onready var states = $State
+
 const RUNSPEED = 300
 # DONT KNOW IF WE ARE DOING WALK SPEED YET
 const DASHSPEED = 375
@@ -30,4 +32,4 @@ func _ready():
 	pass
 
 func _physics_process(delta: float) -> void:
-	move_and_slide()
+	pass
