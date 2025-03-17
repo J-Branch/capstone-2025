@@ -1,13 +1,15 @@
 extends StateMachine
 
 @onready var id = get_parent().id
+var jump_number = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_state('STAND')
-	add_state('JUMP')
 	add_state('DASH')
 	add_state('RUN')
+	add_state('AIR')
+	add_state('LANDING')
 	call_deferred("set_state", states.STAND)
 	print("state set to stand")
 
@@ -31,13 +33,11 @@ func get_transition(delta):
 				parent.velocity.x = parent.RUNSPEED
 				parent._frame()
 				parent.turn(false)
-				print("right stand")
 				return states.RUN
 			if Input.is_action_pressed("move_left"):
 				parent.velocity.x = parent.RUNSPEED
 				parent._frame()
 				parent.turn(true)
-				print("left stand")
 				return states.RUN
 				# Slows the player down if player is in a stand state and is moving right
 			if parent.velocity.x > 0:
@@ -47,7 +47,16 @@ func get_transition(delta):
 			elif parent.velocity.x < 0:
 				parent.velocity.x += parent.TRACTION
 				parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
-		states.JUMP:
+			if Input.is_action_pressed("jump"):
+				parent.velocity.y = -parent.JUMPFORCE
+				parent._frame()
+				jump_number += 1
+				return states.AIR
+			else:
+				return states.STAND
+		states.AIR:
+			pass
+		states.LANDING:
 			pass
 		states.DASH:
 			# When you are in the dash state you cannot go into any other state
@@ -60,19 +69,24 @@ func get_transition(delta):
 					parent._frame() # Resets the frame var to 0
 				parent.velocity.x = parent.RUNSPEED
 				parent.turn(false)
-				print("right run")
+				return states.RUN
 			if Input.is_action_pressed("move_left"):
 				if parent.velocity.x < 0:
 					parent._frame() # Resets the frame var to 0
 				parent.velocity.x = -parent.RUNSPEED
 				parent.turn(true)
-				print("left run")
+				return states.RUN
 			# If I am not hitting anything else, state should return to stand
 			else:
 				return states.STAND
-
 func enter_state(new_state, old_state):
-	pass
+	match new_state:
+		states.STAND:
+			parent.play_animation('Idle')
+			parent.states.text = str('STAND')
+		states.RUN:
+			parent.play_animation('Run')
+			parent.states.text = str('RUN')
 	
 func exit_state(old_state, new_state):
 	pass 
