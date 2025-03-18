@@ -66,17 +66,16 @@ func get_transition(delta):
 		states.RUN:
 			if Input.is_action_pressed("move_right"):
 				if parent.velocity.x > 0:
-					parent._frame() # Resets the frame var to 0
+					parent._frame()
 				parent.velocity.x = parent.RUNSPEED
 				parent.turn(false)
 				return states.RUN
 			if Input.is_action_pressed("move_left"):
 				if parent.velocity.x < 0:
-					parent._frame() # Resets the frame var to 0
+					parent._frame() 
 				parent.velocity.x = -parent.RUNSPEED
 				parent.turn(true)
 				return states.RUN
-			# If I am not hitting anything else, state should return to stand
 			else:
 				return states.STAND
 func enter_state(new_state, old_state):
