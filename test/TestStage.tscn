@@ -39,6 +39,7 @@ collision_layer = 2
 [node name="Floor" type="CollisionShape2D" parent="FloorBody"]
 position = Vector2(288.125, 295.5)
 shape = SubResource("RectangleShape2D_gakr5")
+one_way_collision_margin = 0.0
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -52,10 +53,10 @@ position = Vector2(564.75, 133.75)
 shape = SubResource("RectangleShape2D_o1o3y")
 
 [node name="SwordFighter" parent="." instance=ExtResource("5_bc3ak")]
-position = Vector2(334, 257)
+position = Vector2(341, 245)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(289, 163)
-zoom = Vector2(3.4, 3.4)
+zoom = Vector2(2.2, 2.2)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

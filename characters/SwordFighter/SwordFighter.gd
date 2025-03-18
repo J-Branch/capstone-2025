@@ -11,17 +11,21 @@ var jump_num = 2
 
 @onready var anim = $Sprite/AnimationPlayer
 
+# Air variables
+var landing_frames = 0
+var lag_frames = 0
+
 const RUNSPEED = 300
 # DONT KNOW IF WE ARE DOING WALK SPEED YET
 const DASHSPEED = 375
 const AIR_DASHSPEED = 450
 const GRAVITY = 1750
-const JUMPFORCE = 450
+const JUMPFORCE = 1000
 const DOUBLEJUMPFORCE = 1000
 const MAXAIRSPEED = 300
 const AIR_ACCEL = 25
-const FALLSPEED = 70
-const FALLINGSPEED = 900
+const FALLSPEED = 10
+const FALLINGSPEED = 500
 const TRACTION = 40
 
 var frame = 0
