@@ -26,6 +26,8 @@ func handle_selection(_current_selection):
 		##get_parent().add_child(test_scene.instantiate())
 		##queue_free()
 		get_tree().change_scene_to_file("res://test/TestStage.tscn")
+	elif _current_selection == 2: 
+		get_tree().quit()
 
 func set_current_selection(_current_selection):
 	selector_one.text = ""
