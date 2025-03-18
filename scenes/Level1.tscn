@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dkwbxfnnk62w4"]
+[gd_scene load_steps=33 format=3 uid="uid://dkwbxfnnk62w4"]
 
 [ext_resource type="Texture2D" uid="uid://c2ervl85i7yus" path="res://assets/maps/Clouds 1/1.png" id="1_i08gq"]
 [ext_resource type="Texture2D" uid="uid://cxy8w1f2ggu3j" path="res://assets/maps/Clouds 1/2.png" id="2_foc5j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="5_oy2ls"]
 [ext_resource type="Texture2D" uid="uid://drwfpke2nkld2" path="res://assets/sprites/sheets/Samurai_Archer/Walk.png" id="6_v6h8y"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="8_qbdew"]
+[ext_resource type="Script" path="res://scripts/idle.gd" id="9_jqk7r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jylsw"]
 atlas = ExtResource("5_1x640")
@@ -144,6 +145,68 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsf4i"]
 size = Vector2(22, 62.5)
 
+[sub_resource type="Animation" id="Animation_62swt"]
+resource_name = "Idle"
+length = 1.60002
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_00kgc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qie2d"]
+_data = {
+"Idle": SubResource("Animation_62swt"),
+"RESET": SubResource("Animation_00kgc")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyibt"]
 size = Vector2(1282, 60.5)
 
@@ -178,16 +241,21 @@ script = ExtResource("5_oy2ls")
 position = Vector2(8, -22)
 sprite_frames = SubResource("SpriteFrames_udemh")
 animation = &"Idle"
-autoplay = "Idle"
-frame = 8
-frame_progress = 0.0633372
 
 [node name="Collision" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_qsf4i")
 
+[node name="Animation" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_qie2d")
+}
+
 [node name="State Machine" type="Node2D" parent="Player"]
 script = ExtResource("8_qbdew")
+
+[node name="Idle" type="Node2D" parent="Player/State Machine"]
+script = ExtResource("9_jqk7r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(636, 370)
