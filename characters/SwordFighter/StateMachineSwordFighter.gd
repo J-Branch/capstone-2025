@@ -1,6 +1,6 @@
 extends StateMachine
 
-@onready var id = get_parent().id
+##@onready var id = get_parent().id
 var jump_number = 0
 
 # Called when the node enters the scene tree for the first time.
