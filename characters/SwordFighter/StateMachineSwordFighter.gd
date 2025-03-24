@@ -43,10 +43,14 @@ func get_transition(delta):
 				parent.turn(false)
 				return states.RUN
 			if Input.is_action_pressed("move_left"):
-				parent.velocity.x = parent.RUNSPEED
+				parent.velocity.x = -parent.RUNSPEED
 				parent._frame()
 				parent.turn(true)
 				return states.RUN
+			if Input.is_action_pressed("jump"):
+				parent.velocity.y = -parent.JUMPFORCE
+				parent._frame()
+				return states.AIR
 				# Slows the player down if player is in a stand state and is moving right
 			if parent.velocity.x > 0:
 				parent.velocity.x -= parent.TRACTION
@@ -54,11 +58,7 @@ func get_transition(delta):
 				# Slows the player down if the player is in a stand state and is moving left
 			elif parent.velocity.x < 0:
 				parent.velocity.x += parent.TRACTION
-				parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
-			if Input.is_action_pressed("jump"):
-				parent.velocity.y = -parent.JUMPFORCE
-				parent._frame()
-				return states.AIR
+				parent.velocity.x = clampf(parent.velocity.x, -parent.velocity.x, 0)
 			else:
 				return states.STAND
 		states.AIR:
@@ -68,7 +68,7 @@ func get_transition(delta):
 			if abs(parent.velocity.x) >= abs(parent.MAXAIRSPEED):
 				if parent.velocity.x > 0:
 					if Input.is_action_pressed("move_left"):
-						parent.velocity.x += -parent.AIR_ACCEL
+						parent.velocity.x -= parent.AIR_ACCEL
 				if parent.velocity.x < 0:
 					if Input.is_action_pressed("move_right"):
 						parent.velocity.x += parent.AIR_ACCEL
@@ -96,7 +96,7 @@ func get_transition(delta):
 				# Slows down moving to left
 				elif parent.velocity.x < 0:
 					parent.velocity.x = parent.velocity.x + parent.TRACTION / 2
-					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
+					parent.velocity.x = clamp(parent.velocity.x, -parent.velocity.x, 0)
 			# Landing animation is finished
 			else:
 				parent._frame()
@@ -109,6 +109,10 @@ func get_transition(delta):
 			if parent.frame >= parent.dash_duration-1:
 				return states.Stand
 		states.RUN:
+			if Input.is_action_pressed("jump"):
+				parent.velocity.y = -parent.JUMPFORCE
+				parent._frame()
+				return states.AIR
 			if Input.is_action_pressed("move_right"):
 				if parent.velocity.x > 0:
 					parent._frame()
@@ -121,10 +125,6 @@ func get_transition(delta):
 				parent.velocity.x = -parent.RUNSPEED
 				parent.turn(true)
 				return states.RUN
-			if Input.is_action_pressed("jump"):
-				parent.velocity.y = -parent.JUMPFORCE
-				parent._frame()
-				return states.AIR
 			# If I am not hitting anything else, state should return to stand
 			else:
 				return states.STAND
@@ -155,8 +155,7 @@ func Landing():
 
 func Falling():
 	if state_includes([states.STAND, states.DASH, states.LANDING, states.RUN]):
-		if not parent.GroundL.is_colliding():
-			if not parent.GroundR.is_colliding():
+		if not parent.GroundL.is_colliding() and not parent.GroundR.is_colliding():
 				return true
 
 func enter_state(new_state, old_state):
