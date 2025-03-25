@@ -51,6 +51,9 @@ func get_transition(delta):
 				parent.velocity.y = -parent.JUMPFORCE
 				parent._frame()
 				return states.AIR
+			if Input.is_action_pressed("dash"):
+				parent._frame()
+				return states.DASH
 				# Slows the player down if player is in a stand state and is moving right
 			if parent.velocity.x > 0:
 				parent.velocity.x -= parent.TRACTION
@@ -58,12 +61,15 @@ func get_transition(delta):
 				# Slows the player down if the player is in a stand state and is moving left
 			elif parent.velocity.x < 0:
 				parent.velocity.x += parent.TRACTION
-				parent.velocity.x = clampf(parent.velocity.x, -parent.velocity.x, 0)
+				parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
 			else:
 				return states.STAND
 		states.AIR:
 			if parent.velocity.y < parent.FALLINGSPEED:
 				parent.velocity.y += parent.FALLSPEED
+			if Input.is_action_pressed("dash"):
+				parent._frame()
+				return states.DASH
 			# Slows the player down in the air if they are at max speed
 			if abs(parent.velocity.x) >= abs(parent.MAXAIRSPEED):
 				if parent.velocity.x > 0:
@@ -96,7 +102,7 @@ func get_transition(delta):
 				# Slows down moving to left
 				elif parent.velocity.x < 0:
 					parent.velocity.x = parent.velocity.x + parent.TRACTION / 2
-					parent.velocity.x = clamp(parent.velocity.x, -parent.velocity.x, 0)
+					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
 			# Landing animation is finished
 			else:
 				parent._frame()
@@ -104,15 +110,26 @@ func get_transition(delta):
 				return states.STAND
 				
 		states.DASH:
+			# 5 frames to decide which direction to go
+			if parent.frame < 5:
+				if Input.is_action_pressed("move_left"):
+					parent.turn(true)
+					parent.velocity.x = -parent.DASHSPEED
+				if Input.is_action_pressed("move_right"):
+					parent.turn(false)
+					parent.velocity.x = parent.DASHSPEED
 			# When you are in the dash state you cannot go into any other state
 			# You must wait for the dash state to finish
 			if parent.frame >= parent.dash_duration-1:
-				return states.Stand
+				return states.STAND
 		states.RUN:
 			if Input.is_action_pressed("jump"):
 				parent.velocity.y = -parent.JUMPFORCE
 				parent._frame()
 				return states.AIR
+			if Input.is_action_pressed("dash"):
+				parent._frame()
+				return states.DASH
 			if Input.is_action_pressed("move_right"):
 				if parent.velocity.x > 0:
 					parent._frame()
@@ -169,6 +186,9 @@ func enter_state(new_state, old_state):
 		states.AIR:
 			parent.play_animation('Jump')
 			parent.states.text = str('Jump')
+		states.DASH:
+			parent.play_animation('Dash')
+			parent.states.text = str('Dash')
 
 func exit_state(old_state, new_state):
 	pass 

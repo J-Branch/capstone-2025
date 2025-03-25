@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var dash_duration = 10
+var dash_duration = 25
 var jump_num = 2
 
 @onready var states = $State
