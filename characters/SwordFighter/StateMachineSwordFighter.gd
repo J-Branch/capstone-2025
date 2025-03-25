@@ -11,6 +11,10 @@ func _ready() -> void:
 	add_state('RUN')
 	add_state('AIR')
 	add_state('LANDING')
+	add_state('GROUND_ATTACK')
+	add_state('B_DOWN')
+	add_state('B_SIDE')
+	add_state('B_NEUTRAL')
 	call_deferred("set_state", states.STAND)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,6 +37,10 @@ func get_transition(delta):
 
 	if Falling() == true:
 		return states.AIR
+
+	if Input.is_action_pressed('attack') and Ground():
+		parent.frame()
+		return states.GROUND_ATTACK
 	
 	match state:
 		states.STAND:
@@ -156,6 +164,34 @@ func get_transition(delta):
 			# If I am not hitting anything else, state should return to stand
 			else:
 				return states.STAND
+		states.GROUND_ATTACK:
+			if Input.is_action_pressed('move_down'):
+				parent.frame()
+				return states.B_DOWN
+			if Input.is_action_pressed('move_left'):
+				parent.turn(true)
+				parent.frame()
+				return states.B_SIDE
+			if Input.is_action_pressed('move_right'):
+				parent.turn(false)
+				parent.frame()
+				return states.B_SIDE
+			parent.frame()
+			return states.B_NEUTRAL
+		states.B_DOWN:
+			if parent.frame == 0:
+				parent.B_DOWN()
+				pass
+			if parent.frame >= 1:
+				if parent.velocity.x > 0:
+					parent.velocity.x += parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
+				elif parent.velocity.x < 0:
+					parent.velocity.x -= parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
+			if parent.B_DOWN(): # If animation finished
+				parent.frame()
+				return states.STAND
 				
 func Landing():
 	if state_includes([states.AIR]):
@@ -180,6 +216,9 @@ func Landing():
 			return true
 	"""
 
+func Ground():
+	if state_includes([states.STAND, states.RUN]):
+		return true
 
 func Falling():
 	if state_includes([states.STAND, states.DASH, states.LANDING, states.RUN]):
@@ -202,6 +241,8 @@ func enter_state(new_state, old_state):
 			parent.states.text = str('Dash')
 		states.LANDING:
 			parent.states.text = str('Landing')
+		states.GROUND_ATTACK:
+			parent.states.text = str('Ground_Attack')
 
 func exit_state(old_state, new_state):
 	pass 

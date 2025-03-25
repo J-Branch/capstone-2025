@@ -1,16 +1,16 @@
 extends Area2D
 
 var parent = get_parent()
-var width = 300
-var height = 400
-var damage = 50
-var angle = 90
-var base_kb = 100
-var kb_scaling = 2
-var duration = 1500
-var hitlag_modifier = 1
-var type = 'normal'
-var angle_flipper = 0
+@export var width = 300
+@export var height = 400
+@export var damage = 50
+@export var angle = 90
+@export var base_kb = 100
+@export var kb_scaling = 2
+@export var duration = 1500
+@export var hitlag_modifier = 1
+@export var type = 'normal'
+@export var angle_flipper = 0
 @onready var hitbox = get_node("Hitbox_Shape")
 @onready var parentState = get_parent().selfState
 var knockbackVal
@@ -32,18 +32,29 @@ func set_parameters(w,h,d,a,b_kb,kb_s,dur,t,p,af,hit,parent=get_parent()):
 	self.position = p
 	hitlag_modifier = hit
 	angle_flipper = af
-	# pdate_extents()
+	# update_extents()
 	# connect("area_entered", self, "Hitbox_Collide")
 	set_physics_process(true)
 
+func update_extends():
+	hitbox.shape.extends = Vector2(width,height)
 
+func _physics_process(delta):
+	if framez < duration: 
+		framez += 1
+	elif framez == duration:
+		Engine.time_scale = 1
+		queue_free()
+		return 
+	if get_parent().selfState != parentState:
+		Engine.time_scale = 1
+		queue_free()
+		return
 
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	hitbox.shape = RectangleShape2D.new()
+	set_physics_process(false)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

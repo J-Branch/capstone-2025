@@ -1,7 +1,8 @@
-[gd_scene load_steps=179 format=3 uid="uid://bolw870xg4wit"]
+[gd_scene load_steps=181 format=3 uid="uid://bolw870xg4wit"]
 
 [ext_resource type="Texture2D" uid="uid://brxpq4vtj3pe3" path="res://assets/sprites/sheets/SwordFighter/CapstoneFighter-Sheet.png" id="1_3mfqu"]
 [ext_resource type="Script" path="res://characters/SwordFighter/SwordFighter.gd" id="1_rs5pp"]
+[ext_resource type="PackedScene" uid="uid://cg5bgqctecfyo" path="res://scripts/hitbox.tscn" id="2_acy5m"]
 [ext_resource type="Script" path="res://characters/SwordFighter/StateMachineSwordFighter.gd" id="2_si42g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iavde"]
@@ -1970,9 +1971,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vup5p"]
 size = Vector2(32, 35.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojafs"]
+size = Vector2(19, 21)
+
 [node name="SwordFighter" type="CharacterBody2D"]
 position = Vector2(31, 32)
 script = ExtResource("1_rs5pp")
+hitbox = ExtResource("2_acy5m")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_si42g")
@@ -2013,3 +2018,8 @@ offset_right = 20.0
 offset_bottom = -27.0
 text = "Test"
 horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-16.5, -30.5)
+shape = SubResource("RectangleShape2D_ojafs")
+disabled = true
