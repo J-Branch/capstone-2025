@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 var dash_duration = 25
-var jump_num = 2
+
+var air_jump_max = 1
+var air_jump_num = air_jump_max
 
 @onready var states = $State
 
@@ -40,6 +42,9 @@ func _frame():
 
 func play_animation(animation_name):
 	anim.play(animation_name)
+
+func reset_jump():
+	air_jump_num = air_jump_max
 
 func _ready():
 	pass

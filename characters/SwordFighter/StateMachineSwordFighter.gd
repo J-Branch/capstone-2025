@@ -1,8 +1,7 @@
 extends StateMachine
 
 
-##@onready var id = get_parent().id
-var jump_number = 0
+# @onready var id = get_parent().id
 
 
 # Called when the node enters the scene tree for the first time.
@@ -37,6 +36,7 @@ func get_transition(delta):
 	
 	match state:
 		states.STAND:
+			parent.reset_jump()
 			if Input.is_action_pressed("move_right"):
 				parent.velocity.x = parent.RUNSPEED
 				parent._frame()
@@ -62,8 +62,7 @@ func get_transition(delta):
 			elif parent.velocity.x < 0:
 				parent.velocity.x += parent.TRACTION
 				parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
-			else:
-				return states.STAND
+			return states.STAND
 		states.AIR:
 			if parent.velocity.y < parent.FALLINGSPEED:
 				parent.velocity.y += parent.FALLSPEED
@@ -91,6 +90,17 @@ func get_transition(delta):
 						parent.velocity.x += parent.AIR_ACCEL / 5
 					elif parent.velocity.x > 0: 
 						parent.velocity.x -= parent.AIR_ACCEL / 5
+			# Code for double jump
+			if Input.is_action_just_pressed("jump") and parent.air_jump_num > 0:
+				parent.velocity.x = 0
+				parent.velocity.y = -parent.DOUBLEJUMPFORCE
+				parent.air_jump_num -= 1
+				if Input.is_action_pressed("move_left"):
+					parent.velocity.x = -parent.MAXAIRSPEED
+				elif Input.is_action_pressed("move_right"):
+					parent.velocity.x = parent.MAXAIRSPEED
+				return states.AIR
+			return states.AIR
 		states.LANDING:
 			if parent.frame <= parent.landing_frames + parent.lag_frames:
 				if parent.frame == 1:
@@ -107,6 +117,7 @@ func get_transition(delta):
 			else:
 				parent._frame()
 				parent.lag_frames = 0
+				parent.reset_jump()
 				return states.STAND
 				
 		states.DASH:
@@ -185,10 +196,12 @@ func enter_state(new_state, old_state):
 			parent.states.text = str('RUN')
 		states.AIR:
 			parent.play_animation('Jump')
-			parent.states.text = str('Jump')
+			parent.states.text = str('Air')
 		states.DASH:
 			parent.play_animation('Dash')
 			parent.states.text = str('Dash')
+		states.LANDING:
+			parent.states.text = str('Landing')
 
 func exit_state(old_state, new_state):
 	pass 
