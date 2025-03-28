@@ -1,6 +1,6 @@
 extends Area2D
 
-var parent = get_parent()
+@onready var parent = get_parent()
 @export var width = 300
 @export var height = 400
 @export var damage = 50
@@ -33,7 +33,11 @@ func set_parameters(w,h,d,a,b_kb,kb_s,dur,t,p,af,hit,parent=get_parent()):
 	hitlag_modifier = hit
 	angle_flipper = af
 	update_extents()
+<<<<<<< HEAD
 	hitbox.connect("area_entered", Callable(self, "Hitbox_Collide"))
+=======
+	#connect("area_entered", self, "Hitbox_Collide")
+>>>>>>> f31906e9a72809ac2ca3cb3b754eed7d0ac67773
 	set_physics_process(true)
 
 func update_extents():
