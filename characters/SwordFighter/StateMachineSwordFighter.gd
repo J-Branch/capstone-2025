@@ -39,7 +39,7 @@ func get_transition(delta):
 		return states.AIR
 
 	if Input.is_action_pressed('attack') and Ground():
-		parent.frame()
+		parent._frame()
 		return states.GROUND_ATTACK
 	
 	match state:
@@ -141,6 +141,8 @@ func get_transition(delta):
 			# You must wait for the dash state to finish
 			if parent.frame >= parent.dash_duration-1:
 				return states.STAND
+			else:
+				return states.DASH
 		states.RUN:
 			if Input.is_action_pressed("jump"):
 				parent.velocity.y = -parent.JUMPFORCE
@@ -166,32 +168,61 @@ func get_transition(delta):
 				return states.STAND
 		states.GROUND_ATTACK:
 			if Input.is_action_pressed('move_down'):
-				parent.frame()
+				parent._frame()
 				return states.B_DOWN
 			if Input.is_action_pressed('move_left'):
 				parent.turn(true)
-				parent.frame()
+				parent._frame()
 				return states.B_SIDE
 			if Input.is_action_pressed('move_right'):
 				parent.turn(false)
-				parent.frame()
+				parent._frame()
 				return states.B_SIDE
-			parent.frame()
+			parent._frame()
 			return states.B_NEUTRAL
 		states.B_DOWN:
 			if parent.frame == 0:
 				parent.B_DOWN()
 				pass
 			if parent.frame >= 1:
-				if parent.velocity.x > 0:
+				if parent.velocity.x < 0:
 					parent.velocity.x += parent.TRACTION * 3
 					parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
-				elif parent.velocity.x < 0:
+				elif parent.velocity.x > 0:
 					parent.velocity.x -= parent.TRACTION * 3
 					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
 			if parent.B_DOWN(): # If animation finished
-				parent.frame()
+				parent._frame()
 				return states.STAND
+		states.B_SIDE:
+			if parent.frame == 0:
+				parent.B_SIDE()
+				pass
+			if parent.frame >= 1:
+				if parent.velocity.x < 0:
+					parent.velocity.x += parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
+				elif parent.velocity.x > 0:
+					parent.velocity.x -= parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
+			if parent.B_SIDE():
+				parent._frame()
+				return states.STAND
+		states.B_NEUTRAL:
+			if parent.frame == 0:
+				parent.B_NEUTRAL()
+				pass
+			if parent.frame >= 1:
+				if parent.velocity.x < 0:
+					parent.velocity.x += parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
+				elif parent.velocity.x > 0:
+					parent.velocity.x -= parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
+			if parent.B_NEUTRAL():
+				parent._frame()
+				return states.STAND
+				
 				
 func Landing():
 	if state_includes([states.AIR]):
@@ -243,6 +274,15 @@ func enter_state(new_state, old_state):
 			parent.states.text = str('Landing')
 		states.GROUND_ATTACK:
 			parent.states.text = str('Ground_Attack')
+		states.B_DOWN:
+			parent.play_animation('BDown')
+			parent.states.text = str('B_Down')
+		states.B_SIDE:
+			parent.play_animation('BSide')
+			parent.states.text = str('B_SIDE')
+		states.B_NEUTRAL:
+			parent.play_animation('BNeutral')
+			parent.states.text = str('B_NEUTRAL')
 
 func exit_state(old_state, new_state):
 	pass 

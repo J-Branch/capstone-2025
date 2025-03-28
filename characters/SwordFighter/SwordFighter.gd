@@ -74,4 +74,18 @@ func _physics_process(delta: float) -> void:
 # Ground Attacks
 func B_DOWN():
 	if frame == 8:
-		create_hitbox(20,20,50, 0, 0, 0, 5, 0, Vector2(-16.5,-30.5), 0, 0)
+		create_hitbox(20,20,8, 0, 0, 0, 5, 'normal', Vector2(-16.5,-30.5), 0, 1)
+	if frame == 13:
+		create_hitbox(19,26.5,8, 0, 0, 0, 7, 'normal', Vector2(-1,-35.25), 0, 1)
+	if frame == 20:
+		create_hitbox(34,37,8, 0, 0, 0, 5, 'normal', Vector2(26,-6.5), 0, 1)
+	if frame >= 25:
+		return true
+		
+func B_SIDE():
+	if frame > 40:
+		return true
+
+func B_NEUTRAL():
+	if frame > 40:
+		return true
