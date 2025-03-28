@@ -39,7 +39,7 @@ func get_transition(delta):
 		return states.AIR
 
 	if Input.is_action_pressed('attack') and Ground():
-		parent.frame()
+		parent._frame()
 		return states.GROUND_ATTACK
 	
 	match state:
@@ -166,17 +166,17 @@ func get_transition(delta):
 				return states.STAND
 		states.GROUND_ATTACK:
 			if Input.is_action_pressed('move_down'):
-				parent.frame()
+				parent._frame()
 				return states.B_DOWN
 			if Input.is_action_pressed('move_left'):
 				parent.turn(true)
-				parent.frame()
+				parent._frame()
 				return states.B_SIDE
 			if Input.is_action_pressed('move_right'):
 				parent.turn(false)
-				parent.frame()
+				parent._frame()
 				return states.B_SIDE
-			parent.frame()
+			parent._frame()
 			return states.B_NEUTRAL
 		states.B_DOWN:
 			if parent.frame == 0:
@@ -190,7 +190,7 @@ func get_transition(delta):
 					parent.velocity.x -= parent.TRACTION * 3
 					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
 			if parent.B_DOWN(): # If animation finished
-				parent.frame()
+				parent._frame()
 				return states.STAND
 				
 func Landing():

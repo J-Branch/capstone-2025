@@ -32,11 +32,11 @@ func set_parameters(w,h,d,a,b_kb,kb_s,dur,t,p,af,hit,parent=get_parent()):
 	self.position = p
 	hitlag_modifier = hit
 	angle_flipper = af
-	# update_extents()
-	# connect("area_entered", self, "Hitbox_Collide")
+	update_extents()
+	hitbox.connect("area_entered", Callable(self, "Hitbox_Collide"))
 	set_physics_process(true)
 
-func update_extends():
+func update_extents():
 	hitbox.shape.extends = Vector2(width,height)
 
 func _physics_process(delta):
@@ -58,4 +58,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	pass
+
+func Hitbox_Collide():
 	pass
