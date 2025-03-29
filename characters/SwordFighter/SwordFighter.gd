@@ -41,7 +41,7 @@ func updateframes(delta):
 	frame += 1
 
 func create_hitbox(width, height, damage, angle, base_kb, kb_scaling, duration, type, points, angle_flipper, hitlag=1):
-	var hitbox_instance = hitbox.instance()
+	var hitbox_instance = hitbox.instantiate()
 	self.add_child(hitbox_instance)
 	# Rotates the points 
 	if dir: # looking left
