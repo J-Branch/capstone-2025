@@ -11,6 +11,7 @@ func _ready() -> void:
 	# NORMAL STATES
 	add_state('STAND')
 	add_state('DASH')
+	add_state('AIRDASH')
 	add_state('RUN')
 	add_state('AIR')
 	add_state('LANDING')
@@ -99,7 +100,7 @@ func get_transition(delta):
 				return states.AIR_ATTACK
 			if Input.is_action_pressed("dash"):
 				parent._frame()
-				return states.DASH
+				return states.AIRDASH
 			# Code for double jump
 			if Input.is_action_just_pressed("jump") and parent.air_jump_num > 0:
 				parent.velocity.x = 0
@@ -146,6 +147,27 @@ func get_transition(delta):
 				return states.STAND
 			else:
 				return states.DASH
+				
+		states.AIRDASH:
+			AIRMOVEMENT()
+			if (parent.GroundL.is_colliding()) or parent.GroundR.is_colliding():
+				parent.velocity.y = 0
+				parent._frame()
+				return states.STAND
+			# 5 frames to decide which direction to go
+			if parent.frame < 5:
+				if Input.is_action_pressed("move_left"):
+					parent.turn(true)
+					parent.velocity.x = -parent.DASHSPEED
+				if Input.is_action_pressed("move_right"):
+					parent.turn(false)
+					parent.velocity.x = parent.DASHSPEED
+			# When you are in the dash state you cannot go into any other state
+			# You must wait for the dash state to finish
+			if parent.frame >= parent.dash_duration-1:
+				return states.AIR
+			else:
+				return states.AIRDASH
 				
 		states.RUN:
 			if Input.is_action_pressed("jump"):
@@ -424,6 +446,13 @@ func enter_state(new_state, old_state):
 			else: 
 				parent.play_animation('TDash')
 				parent.states.text = str('T_Dash')
+		states.AIRDASH:
+			if transform == 0:
+				parent.play_animation('Dash')
+				parent.states.text = str("Air_Dash")
+			else:
+				parent.play_animation("TDash")
+				parent.states.text = str("T_Air_Dash")
 		states.LANDING:
 			parent.states.text = str('Landing')
 		states.GROUND_ATTACK:
