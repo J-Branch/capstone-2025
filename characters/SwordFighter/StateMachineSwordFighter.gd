@@ -1,11 +1,14 @@
 extends StateMachine
-
-
+# TRANSFORM VARS FOR TESTING
+var cooldown_time = 1.0
+var time_since_last_ex = 0.0
+var transform = 0
 # @onready var id = get_parent().id
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# NORMAL STATES
 	add_state('STAND')
 	add_state('DASH')
 	add_state('RUN')
@@ -15,6 +18,17 @@ func _ready() -> void:
 	add_state('B_DOWN')
 	add_state('B_SIDE')
 	add_state('B_NEUTRAL')
+	add_state('AIR_ATTACK')
+	add_state('A_DOWN')
+	add_state('A_NEUTRAL')
+	add_state('A_SIDE')
+	# TRANSFORMED STATES
+	add_state('T_B_DOWN')
+	add_state('T_B_SIDE')
+	add_state('T_B_NEUTRAL')
+	add_state('T_A_DOWN')
+	add_state('T_A_NEUTRAL')
+	add_state('T_A_SIDE')
 	call_deferred("set_state", states.STAND)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,7 +43,12 @@ func get_transition(delta):
 	parent.set_velocity(parent.velocity)
 	parent.set_up_direction(Vector2.UP)
 	parent.move_and_slide()
-	parent.states.text = str(state)
+	
+	# FOR TRANSFORM TESTING
+	time_since_last_ex += delta
+	if time_since_last_ex > cooldown_time and Input.is_action_pressed('transformation'):
+		_transform()
+		time_since_last_ex = 0.0
 	
 	if Landing() == true:
 		parent._frame()
@@ -41,6 +60,7 @@ func get_transition(delta):
 	if Input.is_action_pressed('attack') and Ground():
 		parent._frame()
 		return states.GROUND_ATTACK
+	
 	
 	match state:
 		states.STAND:
@@ -71,33 +91,15 @@ func get_transition(delta):
 				parent.velocity.x += parent.TRACTION
 				parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
 			return states.STAND
+			
 		states.AIR:
-			if parent.velocity.y < parent.FALLINGSPEED:
-				parent.velocity.y += parent.FALLSPEED
+			AIRMOVEMENT()
+			if Input.is_action_pressed('attack'):
+				parent._frame()
+				return states.AIR_ATTACK
 			if Input.is_action_pressed("dash"):
 				parent._frame()
 				return states.DASH
-			# Slows the player down in the air if they are at max speed
-			if abs(parent.velocity.x) >= abs(parent.MAXAIRSPEED):
-				if parent.velocity.x > 0:
-					if Input.is_action_pressed("move_left"):
-						parent.velocity.x -= parent.AIR_ACCEL
-				if parent.velocity.x < 0:
-					if Input.is_action_pressed("move_right"):
-						parent.velocity.x += parent.AIR_ACCEL
-			# Speeds player up if he is below max speed
-			elif abs(parent.velocity.x) < abs(parent.MAXAIRSPEED):
-				if Input.is_action_pressed("move_left"):
-					parent.velocity.x -= parent.AIR_ACCEL
-				if Input.is_action_pressed("move_right"):
-					parent.velocity.x += parent.AIR_ACCEL
-			# If the player is not pressing anything 
-			if not Input.is_action_pressed("move_left"):
-				if not Input.is_action_pressed("move_right"):
-					if parent.velocity.x < 0:
-						parent.velocity.x += parent.AIR_ACCEL / 5
-					elif parent.velocity.x > 0: 
-						parent.velocity.x -= parent.AIR_ACCEL / 5
 			# Code for double jump
 			if Input.is_action_just_pressed("jump") and parent.air_jump_num > 0:
 				parent.velocity.x = 0
@@ -109,6 +111,7 @@ func get_transition(delta):
 					parent.velocity.x = parent.MAXAIRSPEED
 				return states.AIR
 			return states.AIR
+			
 		states.LANDING:
 			if parent.frame <= parent.landing_frames + parent.lag_frames:
 				if parent.frame == 1:
@@ -143,6 +146,7 @@ func get_transition(delta):
 				return states.STAND
 			else:
 				return states.DASH
+				
 		states.RUN:
 			if Input.is_action_pressed("jump"):
 				parent.velocity.y = -parent.JUMPFORCE
@@ -166,20 +170,38 @@ func get_transition(delta):
 			# If I am not hitting anything else, state should return to stand
 			else:
 				return states.STAND
+				
 		states.GROUND_ATTACK:
-			if Input.is_action_pressed('move_down'):
+			if Input.is_action_pressed('move_down') and transform == 0:
 				parent._frame()
 				return states.B_DOWN
-			if Input.is_action_pressed('move_left'):
+			if Input.is_action_pressed('move_down') and transform == 1:
+				parent._frame()
+				return states.T_B_DOWN
+			if Input.is_action_pressed('move_left') and transform == 0:
 				parent.turn(true)
 				parent._frame()
 				return states.B_SIDE
-			if Input.is_action_pressed('move_right'):
+			if Input.is_action_pressed('move_left') and transform == 1:
+				parent.turn(true)
+				parent._frame()
+				return states.T_B_SIDE
+			if Input.is_action_pressed('move_right') and transform == 0:
 				parent.turn(false)
 				parent._frame()
 				return states.B_SIDE
-			parent._frame()
-			return states.B_NEUTRAL
+			if Input.is_action_pressed('move_right') and transform == 1:
+				parent.turn(false)
+				parent._frame()
+				return states.T_B_SIDE
+			else:
+				if transform == 0:
+					parent._frame()
+					return states.B_NEUTRAL
+				else:
+					parent._frame()
+					return states.T_B_NEUTRAL
+			
 		states.B_DOWN:
 			if parent.frame == 0:
 				parent.B_DOWN()
@@ -194,6 +216,7 @@ func get_transition(delta):
 			if parent.B_DOWN(): # If animation finished
 				parent._frame()
 				return states.STAND
+				
 		states.B_SIDE:
 			if parent.frame == 0:
 				parent.B_SIDE()
@@ -208,6 +231,7 @@ func get_transition(delta):
 			if parent.B_SIDE():
 				parent._frame()
 				return states.STAND
+				
 		states.B_NEUTRAL:
 			if parent.frame == 0:
 				parent.B_NEUTRAL()
@@ -223,67 +247,258 @@ func get_transition(delta):
 				parent._frame()
 				return states.STAND
 				
+		states.AIR_ATTACK:
+			AIRMOVEMENT()
+			if Input.is_action_pressed('move_down') and transform == 0:
+				parent._frame()
+				return states.A_DOWN
+			if Input.is_action_pressed('move_down') and transform == 1:
+				parent._frame()
+				return states.T_A_DOWN
+			if Input.is_action_pressed('move_left') and transform == 0:
+				parent.turn(true)
+				parent._frame()
+				return states.A_SIDE
+			if Input.is_action_pressed('move_left') and transform == 1:
+				parent.turn(true)
+				parent._frame()
+				return states.T_A_SIDE
+			if Input.is_action_pressed('move_right') and transform == 0:
+				parent.turn(false)
+				parent._frame()
+				return states.A_SIDE
+			if Input.is_action_pressed('move_right') and transform == 1:
+				parent.turn(false)
+				parent._frame()
+				return states.T_A_SIDE
+			else:
+				if transform == 0:
+					parent._frame()
+					return states.A_NEUTRAL
+				else: 
+					parent._frame()
+					return states.T_A_NEUTRAL
 				
+		states.A_DOWN:
+			AIRMOVEMENT()
+			if parent.frame == 0:
+				parent.A_DOWN()
+			if parent.A_DOWN():
+				return states.AIR
+				
+		states.A_SIDE:
+			AIRMOVEMENT()
+			if parent.frame == 0:
+				parent.A_SIDE()
+			if parent.A_SIDE():
+				return states.AIR
+				
+		states.A_NEUTRAL:
+			AIRMOVEMENT()
+			if parent.frame == 0:
+				parent.A_NEUTRAL()
+			if parent.A_NEUTRAL():
+				return states.AIR
+				
+		# TRANSFORMED STATES
+		# Ground Attacks
+		states.T_B_DOWN:
+			if parent.frame == 0:
+				parent.T_B_DOWN()
+				pass
+			if parent.frame >= 1:
+				if parent.velocity.x < 0:
+					parent.velocity.x += parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
+				elif parent.velocity.x > 0:
+					parent.velocity.x -= parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
+			if parent.T_B_DOWN(): # If animation finished
+				parent._frame()
+				return states.STAND
+		
+		states.T_B_SIDE:
+			if parent.frame == 0:
+				parent.T_B_SIDE()
+				pass
+			if parent.frame >= 1:
+				if parent.velocity.x < 0:
+					parent.velocity.x += parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
+				elif parent.velocity.x > 0:
+					parent.velocity.x -= parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
+			if parent.T_B_SIDE():
+				parent._frame()
+				return states.STAND
+			
+		states.T_B_NEUTRAL:
+			if parent.frame == 0:
+				parent.T_B_NEUTRAL()
+				pass
+			if parent.frame >= 1:
+				if parent.velocity.x < 0:
+					parent.velocity.x += parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
+				elif parent.velocity.x > 0:
+					parent.velocity.x -= parent.TRACTION * 3
+					parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)
+			if parent.T_B_NEUTRAL():
+				parent._frame()
+				return states.STAND
+			
+		# Air Attacks
+		states.T_A_DOWN:
+			AIRMOVEMENT()
+			if parent.frame == 0:
+				parent.T_A_DOWN()
+			if parent.T_A_DOWN():
+				return states.AIR
+
+		states.T_A_SIDE:
+			AIRMOVEMENT()
+			if parent.frame == 0:
+				parent.T_A_SIDE()
+			if parent.T_A_SIDE():
+				return states.AIR
+
+		states.T_A_NEUTRAL:
+			AIRMOVEMENT()
+			if parent.frame == 0:
+				parent.T_A_NEUTRAL()
+			if parent.T_A_NEUTRAL():
+				return states.AIR
+
 func Landing():
-	if state_includes([states.AIR]):
+	if state_includes([states.AIR, states.AIR_ATTACK, states.A_DOWN, states.A_SIDE, states.A_NEUTRAL, states.T_A_DOWN, states.T_A_SIDE, states.T_A_NEUTRAL]):
 		if (parent.GroundL.is_colliding()) or parent.GroundR.is_colliding():
 			parent.frame = 0
 			parent.velocity.y = 0
 			return true
-	"""
-	if state_includes([states.AIR, states.DASH]):
-		if (parent.GroundL.is_colliding()) and parent.velocity.y > 0:
-			var collider = parent.GroundL.get_collider()
-			parent.frame = 0
-			if parent.velocity.y > 0:
-				parent.velocity.y = 0
-			return true
-			
-		elif (parent.GroundR.is_colliding()) and parent.velocity.y > 0:
-			var collider2 = parent.GroundR.get_collider()
-			parent.frame = 0
-			if parent.velocity.y > 0:
-				parent.velocity.y = 0
-			return true
-	"""
 
+# Checks to see if character is in the air
+func AIREAL():
+	if state_includes([states.AIR, states.AIR_ATTACK, states.A_DOWN, states.A_SIDE, states.A_NEUTRAL, states.T_A_DOWN, states.T_A_SIDE, states.T_A_NEUTRAL]):
+		if (parent.GroundL.is_colliding()) or parent.GroundR.is_colliding():
+			return false
+		else:
+			return true
+
+# Checks to see if character is on the ground
 func Ground():
 	if state_includes([states.STAND, states.RUN]):
 		return true
 
 func Falling():
-	if state_includes([states.STAND, states.DASH, states.LANDING, states.RUN]):
+	if state_includes([states.STAND, states.LANDING, states.RUN]):
 		if not parent.GroundL.is_colliding() and not parent.GroundR.is_colliding():
 				return true
 
 func enter_state(new_state, old_state):
 	match new_state:
 		states.STAND:
-			parent.play_animation('Idle')
-			parent.states.text = str('STAND')
+			if transform == 0:
+				parent.play_animation('Idle')
+				parent.states.text = str('Idle')
+			else:
+				parent.play_animation('TIdle')
+				parent.states.text = str('T_Idle')
 		states.RUN:
-			parent.play_animation('Run')
-			parent.states.text = str('RUN')
+			if transform == 0:
+				parent.play_animation('Run')
+				parent.states.text = str('RUN')
+			else:
+				parent.play_animation('TRun')
+				parent.states.text = str('T_Run')
 		states.AIR:
-			parent.play_animation('Jump')
-			parent.states.text = str('Air')
+			if transform == 0:
+				parent.play_animation('Jump')
+				parent.states.text = str('Air')
+			else: 
+				parent.play_animation('TJump')
+				parent.states.text = str('T_Air')
 		states.DASH:
-			parent.play_animation('Dash')
-			parent.states.text = str('Dash')
+			if transform == 0:
+				parent.play_animation('Dash')
+				parent.states.text = str('Dash')
+			else: 
+				parent.play_animation('TDash')
+				parent.states.text = str('T_Dash')
 		states.LANDING:
 			parent.states.text = str('Landing')
 		states.GROUND_ATTACK:
 			parent.states.text = str('Ground_Attack')
 		states.B_DOWN:
-			parent.play_animation('BDown')
-			parent.states.text = str('B_Down')
+				parent.play_animation('BDown')
+				parent.states.text = str('B_Down')
 		states.B_SIDE:
-			parent.play_animation('BSide')
-			parent.states.text = str('B_SIDE')
+				parent.play_animation('BSide')
+				parent.states.text = str('B_SIDE')
 		states.B_NEUTRAL:
-			parent.play_animation('BNeutral')
-			parent.states.text = str('B_NEUTRAL')
+				parent.play_animation('BNeutral')
+				parent.states.text = str('B_NEUTRAL')
+		states.AIR_ATTACK:
+			parent.states.text = str('Air_Attack')
+		states.A_DOWN:
+				parent.play_animation('ADown')
+				parent.states.text = str("A_DOWN")
+		states.A_SIDE:
+				parent.play_animation('ASide')
+				parent.states.text = str("A_SIDE")
+		states.A_NEUTRAL:
+				parent.play_animation('ANeutral')
+				parent.states.text = str("A_NEUTRAL")
+		states.T_B_DOWN:
+			parent.play_animation('TBDown')
+			parent.states.text = str("T_B_DOWN")
+		states.T_B_SIDE:
+			parent.play_animation('TBSide')
+			parent.states.text = str("T_B_SIDE")
+		states.T_B_NEUTRAL:
+			parent.play_animation('TBNeutral')
+			parent.states.text = str("T_B_NEUTRAL")
+		states.T_A_DOWN:
+			parent.play_animation('TADown')
+			parent.states.text = str("T_A_DOWN")
+		states.T_A_SIDE:
+				parent.play_animation('TASide')
+				parent.states.text = str("T_A_SIDE")
+		states.T_A_NEUTRAL:
+				parent.play_animation('TANeutral')
+				parent.states.text = str("T_A_NEUTRAL")
+			
 
+func AIRMOVEMENT():
+	if parent.velocity.y < parent.FALLINGSPEED:
+		parent.velocity.y += parent.FALLSPEED
+	# Slows the player down in the air if they are at max speed
+	if abs(parent.velocity.x) >= abs(parent.MAXAIRSPEED):
+		if parent.velocity.x > 0:
+			if Input.is_action_pressed("move_left"):
+				parent.velocity.x -= parent.AIR_ACCEL
+		if parent.velocity.x < 0:
+			if Input.is_action_pressed("move_right"):
+				parent.velocity.x += parent.AIR_ACCEL
+	# Speeds player up if he is below max speed
+	elif abs(parent.velocity.x) < abs(parent.MAXAIRSPEED):
+		if Input.is_action_pressed("move_left"):
+			parent.velocity.x -= parent.AIR_ACCEL
+		if Input.is_action_pressed("move_right"):
+			parent.velocity.x += parent.AIR_ACCEL
+	# If the player is not pressing anything 
+	if not Input.is_action_pressed("move_left"):
+		if not Input.is_action_pressed("move_right"):
+			if parent.velocity.x < 0:
+				parent.velocity.x += parent.AIR_ACCEL / 5
+			elif parent.velocity.x > 0: 
+				parent.velocity.x -= parent.AIR_ACCEL / 5
+
+# TESTING TRANSFORM
+func _transform():
+	if transform == 0:
+		transform = 1
+	else:
+		transform = 0
 func exit_state(old_state, new_state):
 	pass 
 	

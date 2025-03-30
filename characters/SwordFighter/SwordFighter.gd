@@ -27,7 +27,7 @@ const DASHSPEED = 375
 const AIR_DASHSPEED = 450
 const GRAVITY = 1750
 const JUMPFORCE = 1000
-const DOUBLEJUMPFORCE = 1000
+const DOUBLEJUMPFORCE = 300
 const MAXAIRSPEED = 300
 const AIR_ACCEL = 25
 const FALLSPEED = 10
@@ -41,7 +41,7 @@ func updateframes(delta):
 	frame += 1
 
 func create_hitbox(width, height, damage, angle, base_kb, kb_scaling, duration, type, points, angle_flipper, hitlag=1):
-	var hitbox_instance = hitbox.instance()
+	var hitbox_instance = hitbox.instantiate()
 	self.add_child(hitbox_instance)
 	# Rotates the points 
 	if dir: # looking left
@@ -89,3 +89,38 @@ func B_SIDE():
 func B_NEUTRAL():
 	if frame > 40:
 		return true
+
+# Air Attacks
+func A_DOWN():
+	pass
+
+func A_SIDE():
+	pass
+
+func A_NEUTRAL():
+	pass
+	
+# TRANSFORMED ATTACKS
+
+# Ground Attacks
+func T_B_DOWN():
+	if frame > 30:
+		return true
+	
+func T_B_SIDE():
+	if frame > 30:
+		return true
+
+func T_B_NEUTRAL():
+	if frame > 30:
+		return true
+
+# Air Attacks
+func T_A_DOWN():
+	pass
+
+func T_A_SIDE():
+	pass
+
+func T_A_NEUTRAL():
+	pass

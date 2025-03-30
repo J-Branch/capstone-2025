@@ -14,7 +14,7 @@ extends Area2D
 @onready var hitbox = get_node("Hitbox_Shape")
 @onready var parentState = get_parent().selfState
 var knockbackVal
-var framez
+var framez = 0
 var player_list = []
 
 func set_parameters(w,h,d,a,b_kb,kb_s,dur,t,p,af,hit,parent=get_parent()):
@@ -33,15 +33,11 @@ func set_parameters(w,h,d,a,b_kb,kb_s,dur,t,p,af,hit,parent=get_parent()):
 	hitlag_modifier = hit
 	angle_flipper = af
 	update_extents()
-<<<<<<< HEAD
-	hitbox.connect("area_entered", Callable(self, "Hitbox_Collide"))
-=======
-	#connect("area_entered", self, "Hitbox_Collide")
->>>>>>> f31906e9a72809ac2ca3cb3b754eed7d0ac67773
+	connect("area_entered", Callable(self, "Hitbox_Collide"))
 	set_physics_process(true)
 
 func update_extents():
-	hitbox.shape.extends = Vector2(width,height)
+	hitbox.shape.size = Vector2(width,height)
 
 func _physics_process(delta):
 	if framez < duration: 
