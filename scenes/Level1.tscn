@@ -5,10 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://3r7j17xmvppj" path="res://assets/maps/Clouds 1/3.png" id="3_muabi"]
 [ext_resource type="Texture2D" uid="uid://cx8vvsumroajq" path="res://assets/maps/Clouds 1/4.png" id="4_y3llh"]
 [ext_resource type="Texture2D" uid="uid://cgbpsj5df10ly" path="res://assets/sprites/sheets/Samurai_Archer/Idle.png" id="5_1x640"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="5_oy2ls"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="5_7x2cj"]
 [ext_resource type="Texture2D" uid="uid://drwfpke2nkld2" path="res://assets/sprites/sheets/Samurai_Archer/Walk.png" id="6_v6h8y"]
-[ext_resource type="Script" path="res://scripts/state_machine.gd" id="8_qbdew"]
-[ext_resource type="Script" path="res://scripts/idle.gd" id="9_jqk7r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jylsw"]
 atlas = ExtResource("5_1x640")
@@ -210,6 +208,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyibt"]
 size = Vector2(1282, 60.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpe25"]
+size = Vector2(38, 664)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j58ic"]
+size = Vector2(57, 657)
+
 [node name="Level1" type="Node2D"]
 position = Vector2(4, 0)
 
@@ -235,7 +239,7 @@ texture = ExtResource("4_y3llh")
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 position = Vector2(255, 624)
-script = ExtResource("5_oy2ls")
+script = ExtResource("5_7x2cj")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(8, -22)
@@ -251,18 +255,20 @@ libraries = {
 "": SubResource("AnimationLibrary_qie2d")
 }
 
-[node name="State Machine" type="Node2D" parent="Player"]
-script = ExtResource("8_qbdew")
-
-[node name="Idle" type="Node2D" parent="Player/State Machine"]
-script = ExtResource("9_jqk7r")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(636, 370)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Floor-Walls" type="StaticBody2D" parent="."]
 position = Vector2(254, 670)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="Floor" type="CollisionShape2D" parent="Floor-Walls"]
 position = Vector2(383, 30.75)
 shape = SubResource("RectangleShape2D_cyibt")
+
+[node name="Left-Wall" type="CollisionShape2D" parent="Floor-Walls"]
+position = Vector2(-262, -335)
+shape = SubResource("RectangleShape2D_gpe25")
+
+[node name="Right-Wall" type="CollisionShape2D" parent="Floor-Walls"]
+position = Vector2(1016.5, -332.5)
+shape = SubResource("RectangleShape2D_j58ic")
