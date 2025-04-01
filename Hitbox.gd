@@ -60,5 +60,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func Hitbox_Collide():
+func Hitbox_Collide(body):
 	pass
