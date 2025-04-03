@@ -8,5 +8,4 @@
 script = ExtResource("1_bo525")
 
 [node name="Hitbox_Shape" type="CollisionShape2D" parent="."]
-position = Vector2(18, 23)
 shape = SubResource("RectangleShape2D_maxi3")
