@@ -21,6 +21,17 @@ var lag_frames = 0
 @export var hitbox: PackedScene
 var selfState
 
+# Attributes
+@export var health = 100
+@export var weight = 100
+
+# Knockback
+var hdecay
+var vdecay
+var knockback
+var hitstun
+var connected:bool
+
 const RUNSPEED = 300
 # DONT KNOW IF WE ARE DOING WALK SPEED YET
 const DASHSPEED = 375
