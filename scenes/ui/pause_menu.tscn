@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=3 uid="uid://rm0r13w6c0fy"]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_gw46c"]
+
+[node name="pause_menu" type="CanvasLayer"]
+script = ExtResource("1_gw46c")
+
+[node name="background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="menuBox" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Top" type="VBoxContainer" parent="menuBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.5
+offset_right = 56.5
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="menuBox/Top"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="menuBox/Top/CenterContainer"]
+layout_mode = 2
+text = "Player 1 Pause"
+
+[node name="bottom" type="CenterContainer" parent="menuBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menuBox/bottom"]
+layout_mode = 2
+
+[node name="option1" type="CenterContainer" parent="menuBox/bottom/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menuBox/bottom/VBoxContainer/option1"]
+layout_mode = 2
+
+[node name="Selector" type="Label" parent="menuBox/bottom/VBoxContainer/option1/HBoxContainer"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+text = ">"
+
+[node name="OptionName" type="Label" parent="menuBox/bottom/VBoxContainer/option1/HBoxContainer"]
+custom_minimum_size = Vector2(99, 0)
+layout_mode = 2
+text = "Resume"
+
+[node name="option2" type="CenterContainer" parent="menuBox/bottom/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menuBox/bottom/VBoxContainer/option2"]
+layout_mode = 2
+
+[node name="Selector" type="Label" parent="menuBox/bottom/VBoxContainer/option2/HBoxContainer"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+text = ">"
+
+[node name="OptionName" type="Label" parent="menuBox/bottom/VBoxContainer/option2/HBoxContainer"]
+custom_minimum_size = Vector2(99, 0)
+layout_mode = 2
+text = "Rematch"
+
+[node name="option3" type="CenterContainer" parent="menuBox/bottom/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menuBox/bottom/VBoxContainer/option3"]
+layout_mode = 2
+
+[node name="Selector" type="Label" parent="menuBox/bottom/VBoxContainer/option3/HBoxContainer"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+text = ">"
+
+[node name="OptionName" type="Label" parent="menuBox/bottom/VBoxContainer/option3/HBoxContainer"]
+layout_mode = 2
+text = "Player Select"
+
+[node name="option4" type="CenterContainer" parent="menuBox/bottom/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menuBox/bottom/VBoxContainer/option4"]
+layout_mode = 2
+
+[node name="Selector" type="Label" parent="menuBox/bottom/VBoxContainer/option4/HBoxContainer"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+text = ">"
+
+[node name="OptionName" type="Label" parent="menuBox/bottom/VBoxContainer/option4/HBoxContainer"]
+custom_minimum_size = Vector2(99, 0)
+layout_mode = 2
+text = "Main Menu"
