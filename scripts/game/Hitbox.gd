@@ -62,3 +62,18 @@ func _process(delta: float) -> void:
 
 func Hitbox_Collide(body):
 	pass
+	# body = body.get_parent()
+	#if !(body in player_list):
+		#player_list.append(body)
+		#var charstate
+		#charstate = body.get_node("StateMachine")
+		#weight = body.weight
+		#body.percentage += damage
+		#knockbackVal = knockback(body.percentage, damage, weight, kb_scaling, base_kb, 1)
+		#s_angle(body)
+		#angle_flipper(body)
+		#body.knockback = knockbackVal
+		#body.hitstun = getHitstun(knockbackVal/0.3)
+		#get_parent().connected = true 
+		#body.frame()
+		#charstate.state = charstate.states.HITSTUN
