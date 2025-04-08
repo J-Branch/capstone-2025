@@ -1639,7 +1639,7 @@ tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.116667, 0.166667, 0.25, 0.35, 0.4),
+"times": PackedFloat32Array(0, 0.05, 0.116667, 0.166667, 0.25, 0.333333, 0.416667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
@@ -1972,10 +1972,11 @@ _data = {
 size = Vector2(32, 35.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojafs"]
-size = Vector2(34, 37)
+size = Vector2(59, 35)
 
 [node name="SwordFighter" type="CharacterBody2D"]
-position = Vector2(31, 32)
+position = Vector2(1, 0)
+collision_mask = 6
 script = ExtResource("1_rs5pp")
 hitbox = ExtResource("2_acy5m")
 
@@ -1994,7 +1995,7 @@ libraries = {
 }
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -3.75)
+position = Vector2(2, -5)
 shape = SubResource("RectangleShape2D_vup5p")
 
 [node name="Raycasts" type="Node2D" parent="."]
@@ -2018,8 +2019,9 @@ offset_right = 20.0
 offset_bottom = -27.0
 text = "Test"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(26, -6.5)
+position = Vector2(3.5, -9)
 shape = SubResource("RectangleShape2D_ojafs")
 disabled = true

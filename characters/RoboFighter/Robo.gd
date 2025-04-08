@@ -26,7 +26,6 @@ var selfState
 @export var health = 100
 @export var weight = 100
 var freezeframes = 0
-
 # Knockback
 var hdecay
 var vdecay
@@ -57,9 +56,9 @@ var dir
 
 var frame = 0
 func updateframes(delta):
-	frame += floor(delta * 60)
+	frame += 1
 	if freezeframes > 0:
-		freezeframes -= floor(delta * 60)
+		freezeframes -= 1
 	freezeframes = clamp(freezeframes, 0, freezeframes)
 
 func create_hitbox(width, height, damage, angle, base_kb, kb_scaling, duration, type, points, angle_flipper, hitlag=1):
