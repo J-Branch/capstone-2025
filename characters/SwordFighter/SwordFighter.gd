@@ -1,16 +1,17 @@
 extends CharacterBody2D
 
+@export var id: int
+
 var dash_duration = 25
 
 @export var air_jump_max = 1
 var air_jump_num = air_jump_max
 
-@onready var states = $State
 
 #Onready variables
 @onready var GroundL = $'Raycasts/GroundL'
 @onready var GroundR = $'Raycasts/GroundR'
-
+@onready var states = $State
 @onready var anim = $Sprite/AnimationPlayer
 
 # Air variables
@@ -24,6 +25,7 @@ var selfState
 # Attributes
 @export var health = 100
 @export var weight = 100
+var freezeframes = 0
 
 # Knockback
 var hdecay
@@ -31,6 +33,12 @@ var vdecay
 var knockback
 var hitstun
 var connected:bool
+
+# Temporary Variables
+var hit_pause = 0
+var hit_pause_dur = 0
+var temp_pos = Vector2(0,0)
+var temp_vel = Vector2(0,0)
 
 const RUNSPEED = 300
 # DONT KNOW IF WE ARE DOING WALK SPEED YET
@@ -49,7 +57,10 @@ var dir
 
 var frame = 0
 func updateframes(delta):
-	frame += 1
+	frame += floor(delta * 60)
+	if freezeframes > 0:
+		freezeframes -= floor(delta * 60)
+	freezeframes = clamp(freezeframes, 0, freezeframes)
 
 func create_hitbox(width, height, damage, angle, base_kb, kb_scaling, duration, type, points, angle_flipper, hitlag=1):
 	var hitbox_instance = hitbox.instantiate()
@@ -81,6 +92,18 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	selfState = states.text
 	pass
+
+func _hit_pause(delta):
+	if hit_pause < hit_pause_dur:
+		self.position = temp_pos
+		hit_pause += floor((1 * delta) * 60)
+	else:
+		if temp_vel != Vector2(0,0):
+			self.velocity.x = temp_vel.x
+			self.velocity.y = temp_vel.y
+			temp_vel = Vector2(0,0)
+		hit_pause_dur = 0
+		hit_pause = 0
 
 # Ground Attacks
 func B_DOWN():
