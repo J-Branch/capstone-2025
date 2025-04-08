@@ -44,9 +44,9 @@ func _process(delta: float) -> void:
 func state_logic(delta):
 	parent.updateframes(delta)
 	parent._physics_process(delta)
-	if parent.regrab > 0:
-		parent.regrab -= 1
-		parent._hit_pause(delta)
+	#if parent.regrab > 0:
+		#parent.regrab -= 1
+		#parent._hit_pause(delta)
 
 func get_transition(delta):
 	parent.set_velocity(parent.velocity)

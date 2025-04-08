@@ -1969,7 +1969,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vup5p"]
-size = Vector2(32, 35.5)
+size = Vector2(30, 35.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojafs"]
 size = Vector2(59, 35)
@@ -1995,7 +1995,7 @@ libraries = {
 }
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(2, -5)
+position = Vector2(1, -5)
 shape = SubResource("RectangleShape2D_vup5p")
 
 [node name="Raycasts" type="Node2D" parent="."]
@@ -2022,6 +2022,6 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.5, -9)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_ojafs")
 disabled = true

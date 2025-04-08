@@ -31,6 +31,8 @@ func _ready() -> void:
 	add_state('T_A_DOWN')
 	add_state('T_A_NEUTRAL')
 	add_state('T_A_SIDE')
+	# HITFREEZE STATE
+	add_state('HITFREEZE')
 	# HITSTUN STATE
 	add_state('HITSTUN')
 	call_deferred("set_state", states.STAND)
@@ -42,10 +44,9 @@ func _process(delta: float) -> void:
 func state_logic(delta):
 	parent.updateframes(delta)
 	parent._physics_process(delta)
-	if parent.regrab > 0:
-		parent.regrab -= 1
-		parent._hit_pause(delta)
-
+	#if parent.regrab > 0:
+		#parent.regrab -= 1
+		#parent._hit_pause(delta)
 
 func get_transition(delta):
 	parent.set_velocity(parent.velocity)
@@ -398,6 +399,16 @@ func get_transition(delta):
 			if parent.T_A_NEUTRAL():
 				return states.AIR
 
+		states.HITFREEZE:
+			if parent.freezeframes == 0:
+				parent._frame()
+				parent.velocity.x = kbx 
+				parent.velocity.y = kby 
+				parent.hdecay = hd 
+				parent.vdecay = vd 
+				return states.HITSTUN
+			parent.position = pos
+
 		states.HITSTUN:
 			if parent.knockback >= 3: # If knockback is more than a certain amount you can bounce of the ground
 				var bounce = parent.move_and_collide(parent.velocity * delta)
@@ -531,6 +542,13 @@ func enter_state(new_state, old_state):
 			if transform == 1:
 				parent.play_animation('THurt')
 				parent.states.text = str("HitStun")
+		states.HITFREEZE:
+			if transform == 0:
+				parent.play_animation('Hurt')
+				parent.states.text = str("HitFreeze")
+			if transform == 1:
+				parent.play_animation('THurt')
+				parent.states.text = str("HitFreeze")
 			
 
 func AIRMOVEMENT():
@@ -572,3 +590,17 @@ func state_includes(state_array):
 		if state == each_state:
 			return true
 	return false
+
+var kbx
+var kby
+var hd
+var vd
+var pos
+
+func hitfreeze(duration, knockback):
+	pos = parent.get_position()
+	parent.freezeframes = duration
+	kbx = knockback[0]
+	kby = knockback[1]
+	hd = knockback[2]
+	vd = knockback[3]
