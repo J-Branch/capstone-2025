@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccn2o5l5hmhfn"]
+
+[ext_resource type="Texture2D" uid="uid://csge1k3u7f4b" path="res://assets/maps/Clouds 6/1.png" id="1_vxsav"]
+[ext_resource type="Texture2D" uid="uid://qe8fqfimk40x" path="res://assets/maps/Clouds 6/2.png" id="2_60ocn"]
+[ext_resource type="Texture2D" uid="uid://yvyu7fsgvsrm" path="res://assets/maps/Clouds 6/3.png" id="3_6yts6"]
+[ext_resource type="Texture2D" uid="uid://bpf7mgchsbfyl" path="res://assets/maps/Clouds 6/4.png" id="4_xphj8"]
+[ext_resource type="Texture2D" uid="uid://dognff724xa8e" path="res://assets/maps/Clouds 6/5.png" id="5_h2xs6"]
+[ext_resource type="Texture2D" uid="uid://dy34edpbq8ajl" path="res://assets/maps/Clouds 6/6.png" id="6_u7wcx"]
+[ext_resource type="PackedScene" uid="uid://5hyxko2yc0ns" path="res://characters/RoboFighter/RoboFighter.tscn" id="7_u5ag1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrhuh"]
+size = Vector2(1279, 31)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(640, 360)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vxsav")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_60ocn")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_6yts6")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xphj8")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_h2xs6")
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_u7wcx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 374.5)
+shape = SubResource("RectangleShape2D_lrhuh")
+
+[node name="RoboFighter" parent="." instance=ExtResource("7_u5ag1")]
+position = Vector2(-350, 324)
+id = 1
