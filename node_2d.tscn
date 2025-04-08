@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwp5ohhyyq6f3"]
+
+[ext_resource type="Texture2D" uid="uid://cd1qir57icy8i" path="res://assets/maps/Clouds 2/1.png" id="1_txss8"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(640, 360)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_txss8")
