@@ -1,20 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccn2o5l5hmhfn"]
+[gd_scene load_steps=10 format=3 uid="uid://i71afjnip62q"]
 
-[ext_resource type="Texture2D" uid="uid://csge1k3u7f4b" path="res://assets/maps/Clouds 6/1.png" id="1_vxsav"]
-[ext_resource type="Texture2D" uid="uid://qe8fqfimk40x" path="res://assets/maps/Clouds 6/2.png" id="2_60ocn"]
-[ext_resource type="Texture2D" uid="uid://yvyu7fsgvsrm" path="res://assets/maps/Clouds 6/3.png" id="3_6yts6"]
-[ext_resource type="Texture2D" uid="uid://bpf7mgchsbfyl" path="res://assets/maps/Clouds 6/4.png" id="4_xphj8"]
-[ext_resource type="Texture2D" uid="uid://dognff724xa8e" path="res://assets/maps/Clouds 6/5.png" id="5_h2xs6"]
-[ext_resource type="Texture2D" uid="uid://dy34edpbq8ajl" path="res://assets/maps/Clouds 6/6.png" id="6_u7wcx"]
+[ext_resource type="Texture2D" uid="uid://1uf64001aqe4" path="res://assets/maps/Clouds 8/1.png" id="1_lkth4"]
+[ext_resource type="Texture2D" uid="uid://daletqc8x4fau" path="res://assets/maps/Clouds 8/2.png" id="2_y3e6p"]
+[ext_resource type="Texture2D" uid="uid://dxci5ratnj6mj" path="res://assets/maps/Clouds 8/3.png" id="3_w3gbm"]
+[ext_resource type="Texture2D" uid="uid://bds2dgf2v764k" path="res://assets/maps/Clouds 8/4.png" id="4_hrg7y"]
+[ext_resource type="Texture2D" uid="uid://cjkjshmwk2o12" path="res://assets/maps/Clouds 8/5.png" id="5_30hq3"]
+[ext_resource type="Texture2D" uid="uid://dd7ng5m3mmjwo" path="res://assets/maps/Clouds 8/6.png" id="6_bxncy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrhuh"]
-size = Vector2(1279, 31)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ifc"]
+size = Vector2(1282, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_64xjj"]
-size = Vector2(36.5, 720)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys7jt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbfyg"]
 size = Vector2(38, 720.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmp2f"]
+size = Vector2(36.5, 720)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(640, 360)
@@ -29,7 +29,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_vxsav")
+texture = ExtResource("1_lkth4")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -41,7 +41,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_60ocn")
+texture = ExtResource("2_y3e6p")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -53,7 +53,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_6yts6")
+texture = ExtResource("3_w3gbm")
 
 [node name="TextureRect4" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -65,7 +65,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_xphj8")
+texture = ExtResource("4_hrg7y")
 
 [node name="TextureRect5" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -77,7 +77,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_h2xs6")
+texture = ExtResource("5_30hq3")
 
 [node name="TextureRect6" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -89,19 +89,19 @@ offset_right = 640.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_u7wcx")
+texture = ExtResource("6_bxncy")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.5, 374.5)
-shape = SubResource("RectangleShape2D_lrhuh")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(660, 0)
-shape = SubResource("RectangleShape2D_64xjj")
+position = Vector2(0.5, 374)
+shape = SubResource("RectangleShape2D_n6ifc")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-660, 0)
-shape = SubResource("RectangleShape2D_ys7jt")
+shape = SubResource("RectangleShape2D_dbfyg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(660, 0)
+shape = SubResource("RectangleShape2D_xmp2f")
