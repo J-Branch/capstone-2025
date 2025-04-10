@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://i71afjnip62q"]
+[gd_scene load_steps=12 format=3 uid="uid://2jwcbn8tdeea"]
 
 [ext_resource type="Texture2D" uid="uid://1uf64001aqe4" path="res://assets/maps/Clouds 8/1.png" id="1_lkth4"]
 [ext_resource type="Texture2D" uid="uid://daletqc8x4fau" path="res://assets/maps/Clouds 8/2.png" id="2_y3e6p"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bds2dgf2v764k" path="res://assets/maps/Clouds 8/4.png" id="4_hrg7y"]
 [ext_resource type="Texture2D" uid="uid://cjkjshmwk2o12" path="res://assets/maps/Clouds 8/5.png" id="5_30hq3"]
 [ext_resource type="Texture2D" uid="uid://dd7ng5m3mmjwo" path="res://assets/maps/Clouds 8/6.png" id="6_bxncy"]
+[ext_resource type="PackedScene" uid="uid://bolw870xg4wit" path="res://characters/SwordFighter/SwordFighter.tscn" id="7_vgxbd"]
+[ext_resource type="PackedScene" uid="uid://5hyxko2yc0ns" path="res://characters/RoboFighter/RoboFighter.tscn" id="8_s5t8s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ifc"]
-size = Vector2(1282, 20)
+size = Vector2(1282, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbfyg"]
 size = Vector2(38, 720.5)
@@ -95,7 +97,7 @@ texture = ExtResource("6_bxncy")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.5, 374)
+position = Vector2(0.5, 364)
 shape = SubResource("RectangleShape2D_n6ifc")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
@@ -105,3 +107,11 @@ shape = SubResource("RectangleShape2D_dbfyg")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(660, 0)
 shape = SubResource("RectangleShape2D_xmp2f")
+
+[node name="SwordFighter" parent="." instance=ExtResource("7_vgxbd")]
+position = Vector2(-349, 266)
+id = 1
+
+[node name="RoboFighter" parent="." instance=ExtResource("8_s5t8s")]
+position = Vector2(210, 250)
+id = 2

@@ -65,22 +65,22 @@ func Hitbox_Collide(body):
 		var charstate
 		charstate = body.get_node("StateMachine")
 		weight = body.weight
-		body.percentage += damage
-		knockbackVal = knockback(body.percentage, damage, weight, kb_scaling, base_kb, 1)
+		body.health -= damage
+		knockbackVal = knockback(body.health, damage, weight, kb_scaling, base_kb, 1)
 		charstate.state = charstate.states.HITFREEZE
 		charstate.hitfreeze(hitlag(damage, hitlag_modifier), angle_flipperV2(Vector2(body.velocity.x, body.velocity.y), body.global_position))
 		
 		body.knockback = knockbackVal
 		body.hitstun = getHitstun(knockbackVal/0.3)
 		get_parent().connected = true 
-		body.frame()
+		body._frame()
 		
 		Globals.hitstun(hitlag(damage, hitlag_modifier), hitlag(damage,hitlag_modifier) /60)
 		get_parent().hit_pause_dur = duration - framez
 		get_parent().temp_pos = get_parent().position
 		get_parent().temp_vel = get_parent().velocity
 
-@export var percentage = 0
+@export var health = 0
 @export var ratio = 1
 @export var weight = 100
 
@@ -89,15 +89,15 @@ func hitlag(d, hit):
 	hitlag_modifier = hit 
 	return floor((((floor(d) * 0.65) + 6) * hit))
 
-func knockback(p,d,w,ks,bk,r):
-	percentage = p
+func knockback(h,d,w,ks,bk,r):
+	health = h
 	damage = d
 	weight = w
 	kb_scaling - ks
 	base_kb = bk
 	ratio = r
 	# Math to determine knockback
-	return ((((((((percentage/10)+(percentage*damage/20))*(200/(weight+100))*1.4)+18)*(kb_scaling))+base_kb)*1))*.004 
+	return ((((((((health/10)+(health*damage/20))*(200/(weight+100))*1.4)+18)*(kb_scaling))+base_kb)*1))*.004 
 
 const angleConversion = PI / 180
 
@@ -129,7 +129,7 @@ func getVerticalVelocity(knockback, angle):
 
 func angle_flipperV2(body_vel :Vector2, body_position :Vector2, hdecay = 0, vdecay = 0):
 	var xangle 
-	if get_parent().dir == 0:
+	if get_parent().dir:
 		xangle = (((body_position.angle_to_point(get_parent().global_position)) * 180)/PI)
 	else:
 		xangle = (-(((body_position.angle_to_point(get_parent().global_position)) * 180)/PI))
