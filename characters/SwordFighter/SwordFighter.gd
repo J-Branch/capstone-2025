@@ -118,13 +118,13 @@ func B_DOWN():
 		
 func B_SIDE():
 	if frame == 16:
-		create_hitbox(35.5,13,8, 0, 0, 0, 15, 'normal', Vector2(33.2,-2.5), 0, 1)
+		create_hitbox(35.5,13,8, 0, 3, 80, 15, 'normal', Vector2(33.2,-2.5), 0, 1)
 	if frame >= 32:
 		return true
 
 func B_NEUTRAL():
 	if frame == 16:
-		create_hitbox(27,31,8, 0, 0, 0, 8, 'normal', Vector2(26.5,-8.5), 0, 1)
+		create_hitbox(27,31,8, 45, 3, 110, 8, 'normal', Vector2(26.5,-8.5), 0, 1)
 	if frame >= 24:
 		return true
 

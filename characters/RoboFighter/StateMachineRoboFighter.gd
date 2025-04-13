@@ -415,7 +415,7 @@ func get_transition(delta):
 					parent.hitstun = round(parent.hitstun * 0.8)
 			if parent.velocity.y < 0:
 				parent.velocity.y += parent.vdecay*.05 * Engine.time_scale
-				parent.velocity.y = clamp(parent.vvelocity.y, parent.velocity.y, 0)
+				parent.velocity.y = clamp(parent.velocity.y, parent.velocity.y, 0)
 			if parent.velocity.x < 0:
 				parent.velocity.x += (parent.hdecay)*.04 * -1 * Engine.time_scale
 				parent.velocity.x = clamp(parent.velocity.x, parent.velocity.x, 0)

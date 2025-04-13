@@ -97,7 +97,7 @@ func knockback(h,d,w,ks,bk,r):
 	base_kb = bk
 	ratio = r
 	# Math to determine knockback
-	return ((((((((health/10)+(health*damage/20))*(200/(weight+100))*1.4)+18)*(kb_scaling))+base_kb)*1))*.004 
+	return (((((((damage/20)*(200/(weight+100))*1.4)+18)*(kb_scaling))+base_kb)*1))*.004 
 
 const angleConversion = PI / 180
 
@@ -108,7 +108,7 @@ func getHorizontalDecay(angle): # The rate the a character slows down after knoc
 	return decay
 
 func getVerticalDecay(angle):
-	var decay = 0.051 * cos(angle * angleConversion)
+	var decay = 0.051 * sin(angle * angleConversion)
 	decay = round(decay * 100000) / 100000
 	decay = decay * 1000
 	return abs(decay)
@@ -122,17 +122,17 @@ func getHorizontalVelocity(knockback, angle): # Gets the horizontal knockback sp
 		
 func getVerticalVelocity(knockback, angle):
 		var initialVelocity = knockback * 30
-		var verticalAngle = cos(angle * angleConversion)
+		var verticalAngle = sin(angle * angleConversion)
 		var verticalVelocity = initialVelocity * verticalAngle 
 		verticalVelocity = round(verticalVelocity * 100000) / 100000
 		return verticalVelocity
 
 func angle_flipperV2(body_vel :Vector2, body_position :Vector2, hdecay = 0, vdecay = 0):
 	var xangle 
-	if get_parent().dir:
-		xangle = (((body_position.angle_to_point(get_parent().global_position)) * 180)/PI)
-	else:
-		xangle = (-(((body_position.angle_to_point(get_parent().global_position)) * 180)/PI))
+	if get_parent().dir: # looking left
+		xangle = (((body_position.angle_to_point(get_parent().global_position)) * 180)/PI) + 180
+	else: # looking right
+		xangle = (-(((body_position.angle_to_point(get_parent().global_position)) * 180)/PI)) + 180
 	match angle_flipper:
 		0:
 			body_vel.x = (getHorizontalVelocity (knockbackVal, -angle))
