@@ -112,7 +112,7 @@ func B_DOWN():
 	if frame == 13:
 		create_hitbox(19,26.5,8, 0, 0, 0, 7, 'normal', Vector2(-1,-35.25), 0, 1)
 	if frame == 20:
-		create_hitbox(34,37,8, 0, 0, 0, 5, 'normal', Vector2(26,-6.5), 0, 1)
+		create_hitbox(34,37,8, 45, 5, 90, 5, 'normal', Vector2(26,-6.5), 0, 1)
 	if frame >= 25:
 		return true
 		
