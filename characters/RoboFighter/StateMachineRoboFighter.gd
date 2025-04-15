@@ -3,6 +3,7 @@ extends StateMachine
 var cooldown_time = 1.0
 var time_since_last_ex = 0.0
 var transform = 0
+var just_jumped = false
 
 @onready var id = get_parent().id
 
@@ -24,6 +25,7 @@ func _ready() -> void:
 	add_state('A_DOWN')
 	add_state('A_NEUTRAL')
 	add_state('A_SIDE')
+	add_state('JUMP')
 	# TRANSFORMED STATES
 	add_state('T_B_DOWN')
 	add_state('T_B_SIDE')
@@ -84,6 +86,7 @@ func get_transition(delta):
 				return states.RUN
 			if Input.is_action_pressed("jump%s" %id):
 				parent.velocity.y = -parent.JUMPFORCE
+				just_jumped = true
 				parent._frame()
 				return states.AIR
 			if Input.is_action_pressed("dash%s" %id):
@@ -98,7 +101,6 @@ func get_transition(delta):
 				parent.velocity.x += parent.TRACTION
 				parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
 			return states.STAND
-			
 		states.AIR:
 			AIRMOVEMENT()
 			if Input.is_action_pressed("attack%s" %id):
@@ -178,6 +180,7 @@ func get_transition(delta):
 		states.RUN:
 			if Input.is_action_pressed("jump%s" %id):
 				parent.velocity.y = -parent.JUMPFORCE
+				just_jumped = true
 				parent._frame()
 				return states.AIR
 			if Input.is_action_pressed("dash%s" %id):
@@ -410,16 +413,16 @@ func get_transition(delta):
 		states.HITSTUN:
 			if parent.knockback >= 3: # If knockback is more than a certain amount you can bounce of the ground
 				var bounce = parent.move_and_collide(parent.velocity * delta)
-				if parent.is_on_wall():
+				if parent.is_on_wall() and not parent.is_on_floor():
 					parent.velocity.x = kbx - parent.velocity.x
 					parent.velocity = parent.velocity.bounce(parent.get_wall_normal()) * 0.8
 					parent.hdecay *= -1 
 					parent.hitstun = round(parent.hitstun * 0.8)
+				if parent.is_on_floor():
+					parent.velocity.y = kby - parent.velocity.y
+					parent.velocity = parent.velocity.bounce(parent.get_floor_normal()) * 0.8
+					parent.hitstun = round(parent.hitstun * 0.8)
 				# NOT WORKING - SLIDING ON FLOOR AND STAYING IN HITSTUN STATE
-				#if parent.is_on_floor():
-					#parent.velocity.y = kby - parent.velocity.y
-					#parent.velocity = parent.velocity.bounce(parent.get_floor_normal()) * 0.8
-					#parent.hitstun = round(parent.hitstun * 0.8)
 				#if bounce:
 					#parent.velocity = parent.velocity.bounce(bounce.get_normal()) * 0.8
 					#parent.hitstun = round(parent.hitstun * 0.8)
@@ -560,6 +563,9 @@ func enter_state(new_state, old_state):
 			
 
 func AIRMOVEMENT():
+	if just_jumped and parent.velocity.y == 0:
+		parent.velocity.y = -parent.JUMPFORCE
+		just_jumped = false
 	if parent.velocity.y < parent.FALLINGSPEED:
 		parent.velocity.y += parent.FALLSPEED
 	# Slows the player down in the air if they are at max speed

@@ -109,9 +109,9 @@ position = Vector2(660, 0)
 shape = SubResource("RectangleShape2D_xmp2f")
 
 [node name="SwordFighter" parent="." instance=ExtResource("7_vgxbd")]
-position = Vector2(-349, 266)
-id = 1
+position = Vector2(-473, 315)
+id = 2
 
 [node name="RoboFighter" parent="." instance=ExtResource("8_s5t8s")]
-position = Vector2(210, 250)
-id = 2
+position = Vector2(318, 289)
+id = 1

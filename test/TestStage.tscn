@@ -61,8 +61,8 @@ drag_vertical_enabled = true
 
 [node name="SwordFighter2" parent="." instance=ExtResource("5_bc3ak")]
 position = Vector2(105, 245)
-id = 1
+id = 2
 
 [node name="RoboFighter" parent="." instance=ExtResource("6_vhqk3")]
 position = Vector2(404, 231)
-id = 2
+id = 1

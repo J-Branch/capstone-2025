@@ -1642,6 +1642,7 @@ size = Vector2(28, 48)
 size = Vector2(59, 54)
 
 [node name="RoboFighter" type="CharacterBody2D"]
+scale = Vector2(1.7, 1.7)
 collision_mask = 6
 script = ExtResource("1_ln34b")
 hitbox = ExtResource("2_x3mcq")
