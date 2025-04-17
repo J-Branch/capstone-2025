@@ -1,9 +1,13 @@
 extends StateMachine
 # TRANSFORM VARS FOR TESTING
-var cooldown_time = 1.0
-var time_since_last_ex = 0.0
+var transform_cooldown_time = 1.0
+var time_since_last_transform = 0.0
 var transform = 0
+# Variable to fix raycasting issue when jumping
 var just_jumped = false
+# Variables for dash cooldown
+var dash_cooldown_time = 1.5
+var time_since_last_dash = dash_cooldown_time
 
 
 @onready var id = get_parent().id
@@ -54,12 +58,13 @@ func get_transition(delta):
 	parent.set_velocity(parent.velocity)
 	parent.set_up_direction(Vector2.UP)
 	parent.move_and_slide()
-	
+	# For dash timer
+	time_since_last_dash += delta
 	# FOR TRANSFORM TESTING
-	time_since_last_ex += delta
-	if time_since_last_ex > cooldown_time and Input.is_action_pressed('transformation%s' % id):
+	time_since_last_transform += delta
+	if time_since_last_transform > transform_cooldown_time and Input.is_action_pressed('transformation%s' % id):
 		_transform()
-		time_since_last_ex = 0.0
+		time_since_last_transform = 0.0
 	
 	if Landing() == true:
 		parent._frame()
@@ -76,6 +81,7 @@ func get_transition(delta):
 	match state:
 		states.STAND:
 			parent.reset_jump()
+			parent.reset_dash()
 			if Input.is_action_pressed("move_right%s" %id):
 				parent.velocity.x = parent.RUNSPEED
 				parent._frame()
@@ -91,8 +97,9 @@ func get_transition(delta):
 				just_jumped = true
 				parent._frame()
 				return states.AIR
-			if Input.is_action_pressed("dash%s" %id):
+			if Input.is_action_pressed("dash%s" %id) and time_since_last_dash >= dash_cooldown_time:
 				parent._frame()
+				time_since_last_dash = 0.0
 				return states.DASH
 				# Slows the player down if player is in a stand state and is moving right
 			if parent.velocity.x > 0:
@@ -109,8 +116,9 @@ func get_transition(delta):
 			if Input.is_action_pressed("attack%s" %id):
 				parent._frame()
 				return states.AIR_ATTACK
-			if Input.is_action_pressed("dash%s" %id):
+			if Input.is_action_pressed("dash%s" %id) and parent.air_dash_num > 0:
 				parent._frame()
+				parent.air_dash_num -= 1
 				return states.AIRDASH
 			# Code for double jump
 			if Input.is_action_just_pressed("jump%s" %id) and parent.air_jump_num > 0:
@@ -186,8 +194,9 @@ func get_transition(delta):
 				just_jumped = true
 				parent._frame()
 				return states.AIR
-			if Input.is_action_pressed("dash%s" %id):
+			if Input.is_action_pressed("dash%s" %id)  and time_since_last_dash >= dash_cooldown_time:
 				parent._frame()
+				time_since_last_dash = 0.0
 				return states.DASH
 			if Input.is_action_pressed("move_right%s"%id):
 				if parent.velocity.x > 0:

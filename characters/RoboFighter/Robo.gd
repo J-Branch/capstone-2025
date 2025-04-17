@@ -6,7 +6,8 @@ var dash_duration = 25
 
 @export var air_jump_max = 1
 var air_jump_num = air_jump_max
-
+var air_dash_max = 1
+var air_dash_num = air_dash_max
 
 #Onready variables
 @onready var GroundL = $'Raycasts/GroundL'
@@ -51,7 +52,7 @@ const MAXAIRSPEED = 500
 const AIR_ACCEL = 25
 const FALLSPEED = 25
 const FALLINGSPEED = 500
-const TRACTION = 40
+const TRACTION = 55
 
 var dir
 
@@ -85,6 +86,9 @@ func play_animation(animation_name):
 
 func reset_jump():
 	air_jump_num = air_jump_max
+
+func reset_dash():
+	air_dash_num = air_dash_max
 
 func _ready():
 	pass

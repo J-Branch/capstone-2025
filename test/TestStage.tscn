@@ -65,4 +65,5 @@ id = 2
 
 [node name="RoboFighter" parent="." instance=ExtResource("6_vhqk3")]
 position = Vector2(404, 231)
+scale = Vector2(1, 1)
 id = 1

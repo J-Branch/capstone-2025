@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2jwcbn8tdeea"]
+[gd_scene load_steps=12 format=3 uid="uid://cbndgwj5sk0l"]
 
 [ext_resource type="Texture2D" uid="uid://1uf64001aqe4" path="res://assets/maps/Clouds 8/1.png" id="1_lkth4"]
 [ext_resource type="Texture2D" uid="uid://daletqc8x4fau" path="res://assets/maps/Clouds 8/2.png" id="2_y3e6p"]
@@ -110,8 +110,8 @@ shape = SubResource("RectangleShape2D_xmp2f")
 
 [node name="SwordFighter" parent="." instance=ExtResource("7_vgxbd")]
 position = Vector2(-473, 315)
-id = 2
+id = 1
 
 [node name="RoboFighter" parent="." instance=ExtResource("8_s5t8s")]
 position = Vector2(318, 289)
-id = 1
+id = 2

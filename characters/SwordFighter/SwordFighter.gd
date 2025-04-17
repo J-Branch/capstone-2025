@@ -6,6 +6,8 @@ var dash_duration = 25
 
 @export var air_jump_max = 1
 var air_jump_num = air_jump_max
+var air_dash_max = 1
+var air_dash_num = air_dash_max
 
 
 #Onready variables
@@ -51,7 +53,7 @@ const MAXAIRSPEED = 500
 const AIR_ACCEL = 25
 const FALLSPEED = 25
 const FALLINGSPEED = 500
-const TRACTION = 40
+const TRACTION = 55
 
 var dir
 
@@ -86,9 +88,11 @@ func play_animation(animation_name):
 func reset_jump():
 	air_jump_num = air_jump_max
 
+func reset_dash():
+	air_dash_num = air_dash_max
+
 func _ready():
 	pass
-
 func _physics_process(delta: float) -> void:
 	selfState = states.text
 	pass
@@ -112,13 +116,13 @@ func B_DOWN():
 	if frame == 13:
 		create_hitbox(19,26.5,8, 0, 3, 15, 7, 'normal', Vector2(-1,-35.25), 0, 1)
 	if frame == 20:
-		create_hitbox(34,37,8, 45, 5, 90, 5, 'normal', Vector2(26,-6.5), 0, 1)
+		create_hitbox(34,37,8, 270, 5, 90, 5, 'normal', Vector2(26,-6.5), 0, 1)
 	if frame >= 25:
 		return true
 		
 func B_SIDE():
 	if frame == 16:
-		create_hitbox(35.5,13,8, 0, 3, 80, 15, 'normal', Vector2(33.2,-2.5), 0, 1)
+		create_hitbox(35.5,13,8, 5, 3, 85, 15, 'normal', Vector2(33.2,-2.5), 0, 1)
 	if frame >= 32:
 		return true
 
