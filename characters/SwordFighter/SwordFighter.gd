@@ -57,6 +57,9 @@ const TRACTION = 55
 
 var dir
 
+# For healthbar
+signal health_changed(current_health)
+
 var frame = 0
 func updateframes(delta):
 	frame += floor(delta * 60)
@@ -92,7 +95,8 @@ func reset_dash():
 	air_dash_num = air_dash_max
 
 func _ready():
-	pass
+	add_to_group("fighters")
+	
 func _physics_process(delta: float) -> void:
 	selfState = states.text
 	pass

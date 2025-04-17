@@ -69,6 +69,8 @@ func Hitbox_Collide(body):
 		knockbackVal = knockback(body.health, damage, weight, kb_scaling, base_kb, 1)
 		charstate.state = charstate.states.HITFREEZE
 		charstate.hitfreeze(hitlag(damage, hitlag_modifier), angle_flipperV2(Vector2(body.velocity.x, body.velocity.y), body.global_position))
+		# Code for healthbar
+		body.emit_signal("health_changed", body.health)
 		
 		body.knockback = knockbackVal
 		body.hitstun = getHitstun(knockbackVal/0.3)
