@@ -17,7 +17,7 @@ var air_dash_num = air_dash_max
 @onready var anim = $Sprite/AnimationPlayer
 
 # Air variables
-var landing_frames = 0
+var landing_frames = 5
 var lag_frames = 0
 
 # Hitboxes 
@@ -59,6 +59,13 @@ var dir
 
 # For healthbar
 signal health_changed(current_health)
+
+# For transformbar
+var transform_mana_max = 1000
+var transform_mana = 500
+var transform_decay = 2.75
+var transform_recovery = 1.25
+signal transform_changed(current_transform)
 
 var frame = 0
 func updateframes(delta):

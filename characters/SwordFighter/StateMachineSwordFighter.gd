@@ -1,6 +1,6 @@
 extends StateMachine
-# TRANSFORM VARS FOR TESTING
-var transform_cooldown_time = 1.0
+# Transform variables
+var transform_cooldown_time = 0.5
 var time_since_last_transform = 0.0
 var transform = 0
 # Variable to fix raycasting issue when jumping
@@ -60,11 +60,26 @@ func get_transition(delta):
 	parent.move_and_slide()
 	# For dash timer
 	time_since_last_dash += delta
+	
 	# FOR TRANSFORM TESTING
+	if parent.transform_mana <= 0 and transform == 1:
+		_transform()
+		time_since_last_transform = 0
+	
 	time_since_last_transform += delta
-	if time_since_last_transform > transform_cooldown_time and Input.is_action_pressed('transformation%s' % id):
+	if parent.transform_mana > 0 and Input.is_action_pressed('transformation%s' % id) and time_since_last_transform > transform_cooldown_time:
 		_transform()
 		time_since_last_transform = 0.0
+		
+	if parent.transform_mana <= parent.transform_mana_max and transform == 1:
+		parent.transform_mana -= parent.transform_decay
+		parent.transform_mana = clampf(parent.transform_mana, 0, parent.transform_mana)
+		parent.emit_signal("transform_changed", parent.transform_mana)
+		
+	if parent.transform_mana <= parent.transform_mana_max and transform == 0:
+		parent.transform_mana += parent.transform_recovery
+		parent.transform_mana = clampf(parent.transform_mana, 0, parent.transform_mana_max)
+		parent.emit_signal("transform_changed", parent.transform_mana)
 	
 	if Landing() == true:
 		parent._frame()
