@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bolw870xg4wit" path="res://characters/SwordFighter/SwordFighter.tscn" id="7_vgxbd"]
 [ext_resource type="PackedScene" uid="uid://5hyxko2yc0ns" path="res://characters/RoboFighter/RoboFighter.tscn" id="8_s5t8s"]
 [ext_resource type="PackedScene" uid="uid://5l57d7kpasn5" path="res://scenes/ui/health_bar.tscn" id="9_qujpc"]
-[ext_resource type="PackedScene" uid="uid://bhyp2c1trdn4b" path="res://scenes/ui/transform_bar.tscn" id="11_prihg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/transform_bar.tscn" id="11_prihg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ifc"]
 size = Vector2(1282, 40)
