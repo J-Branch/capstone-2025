@@ -25,7 +25,7 @@ func handle_selection(_current_selection):
 	if _current_selection == 0:
 		##get_parent().add_child(test_scene.instantiate())
 		##queue_free()
-		get_tree().change_scene_to_file("res://test/TestStage.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/CSS/character_select_screen.tscn")
 	elif _current_selection == 2: 
 		get_tree().quit()
 

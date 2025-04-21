@@ -77,7 +77,7 @@ func get_transition(delta):
 		parent.emit_signal("transform_changed", parent.transform_mana)
 		
 	if parent.transform_mana <= parent.transform_mana_max and transform == 0:
-		parent.transform_mana += parent.transform_recovery
+		parent.transform_mana += parent.transform_recovery + ((abs(parent.health-100))/85)
 		parent.transform_mana = clampf(parent.transform_mana, 0, parent.transform_mana_max)
 		parent.emit_signal("transform_changed", parent.transform_mana)
 	

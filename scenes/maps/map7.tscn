@@ -26,7 +26,6 @@ position = Vector2(640, 360)
 script = ExtResource("1_ysvdk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,7 +38,6 @@ grow_vertical = 2
 texture = ExtResource("1_lkth4")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -52,7 +50,6 @@ grow_vertical = 2
 texture = ExtResource("2_y3e6p")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -65,7 +62,6 @@ grow_vertical = 2
 texture = ExtResource("3_w3gbm")
 
 [node name="TextureRect4" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,7 +74,6 @@ grow_vertical = 2
 texture = ExtResource("4_hrg7y")
 
 [node name="TextureRect5" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -91,7 +86,6 @@ grow_vertical = 2
 texture = ExtResource("5_30hq3")
 
 [node name="TextureRect6" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -104,31 +98,27 @@ grow_vertical = 2
 texture = ExtResource("6_bxncy")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 position = Vector2(0.5, 364)
 shape = SubResource("RectangleShape2D_n6ifc")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 position = Vector2(-660, 0)
 shape = SubResource("RectangleShape2D_dbfyg")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
 position = Vector2(660, 0)
 shape = SubResource("RectangleShape2D_xmp2f")
 
 [node name="SwordFighter" parent="." instance=ExtResource("7_vgxbd")]
 position = Vector2(-473, 315)
-id = 1
+id = 2
 
 [node name="RoboFighter" parent="." instance=ExtResource("8_s5t8s")]
 position = Vector2(318, 289)
-id = 2
+id = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -137,25 +127,25 @@ offset_left = 41.0
 offset_top = 20.0
 offset_right = 386.0
 offset_bottom = 48.0
-id = 1
+id = 2
 
 [node name="HealthBar2" parent="CanvasLayer" instance=ExtResource("9_qujpc")]
 offset_left = 903.0
 offset_top = 20.0
 offset_right = 1248.0
 offset_bottom = 48.0
-id = 2
+id = 1
 
 [node name="TransformBar" parent="CanvasLayer" instance=ExtResource("11_prihg")]
 offset_left = 42.0
 offset_top = 70.0
 offset_right = 387.0
 offset_bottom = 98.0
-id = 1
+id = 2
 
 [node name="TransformBar2" parent="CanvasLayer" instance=ExtResource("11_prihg")]
 offset_left = 902.0
 offset_top = 70.0
 offset_right = 1247.0
 offset_bottom = 98.0
-id = 2
+id = 1

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmpsohckv2paj"]
 
-[ext_resource type="Script" path="res://scenes/ui/CSS/char_previews/CSS_Character_Previews.gd" id="1_4k6jh"]
+[ext_resource type="Script" path="res://scenes/ui/char_previews/CSS_Character_Previews.gd" id="1_4k6jh"]
 [ext_resource type="Texture2D" uid="uid://b0y6kp5ouamue" path="res://assets/sprites/sheets/SwordFighter/SwordCharacterPreview.aseprite" id="2_pfa3l"]
 [ext_resource type="Texture2D" uid="uid://c5x7s7e11c1h5" path="res://assets/sprites/sheets/RoboFighter/RoboCharacterPreview.aseprite" id="3_mxu20"]
 
@@ -46,6 +46,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Bottom Text" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchor_top = 0.75
 anchor_right = 1.0
@@ -61,6 +62,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.534727, 0.552889, 0.914097, 1)
@@ -74,9 +78,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -11.5
-offset_right = 100.0
-offset_bottom = 11.5
+offset_left = 49.0
+offset_top = -18.0
+offset_right = 249.0
+offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2

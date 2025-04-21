@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dmlpjepp5f4dx" path="res://assets/sprites/sheets/SwordFighter/SwordCharacterSelected.aseprite" id="3_qr7v0"]
 
 [sub_resource type="SystemFont" id="SystemFont_u5hbt"]
+subpixel_positioning = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1yaxc"]
 size = Vector2(224, 128)
@@ -14,11 +15,13 @@ custom_minimum_size = Vector2(224, 128)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1056.0
+offset_left = 4.0
+offset_right = -1052.0
 offset_bottom = -592.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("1_nbtba")
+texture_pressed = ExtResource("3_qr7v0")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("2_1xwpb")

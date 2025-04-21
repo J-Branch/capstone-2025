@@ -18,6 +18,8 @@ func readytofight():
 		selected = true
 		if selected == true:
 			canvas.visible = true
+			anim.visible = true
+			anim.show() # Making it visible before the animation plays
 			anim.play('Ready')
 			selected = false
 	else:

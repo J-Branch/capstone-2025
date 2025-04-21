@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://vo56ijhbkl67"]
+
+[ext_resource type="Texture2D" uid="uid://doxqo0gr517hi" path="res://assets/sprites/ui/BackButton.aseprite" id="1_b3gx6"]
+[ext_resource type="Texture2D" uid="uid://b7hsnxc8xjf2n" path="res://assets/sprites/ui/BackButton2.aseprite" id="2_wd5rc"]
+[ext_resource type="Texture2D" uid="uid://bm502qu0mq6x2" path="res://assets/sprites/ui/BackButton3.aseprite" id="3_vx8lw"]
+[ext_resource type="Texture2D" uid="uid://cc5dq377oh24l" path="res://assets/sprites/ui/BackButton4.aseprite" id="4_th4va"]
+[ext_resource type="Texture2D" uid="uid://d0e8qhbg32qlg" path="res://assets/sprites/ui/Stopwatch.aseprite" id="5_e1dwf"]
+[ext_resource type="Texture2D" uid="uid://mcn37wud2rco" path="res://assets/sprites/ui/ForwardButton.aseprite" id="6_4hwlb"]
+[ext_resource type="Script" path="res://scenes/ui/Time.gd" id="6_oehh4"]
+[ext_resource type="Texture2D" uid="uid://bf43bmbjqjeba" path="res://assets/sprites/ui/ForwardButton2.aseprite" id="7_i7pem"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4qv0"]
+size = Vector2(234, 118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suh54"]
+size = Vector2(124, 144)
+
+[sub_resource type="SystemFont" id="SystemFont_xotov"]
+
+[node name="Character Select Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.627451, 0.772549, 0.862745, 1)
+
+[node name="CSS Sections" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Settings" type="MarginContainer" parent="CSS Sections"]
+custom_minimum_size = Vector2(0, 145)
+layout_mode = 2
+
+[node name="HBox Settings" type="HBoxContainer" parent="CSS Sections/Settings"]
+custom_minimum_size = Vector2(0, 145)
+layout_mode = 2
+alignment = 1
+
+[node name="Back Button" type="TextureButton" parent="CSS Sections/Settings/HBox Settings"]
+custom_minimum_size = Vector2(251, 145)
+layout_mode = 2
+texture_normal = ExtResource("1_b3gx6")
+texture_pressed = ExtResource("2_wd5rc")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="ButtonArea2D" type="Area2D" parent="CSS Sections/Settings/HBox Settings/Back Button"]
+collision_layer = 65536
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CSS Sections/Settings/HBox Settings/Back Button/ButtonArea2D"]
+position = Vector2(133, 81)
+shape = SubResource("RectangleShape2D_e4qv0")
+
+[node name="Time" type="HBoxContainer" parent="CSS Sections/Settings/HBox Settings"]
+custom_minimum_size = Vector2(506, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button_Left" type="TextureButton" parent="CSS Sections/Settings/HBox Settings/Time"]
+custom_minimum_size = Vector2(122, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_vx8lw")
+texture_pressed = ExtResource("4_th4va")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtonArea2D" type="Area2D" parent="CSS Sections/Settings/HBox Settings/Time/Button_Left"]
+position = Vector2(60, 72)
+collision_layer = 65536
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CSS Sections/Settings/HBox Settings/Time/Button_Left/ButtonArea2D"]
+shape = SubResource("RectangleShape2D_suh54")
+
+[node name="TextureRect" type="TextureRect" parent="CSS Sections/Settings/HBox Settings/Time"]
+texture_filter = 2
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("5_e1dwf")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Time" type="Label" parent="CSS Sections/Settings/HBox Settings/Time"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = SubResource("SystemFont_xotov")
+theme_override_font_sizes/font_size = 60
+text = "1:00
+"
+script = ExtResource("6_oehh4")
+
+[node name="Button_Right" type="TextureButton" parent="CSS Sections/Settings/HBox Settings/Time"]
+custom_minimum_size = Vector2(122, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_4hwlb")
+texture_pressed = ExtResource("7_i7pem")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtonArea2D" type="Area2D" parent="CSS Sections/Settings/HBox Settings/Time/Button_Right"]
+position = Vector2(60, 72)
+collision_layer = 65536
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CSS Sections/Settings/HBox Settings/Time/Button_Right/ButtonArea2D"]
+shape = SubResource("RectangleShape2D_suh54")
+
+[node name="Character Select" type="MarginContainer" parent="CSS Sections"]
+layout_mode = 2
+
+[node name="Character Preview" type="MarginContainer" parent="CSS Sections"]
+layout_mode = 2
+
+[connection signal="pressed" from="CSS Sections/Settings/HBox Settings/Time/Button_Left" to="CSS Sections/Settings/HBox Settings/Time/Time" method="Decrease"]
+[connection signal="pressed" from="CSS Sections/Settings/HBox Settings/Time/Button_Right" to="CSS Sections/Settings/HBox Settings/Time/Time" method="Increase"]

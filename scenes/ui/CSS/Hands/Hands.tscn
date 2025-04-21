@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ba8xamdvp2h2t"]
 
-[ext_resource type="Script" path="res://scenes/ui/CSS/Hands.gd" id="1_0pa62"]
+[ext_resource type="Script" path="res://scenes/ui/CSS/Hands/Hands.gd" id="1_0pa62"]
 [ext_resource type="Texture2D" uid="uid://b52kf1u14tpwk" path="res://assets/sprites/ui/HandGrab.aseprite" id="1_5l4dk"]
 [ext_resource type="Texture2D" uid="uid://ukmf2wxko2k6" path="res://assets/sprites/ui/HandOpen.aseprite" id="2_dxwni"]
 [ext_resource type="Texture2D" uid="uid://cfsfbsv1bgqq4" path="res://assets/sprites/ui/HandPoint.aseprite" id="3_8i0q3"]

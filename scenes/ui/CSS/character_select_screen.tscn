@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://mcn37wud2rco" path="res://assets/sprites/ui/ForwardButton.aseprite" id="8_ixnd7"]
 [ext_resource type="Texture2D" uid="uid://bf43bmbjqjeba" path="res://assets/sprites/ui/ForwardButton2.aseprite" id="9_w7yn3"]
 [ext_resource type="PackedScene" uid="uid://drrrm4k7b2br7" path="res://scenes/ui/CSS/char_buttons/CSS_Button_Sword.tscn" id="10_a8e3n"]
-[ext_resource type="PackedScene" uid="uid://dmpsohckv2paj" path="res://scenes/ui/CSS/char_previews/CSS_Character_Previews.tscn" id="11_saj7c"]
-[ext_resource type="PackedScene" uid="uid://cr81xncqleyka" path="res://scenes/ui/CSS/token.tscn" id="12_hdbvq"]
-[ext_resource type="PackedScene" uid="uid://ba8xamdvp2h2t" path="res://scenes/ui/CSS/Hands.tscn" id="13_8bmog"]
+[ext_resource type="PackedScene" uid="uid://dmpsohckv2paj" path="res://scenes/ui/char_previews/CSS_Character_Previews.tscn" id="11_saj7c"]
+[ext_resource type="PackedScene" uid="uid://cr81xncqleyka" path="res://scenes/ui/CSS/Token/token.tscn" id="12_hdbvq"]
+[ext_resource type="PackedScene" uid="uid://ba8xamdvp2h2t" path="res://scenes/ui/CSS/Hands/Hands.tscn" id="13_8bmog"]
 [ext_resource type="Script" path="res://scenes/ui/CSS/Boundaries.gd" id="14_eq3mo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4qv0"]
@@ -31,35 +31,7 @@ size = Vector2(1280, 60)
 size = Vector2(60, 720)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hejh1"]
-size = Vector2(1280, 60)
-
-[sub_resource type="Animation" id="Animation_8fycr"]
-resource_name = "Ready"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.366667, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(640, 900), Vector2(640, 360), Vector2(640, 300)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect/Label/ReadyToFight/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
+size = Vector2(1280, 80)
 
 [sub_resource type="Animation" id="Animation_7dvb0"]
 resource_name = "Not Ready"
@@ -73,7 +45,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(640, 800)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -113,6 +85,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8fycr"]
+resource_name = "Ready"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 900), Vector2(640, 360), Vector2(640, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/Label/ReadyToFight/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gfimg"]
@@ -260,14 +260,12 @@ alignment = 1
 [node name="Character Preview" parent="CSS Sections/Character Preview/Char Previews" instance=ExtResource("11_saj7c")]
 layout_mode = 2
 id = 1
-banner_color = Color(0.17234, 0.631834, 0.345524, 1)
-bg_color = Color(0.36121, 0.536969, 0.808732, 0.243)
+banner_color = Color(0.99468, 0, 0.194232, 1)
 
 [node name="Character Preview2" parent="CSS Sections/Character Preview/Char Previews" instance=ExtResource("11_saj7c")]
 layout_mode = 2
 id = 2
-banner_color = Color(0.98515, 0, 0.323043, 1)
-bg_color = Color(0.360784, 0.537255, 0.807843, 0.243137)
+banner_color = Color(0.243219, 0.505333, 1, 1)
 
 [node name="token" parent="." instance=ExtResource("12_hdbvq")]
 position = Vector2(496, 478)
@@ -318,6 +316,7 @@ shape = SubResource("RectangleShape2D_n2ubo")
 
 [node name="ReadyToFightBanner" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="ReadyToFightBanner"]
 anchors_preset = 8
@@ -350,7 +349,7 @@ collision_layer = 65536
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReadyToFightBanner/ColorRect/Label/ReadyToFight"]
-position = Vector2(640, 25)
+position = Vector2(640, 40)
 shape = SubResource("RectangleShape2D_hejh1")
 disabled = true
 
@@ -368,10 +367,6 @@ libraries = {
 [connection signal="character_hovered" from="CSS Sections/Character Select/GridContainer/Character" to="CSS Sections/Character Preview/Char Previews/Character Preview2" method="_on_Character_hovered"]
 [connection signal="character_selected" from="CSS Sections/Character Select/GridContainer/Character" to="CSS Sections/Character Preview/Char Previews/Character Preview" method="_on_Character_selected"]
 [connection signal="character_selected" from="CSS Sections/Character Select/GridContainer/Character" to="CSS Sections/Character Preview/Char Previews/Character Preview2" method="_on_Character_selected"]
-[connection signal="char_ready" from="CSS Sections/Character Preview/Char Previews/Character Preview" to="." method="_on_PLAYER_1_char_ready"]
-[connection signal="char_unready" from="CSS Sections/Character Preview/Char Previews/Character Preview" to="." method="_on_PLAYER_1_char_unready"]
-[connection signal="char_ready" from="CSS Sections/Character Preview/Char Previews/Character Preview2" to="." method="_on_PLAYER_2_char_ready"]
-[connection signal="char_unready" from="CSS Sections/Character Preview/Char Previews/Character Preview2" to="." method="_on_PLAYER_2_char_unready"]
 [connection signal="area_entered" from="Boundaries/Top" to="CSS Sections/Settings/HBox Settings/Back Button" method="_on_top_area_entered"]
 [connection signal="area_entered" from="Boundaries/bottom" to="CSS Sections/Settings/HBox Settings/Back Button" method="_on_bottom_area_entered"]
 [connection signal="area_entered" from="Boundaries/right" to="CSS Sections/Settings/HBox Settings/Back Button" method="_on_right_area_entered"]
