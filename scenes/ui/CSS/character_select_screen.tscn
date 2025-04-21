@@ -316,7 +316,6 @@ shape = SubResource("RectangleShape2D_n2ubo")
 
 [node name="ReadyToFightBanner" type="Node2D" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="ReadyToFightBanner"]
 anchors_preset = 8

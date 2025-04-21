@@ -54,7 +54,9 @@ func _process(delta):
 				b.get_parent().emit_signal("pressed")
 			elif b.name == "ReadyToFight":
 				if current_state == States.POINT:
-					pass # Transition to Stage Select Screen
+					# Transition to stage select screen
+					#get_tree().change_scene_to_file("res://scenes/ui/titlescreen.tscn")
+					pass
 
 func _on_HandArea_area_entered(area):
 	if area.name == "ButtonArea2D":
