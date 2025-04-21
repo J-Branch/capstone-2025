@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5x7s7e11c1h5"
-path="res://.godot/imported/RoboCharacterPreview.aseprite-beefdd565feaa99326531887310b1479.ctex"
+uid="uid://c8jrkskdff33q"
+path="res://.godot/imported/HandPoint.png-5cda5ad7cfaef10416e19e2ec8e32c61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/sheets/RoboFighter/RoboCharacterPreview.aseprite"
-dest_files=["res://.godot/imported/RoboCharacterPreview.aseprite-beefdd565feaa99326531887310b1479.ctex"]
+source_file="res://assets/sprites/ui/HandPoint.png"
+dest_files=["res://.godot/imported/HandPoint.png-5cda5ad7cfaef10416e19e2ec8e32c61.ctex"]
 
 [params]
 

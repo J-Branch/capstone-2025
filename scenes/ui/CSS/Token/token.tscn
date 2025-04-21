@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cr81xncqleyka"]
 
 [ext_resource type="Script" path="res://scenes/ui/CSS/Token/Token.gd" id="1_ptxij"]
-[ext_resource type="Texture2D" uid="uid://cyv77ina5e0aj" path="res://assets/sprites/ui/Icon.aseprite" id="1_qg4oc"]
+[ext_resource type="Texture2D" uid="uid://biv8ktix2etqe" path="res://assets/sprites/ui/Icon.png" id="2_4un7a"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_06kwq"]
 
@@ -24,7 +24,7 @@ metadata/_edit_group_ = true
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(2.4, 2.4)
-texture = ExtResource("1_qg4oc")
+texture = ExtResource("2_4un7a")
 
 [node name="Token Area" type="Area2D" parent="."]
 collision_layer = 262144

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mcn37wud2rco"
-path="res://.godot/imported/ForwardButton.aseprite-cfecd02608796d3019cc399ce5ef3610.ctex"
+uid="uid://biv8ktix2etqe"
+path="res://.godot/imported/Icon.png-cc899932bcfd4ab98be25d2fb8bf7066.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/ForwardButton.aseprite"
-dest_files=["res://.godot/imported/ForwardButton.aseprite-cfecd02608796d3019cc399ce5ef3610.ctex"]
+source_file="res://assets/sprites/ui/Icon.png"
+dest_files=["res://.godot/imported/Icon.png-cc899932bcfd4ab98be25d2fb8bf7066.ctex"]
 
 [params]
 

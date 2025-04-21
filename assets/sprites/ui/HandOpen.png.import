@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ukmf2wxko2k6"
-path="res://.godot/imported/HandOpen.aseprite-c13a62df5f88647073483fad3ec84e5f.ctex"
+uid="uid://bcvmptlknxig2"
+path="res://.godot/imported/HandOpen.png-d5807f5d48eb1ba9f643eef8d484a82d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/HandOpen.aseprite"
-dest_files=["res://.godot/imported/HandOpen.aseprite-c13a62df5f88647073483fad3ec84e5f.ctex"]
+source_file="res://assets/sprites/ui/HandOpen.png"
+dest_files=["res://.godot/imported/HandOpen.png-d5807f5d48eb1ba9f643eef8d484a82d.ctex"]
 
 [params]
 

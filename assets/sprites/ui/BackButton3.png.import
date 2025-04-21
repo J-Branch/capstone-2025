@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm502qu0mq6x2"
-path="res://.godot/imported/BackButton3.aseprite-c7eb165c55fd4f5baef5a3644719a1e6.ctex"
+uid="uid://ct06bg1t1dy5t"
+path="res://.godot/imported/BackButton3.png-74506c90109414832f401418935e9df1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/BackButton3.aseprite"
-dest_files=["res://.godot/imported/BackButton3.aseprite-c7eb165c55fd4f5baef5a3644719a1e6.ctex"]
+source_file="res://assets/sprites/ui/BackButton3.png"
+dest_files=["res://.godot/imported/BackButton3.png-74506c90109414832f401418935e9df1.ctex"]
 
 [params]
 

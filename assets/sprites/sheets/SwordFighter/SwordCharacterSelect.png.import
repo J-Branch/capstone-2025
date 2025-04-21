@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doxqo0gr517hi"
-path="res://.godot/imported/BackButton.aseprite-6e785e32994b669907b30c3dbc631f19.ctex"
+uid="uid://c1p6uyxgfdnf3"
+path="res://.godot/imported/SwordCharacterSelect.png-7c4670ee8b37ec0b9ccfadce55c56323.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/BackButton.aseprite"
-dest_files=["res://.godot/imported/BackButton.aseprite-6e785e32994b669907b30c3dbc631f19.ctex"]
+source_file="res://assets/sprites/sheets/SwordFighter/SwordCharacterSelect.png"
+dest_files=["res://.godot/imported/SwordCharacterSelect.png-7c4670ee8b37ec0b9ccfadce55c56323.ctex"]
 
 [params]
 

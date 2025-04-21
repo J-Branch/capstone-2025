@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://drrrm4k7b2br7"]
 
-[ext_resource type="Texture2D" uid="uid://bqjaxm2rgg4nj" path="res://assets/sprites/sheets/SwordFighter/SwordCharacterSelect.aseprite" id="1_nbtba"]
+[ext_resource type="Texture2D" uid="uid://c1p6uyxgfdnf3" path="res://assets/sprites/sheets/SwordFighter/SwordCharacterSelect.png" id="1_ix0ke"]
 [ext_resource type="Script" path="res://scenes/ui/CSS/char_buttons/CSS_Button_Sword.gd" id="2_1xwpb"]
-[ext_resource type="Texture2D" uid="uid://dmlpjepp5f4dx" path="res://assets/sprites/sheets/SwordFighter/SwordCharacterSelected.aseprite" id="3_qr7v0"]
+[ext_resource type="Texture2D" uid="uid://b4g2f4rw843nq" path="res://assets/sprites/sheets/SwordFighter/SwordCharacterSelected.png" id="2_kjxhh"]
 
 [sub_resource type="SystemFont" id="SystemFont_u5hbt"]
 subpixel_positioning = 0
@@ -20,13 +20,13 @@ offset_right = -1052.0
 offset_bottom = -592.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("1_nbtba")
-texture_pressed = ExtResource("3_qr7v0")
+texture_normal = ExtResource("1_ix0ke")
+texture_pressed = ExtResource("2_kjxhh")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("2_1xwpb")
-normal_texture = ExtResource("1_nbtba")
-pressed_texture = ExtResource("3_qr7v0")
+normal_texture = ExtResource("1_ix0ke")
+pressed_texture = ExtResource("2_kjxhh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 show_behind_parent = true

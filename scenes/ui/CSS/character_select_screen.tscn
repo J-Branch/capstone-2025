@@ -1,15 +1,15 @@
 [gd_scene load_steps=26 format=3 uid="uid://vo56ijhbkl67"]
 
-[ext_resource type="Texture2D" uid="uid://doxqo0gr517hi" path="res://assets/sprites/ui/BackButton.aseprite" id="1_heqkm"]
 [ext_resource type="Script" path="res://scenes/ui/CSS/character_select_screen.gd" id="1_tkj6p"]
-[ext_resource type="Texture2D" uid="uid://b7hsnxc8xjf2n" path="res://assets/sprites/ui/BackButton2.aseprite" id="2_18vth"]
+[ext_resource type="Texture2D" uid="uid://d3tbksiivsg3u" path="res://assets/sprites/ui/BackButton.png" id="2_k7gnd"]
 [ext_resource type="Script" path="res://scenes/ui/Back_Button.gd" id="3_32cng"]
-[ext_resource type="Texture2D" uid="uid://bm502qu0mq6x2" path="res://assets/sprites/ui/BackButton3.aseprite" id="4_xx3w4"]
-[ext_resource type="Texture2D" uid="uid://cc5dq377oh24l" path="res://assets/sprites/ui/BackButton4.aseprite" id="5_di07j"]
-[ext_resource type="Texture2D" uid="uid://d0e8qhbg32qlg" path="res://assets/sprites/ui/Stopwatch.aseprite" id="6_gxo4t"]
+[ext_resource type="Texture2D" uid="uid://dg78bi35eq6r0" path="res://assets/sprites/ui/BackButton2.png" id="3_fi7gs"]
+[ext_resource type="Texture2D" uid="uid://ct06bg1t1dy5t" path="res://assets/sprites/ui/BackButton3.png" id="5_bbttp"]
+[ext_resource type="Texture2D" uid="uid://fwm2wlqxwfnb" path="res://assets/sprites/ui/BackButton4.png" id="6_6imr6"]
+[ext_resource type="Texture2D" uid="uid://c64d58d3av3qu" path="res://assets/sprites/ui/Stopwatch.png" id="7_3ei8l"]
 [ext_resource type="Script" path="res://scenes/ui/Time.gd" id="7_fld30"]
-[ext_resource type="Texture2D" uid="uid://mcn37wud2rco" path="res://assets/sprites/ui/ForwardButton.aseprite" id="8_ixnd7"]
-[ext_resource type="Texture2D" uid="uid://bf43bmbjqjeba" path="res://assets/sprites/ui/ForwardButton2.aseprite" id="9_w7yn3"]
+[ext_resource type="Texture2D" uid="uid://dbbv5qrmusltl" path="res://assets/sprites/ui/ForwardButton.png" id="9_a64pi"]
+[ext_resource type="Texture2D" uid="uid://b85qgytc0ttk4" path="res://assets/sprites/ui/ForwardButton2.png" id="10_5yng5"]
 [ext_resource type="PackedScene" uid="uid://drrrm4k7b2br7" path="res://scenes/ui/CSS/char_buttons/CSS_Button_Sword.tscn" id="10_a8e3n"]
 [ext_resource type="PackedScene" uid="uid://dmpsohckv2paj" path="res://scenes/ui/char_previews/CSS_Character_Previews.tscn" id="11_saj7c"]
 [ext_resource type="PackedScene" uid="uid://cr81xncqleyka" path="res://scenes/ui/CSS/Token/token.tscn" id="12_hdbvq"]
@@ -160,11 +160,12 @@ alignment = 1
 [node name="Back Button" type="TextureButton" parent="CSS Sections/Settings/HBox Settings"]
 custom_minimum_size = Vector2(251, 145)
 layout_mode = 2
-texture_normal = ExtResource("1_heqkm")
-texture_pressed = ExtResource("2_18vth")
+texture_normal = ExtResource("2_k7gnd")
+texture_pressed = ExtResource("3_fi7gs")
 ignore_texture_size = true
 stretch_mode = 3
 script = ExtResource("3_32cng")
+path = "res://scenes/ui/main_menu.tscn"
 
 [node name="ButtonArea2D" type="Area2D" parent="CSS Sections/Settings/HBox Settings/Back Button"]
 collision_layer = 65536
@@ -182,8 +183,8 @@ alignment = 1
 [node name="Button_Left" type="TextureButton" parent="CSS Sections/Settings/HBox Settings/Time"]
 custom_minimum_size = Vector2(122, 0)
 layout_mode = 2
-texture_normal = ExtResource("4_xx3w4")
-texture_pressed = ExtResource("5_di07j")
+texture_normal = ExtResource("5_bbttp")
+texture_pressed = ExtResource("6_6imr6")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -199,7 +200,7 @@ shape = SubResource("RectangleShape2D_suh54")
 texture_filter = 2
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("6_gxo4t")
+texture = ExtResource("7_3ei8l")
 expand_mode = 2
 stretch_mode = 5
 
@@ -218,8 +219,8 @@ script = ExtResource("7_fld30")
 [node name="Button_Right" type="TextureButton" parent="CSS Sections/Settings/HBox Settings/Time"]
 custom_minimum_size = Vector2(122, 0)
 layout_mode = 2
-texture_normal = ExtResource("8_ixnd7")
-texture_pressed = ExtResource("9_w7yn3")
+texture_normal = ExtResource("9_a64pi")
+texture_pressed = ExtResource("10_5yng5")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -366,7 +367,7 @@ libraries = {
 [connection signal="character_hovered" from="CSS Sections/Character Select/GridContainer/Character" to="CSS Sections/Character Preview/Char Previews/Character Preview2" method="_on_Character_hovered"]
 [connection signal="character_selected" from="CSS Sections/Character Select/GridContainer/Character" to="CSS Sections/Character Preview/Char Previews/Character Preview" method="_on_Character_selected"]
 [connection signal="character_selected" from="CSS Sections/Character Select/GridContainer/Character" to="CSS Sections/Character Preview/Char Previews/Character Preview2" method="_on_Character_selected"]
-[connection signal="area_entered" from="Boundaries/Top" to="CSS Sections/Settings/HBox Settings/Back Button" method="_on_top_area_entered"]
-[connection signal="area_entered" from="Boundaries/bottom" to="CSS Sections/Settings/HBox Settings/Back Button" method="_on_bottom_area_entered"]
-[connection signal="area_entered" from="Boundaries/right" to="CSS Sections/Settings/HBox Settings/Back Button" method="_on_right_area_entered"]
-[connection signal="area_entered" from="Boundaries/left" to="CSS Sections/Settings/HBox Settings/Back Button" method="_on_left_area_entered"]
+[connection signal="area_entered" from="Boundaries/Top" to="Boundaries" method="_on_top_area_entered"]
+[connection signal="area_entered" from="Boundaries/bottom" to="Boundaries" method="_on_bottom_area_entered"]
+[connection signal="area_entered" from="Boundaries/right" to="Boundaries" method="_on_right_area_entered"]
+[connection signal="area_entered" from="Boundaries/left" to="Boundaries" method="_on_left_area_entered"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfsfbsv1bgqq4"
-path="res://.godot/imported/HandPoint.aseprite-43082f4a2b347c82adfed10c8966c4ba.ctex"
+uid="uid://b85qgytc0ttk4"
+path="res://.godot/imported/ForwardButton2.png-98c9f22f0702fba9b567ccbfabc66d4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/HandPoint.aseprite"
-dest_files=["res://.godot/imported/HandPoint.aseprite-43082f4a2b347c82adfed10c8966c4ba.ctex"]
+source_file="res://assets/sprites/ui/ForwardButton2.png"
+dest_files=["res://.godot/imported/ForwardButton2.png-98c9f22f0702fba9b567ccbfabc66d4b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqjaxm2rgg4nj"
-path="res://.godot/imported/SwordCharacterSelect.aseprite-3d0317f26fd248c6fb26f0e0db598a34.ctex"
+uid="uid://cjkjqrivjxwsg"
+path="res://.godot/imported/RoboCharacterSelected.png-f49d9ee08298e4e885af72def33fca08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/sheets/SwordFighter/SwordCharacterSelect.aseprite"
-dest_files=["res://.godot/imported/SwordCharacterSelect.aseprite-3d0317f26fd248c6fb26f0e0db598a34.ctex"]
+source_file="res://assets/sprites/sheets/RoboFighter/RoboCharacterSelected.png"
+dest_files=["res://.godot/imported/RoboCharacterSelected.png-f49d9ee08298e4e885af72def33fca08.ctex"]
 
 [params]
 

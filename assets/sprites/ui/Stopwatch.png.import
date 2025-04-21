@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jkqog4caxcn0"
-path="res://.godot/imported/RoboCharacterSelected.aseprite-738905a2f19c63ba692b1f8f6d2bdfe6.ctex"
+uid="uid://c64d58d3av3qu"
+path="res://.godot/imported/Stopwatch.png-36dc4de58347f2cb881016fc609ce3a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/sheets/RoboFighter/RoboCharacterSelected.aseprite"
-dest_files=["res://.godot/imported/RoboCharacterSelected.aseprite-738905a2f19c63ba692b1f8f6d2bdfe6.ctex"]
+source_file="res://assets/sprites/ui/Stopwatch.png"
+dest_files=["res://.godot/imported/Stopwatch.png-36dc4de58347f2cb881016fc609ce3a2.ctex"]
 
 [params]
 

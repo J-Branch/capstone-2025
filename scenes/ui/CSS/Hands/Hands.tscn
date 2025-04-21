@@ -1,15 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://ba8xamdvp2h2t"]
 
 [ext_resource type="Script" path="res://scenes/ui/CSS/Hands/Hands.gd" id="1_0pa62"]
-[ext_resource type="Texture2D" uid="uid://b52kf1u14tpwk" path="res://assets/sprites/ui/HandGrab.aseprite" id="1_5l4dk"]
-[ext_resource type="Texture2D" uid="uid://ukmf2wxko2k6" path="res://assets/sprites/ui/HandOpen.aseprite" id="2_dxwni"]
-[ext_resource type="Texture2D" uid="uid://cfsfbsv1bgqq4" path="res://assets/sprites/ui/HandPoint.aseprite" id="3_8i0q3"]
+[ext_resource type="Texture2D" uid="uid://d3gu7524clbqb" path="res://assets/sprites/ui/HandGrab.png" id="2_viy2j"]
+[ext_resource type="Texture2D" uid="uid://bcvmptlknxig2" path="res://assets/sprites/ui/HandOpen.png" id="3_kfvn3"]
+[ext_resource type="Texture2D" uid="uid://c8jrkskdff33q" path="res://assets/sprites/ui/HandPoint.png" id="4_lp87y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_asnok"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_5l4dk")
+"texture": ExtResource("2_viy2j")
 }],
 "loop": true,
 "name": &"HandGrab",
@@ -17,7 +17,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_dxwni")
+"texture": ExtResource("3_kfvn3")
 }],
 "loop": true,
 "name": &"HandOpen",
@@ -25,7 +25,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_8i0q3")
+"texture": ExtResource("4_lp87y")
 }],
 "loop": true,
 "name": &"HandPoint",
@@ -42,7 +42,7 @@ script = ExtResource("1_0pa62")
 [node name="HandSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_asnok")
-animation = &"HandOpen"
+animation = &"HandPoint"
 
 [node name="Player_No" type="Label" parent="HandSprite"]
 unique_name_in_owner = true

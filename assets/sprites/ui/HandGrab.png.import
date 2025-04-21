@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7hsnxc8xjf2n"
-path="res://.godot/imported/BackButton2.aseprite-263e903c0242552ce24d64c7a3c782e0.ctex"
+uid="uid://d3gu7524clbqb"
+path="res://.godot/imported/HandGrab.png-443bd12015c1932b1d9288c6a9e07453.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/BackButton2.aseprite"
-dest_files=["res://.godot/imported/BackButton2.aseprite-263e903c0242552ce24d64c7a3c782e0.ctex"]
+source_file="res://assets/sprites/ui/HandGrab.png"
+dest_files=["res://.godot/imported/HandGrab.png-443bd12015c1932b1d9288c6a9e07453.ctex"]
 
 [params]
 

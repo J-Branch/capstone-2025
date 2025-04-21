@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b52kf1u14tpwk"
-path="res://.godot/imported/HandGrab.aseprite-4a9d77729065f522104cd226d873ac01.ctex"
+uid="uid://2v1co53kwkgj"
+path="res://.godot/imported/SwordCharacterPreview.png-21b9216e62b7b5a966a8d3d6b1658fb2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/HandGrab.aseprite"
-dest_files=["res://.godot/imported/HandGrab.aseprite-4a9d77729065f522104cd226d873ac01.ctex"]
+source_file="res://assets/sprites/sheets/SwordFighter/SwordCharacterPreview.png"
+dest_files=["res://.godot/imported/SwordCharacterPreview.png-21b9216e62b7b5a966a8d3d6b1658fb2.ctex"]
 
 [params]
 

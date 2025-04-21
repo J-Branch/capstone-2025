@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0e8qhbg32qlg"
-path="res://.godot/imported/Stopwatch.aseprite-988db91adb4c8d2a138525ee3c054ff5.ctex"
+uid="uid://b4g2f4rw843nq"
+path="res://.godot/imported/SwordCharacterSelected.png-74c415a7b1c5fb45b79c7ebf7ef92a61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Stopwatch.aseprite"
-dest_files=["res://.godot/imported/Stopwatch.aseprite-988db91adb4c8d2a138525ee3c054ff5.ctex"]
+source_file="res://assets/sprites/sheets/SwordFighter/SwordCharacterSelected.png"
+dest_files=["res://.godot/imported/SwordCharacterSelected.png-74c415a7b1c5fb45b79c7ebf7ef92a61.ctex"]
 
 [params]
 
