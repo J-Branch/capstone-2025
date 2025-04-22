@@ -1,16 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbndgwj5sk0l"]
+[gd_scene load_steps=14 format=3 uid="uid://cbndgwj5sk0l"]
 
 [ext_resource type="Texture2D" uid="uid://1uf64001aqe4" path="res://assets/maps/Clouds 8/1.png" id="1_lkth4"]
-[ext_resource type="Script" path="res://scripts/game/StageScene.gd" id="1_ysvdk"]
 [ext_resource type="Texture2D" uid="uid://daletqc8x4fau" path="res://assets/maps/Clouds 8/2.png" id="2_y3e6p"]
 [ext_resource type="Texture2D" uid="uid://dxci5ratnj6mj" path="res://assets/maps/Clouds 8/3.png" id="3_w3gbm"]
 [ext_resource type="Texture2D" uid="uid://bds2dgf2v764k" path="res://assets/maps/Clouds 8/4.png" id="4_hrg7y"]
 [ext_resource type="Texture2D" uid="uid://cjkjshmwk2o12" path="res://assets/maps/Clouds 8/5.png" id="5_30hq3"]
 [ext_resource type="Texture2D" uid="uid://dd7ng5m3mmjwo" path="res://assets/maps/Clouds 8/6.png" id="6_bxncy"]
-[ext_resource type="PackedScene" uid="uid://bolw870xg4wit" path="res://characters/SwordFighter/SwordFighter.tscn" id="7_vgxbd"]
-[ext_resource type="PackedScene" uid="uid://5hyxko2yc0ns" path="res://characters/RoboFighter/RoboFighter.tscn" id="8_s5t8s"]
-[ext_resource type="PackedScene" uid="uid://5l57d7kpasn5" path="res://scenes/ui/health_bar.tscn" id="9_qujpc"]
-[ext_resource type="PackedScene" path="res://scenes/ui/transform_bar.tscn" id="11_prihg"]
+[ext_resource type="PackedScene" uid="uid://bolw870xg4wit" path="res://characters/SwordFighter/scenes/SwordFighter.tscn" id="7_vgxbd"]
+[ext_resource type="PackedScene" uid="uid://5hyxko2yc0ns" path="res://characters/RoboFighter/scenes/RoboFighter.tscn" id="8_s5t8s"]
+[ext_resource type="PackedScene" uid="uid://5l57d7kpasn5" path="res://scenes/maps/MapUI/scenes/health_bar.tscn" id="9_qujpc"]
+[ext_resource type="PackedScene" uid="uid://bhyp2c1trdn4b" path="res://scenes/maps/MapUI/scenes/transform_bar.tscn" id="11_prihg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ifc"]
 size = Vector2(1282, 40)
@@ -23,7 +22,6 @@ size = Vector2(36.5, 720)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(640, 360)
-script = ExtResource("1_ysvdk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15

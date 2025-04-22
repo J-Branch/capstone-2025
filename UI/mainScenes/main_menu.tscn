@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://qjx0tf0n344j"]
 
-[ext_resource type="Script" path="res://scripts/ui/menu.gd" id="1_gvnnv"]
+[ext_resource type="Script" path="res://scripts/ui/menu.gd" id="1_d8qir"]
 
 [sub_resource type="FontFile" id="FontFile_25qfr"]
 subpixel_positioning = 0
@@ -48,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_gvnnv")
+script = ExtResource("1_d8qir")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2

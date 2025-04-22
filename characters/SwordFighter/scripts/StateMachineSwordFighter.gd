@@ -12,7 +12,6 @@ var time_since_last_dash = dash_cooldown_time
 
 @onready var id = get_parent().id
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# NORMAL STATES

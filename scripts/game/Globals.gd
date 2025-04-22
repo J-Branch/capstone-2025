@@ -8,9 +8,6 @@ func hitstun(mod, duration):
 var css = {
 	"char_1": "",
 	"char_2": "",
-	"time"  : 1 ,
-	"Token_1_pos": Vector2(425, 500),
-	"Token_2_pos": Vector2(800, 500),
 }
 
 var player_1 = {

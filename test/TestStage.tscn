@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://wpviwxpfeexk" path="res://test/Clouds 1.1/2.png" id="2_tex53"]
 [ext_resource type="Texture2D" uid="uid://gfa62sxfeb47" path="res://test/Clouds 1.1/3.png" id="3_if312"]
 [ext_resource type="Texture2D" uid="uid://cc781pefw55vy" path="res://test/Clouds 1.1/4.png" id="4_0p5tx"]
-[ext_resource type="PackedScene" uid="uid://bolw870xg4wit" path="res://characters/SwordFighter/SwordFighter.tscn" id="5_bc3ak"]
-[ext_resource type="PackedScene" uid="uid://5hyxko2yc0ns" path="res://characters/RoboFighter/RoboFighter.tscn" id="6_vhqk3"]
+[ext_resource type="PackedScene" uid="uid://bolw870xg4wit" path="res://characters/SwordFighter/scenes/SwordFighter.tscn" id="5_bc3ak"]
+[ext_resource type="PackedScene" uid="uid://5hyxko2yc0ns" path="res://characters/RoboFighter/scenes/RoboFighter.tscn" id="6_vhqk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gakr5"]
 size = Vector2(577.75, 57)
