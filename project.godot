@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="capstone-2025"
-run/main_scene="res://scenes/maps/map1.tscn"
+run/main_scene="res://UI/mainScenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,7 @@ aseprite_executable_path="E:/SteamLibrary/steamapps/common/Aseprite/Aseprite.exe
 
 [autoload]
 
-Globals="*res://scripts/game/Globals.gd"
+Globals="*res://globalScripts/Globals.gd"
 
 [display]
 
