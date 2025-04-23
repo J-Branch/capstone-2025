@@ -17,3 +17,7 @@ var player_1 = {
 var player_2 = {
 	"health" : 100,
 }
+
+var current_game_scene = {
+	"scene": "",
+}

@@ -6,6 +6,10 @@ extends Node2D
 var spawn_point_1 = Vector2(-400, 250)
 var spawn_point_2 = Vector2(400, 250)
 
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().change_scene_to_file("res://UI/mainScenes/pause_menu.tscn")
+
 func _ready():
 	# Instantiate characters
 	if Globals.css["char_1"] == "SWORDSMAN":

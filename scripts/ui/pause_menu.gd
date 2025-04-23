@@ -24,12 +24,15 @@ func handle_selection(_current_selection):
 	if _current_selection == 0:
 		##get_parent().add_child(test_scene.instantiate())
 		##queue_free()
-		get_tree().change_scene_to_file("res://test/TestStage.tscn")
+		get_tree().change_scene_to_file(Globals.current_game_scene["scene"])
 	elif _current_selection == 1: 
-		get_tree().change_scene_to_file("res://test/TestStage.tscn")
+		get_tree().change_scene_to_file("")
+	# Player Select
+	elif _current_selection == 2: 
+		get_tree().change_scene_to_file("res://UI/mainScenes/CS_screen.tscn")
 	## set up when finished player select scene
 	elif _current_selection == 3: 
-		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+		get_tree().change_scene_to_file("res://UI/mainScenes/main_menu.tscn")
 
 func set_current_selection(_current_selection): 
 	selector_one.text = ""
