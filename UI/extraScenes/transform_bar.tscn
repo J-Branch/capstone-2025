@@ -20,6 +20,8 @@ bg_color = Color(0.4579, 0, 0.0894848, 1)
 [node name="TransformBar" type="ProgressBar"]
 z_index = 1
 custom_minimum_size = Vector2(345, 28)
+offset_right = 345.0
+offset_bottom = 28.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_cnan1")
 max_value = 1000.0
 value = 500.0

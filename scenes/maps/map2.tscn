@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://lrtii5rutdiq"]
+[gd_scene load_steps=9 format=3 uid="uid://lrtii5rutdiq"]
 
+[ext_resource type="Script" path="res://scenes/maps/scripts/map_scene.gd" id="1_2eb1l"]
 [ext_resource type="Texture2D" uid="uid://c2ervl85i7yus" path="res://assets/maps/Clouds 1/1.png" id="1_3jj3s"]
 [ext_resource type="Texture2D" uid="uid://cxy8w1f2ggu3j" path="res://assets/maps/Clouds 1/2.png" id="2_b6562"]
 [ext_resource type="Texture2D" uid="uid://3r7j17xmvppj" path="res://assets/maps/Clouds 1/3.png" id="3_3lfbb"]
@@ -16,6 +17,7 @@ size = Vector2(38, 720.5)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(640, 360)
+script = ExtResource("1_2eb1l")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -79,3 +81,5 @@ shape = SubResource("RectangleShape2D_al3w0")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-660, 0)
 shape = SubResource("RectangleShape2D_ogqte")
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://cir6jcl6tku2m"]
+
+[ext_resource type="Script" path="res://UI/mainScenes/scripts/map_select_screen.gd" id="1_jb31w"]
+[ext_resource type="PackedScene" uid="uid://cx52rpxd0wbm5" path="res://UI/extraScenes/Previous_button.tscn" id="2_58avs"]
+[ext_resource type="PackedScene" uid="uid://dv1b306mhr3bj" path="res://UI/extraScenes/Start_button.tscn" id="3_g8a50"]
+[ext_resource type="PackedScene" uid="uid://byhat7rbyb1bv" path="res://UI/extraScenes/Next_button.tscn" id="4_ebbdu"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jb31w")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.458824, 0.529412, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Map Container" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1280, 600)
+layout_mode = 2
+
+[node name="Node2D" type="Node2D" parent="VBoxContainer/Map Container"]
+
+[node name="Buttons" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1280, 120)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Buttons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PreviousButton" parent="VBoxContainer/Buttons/HBoxContainer" instance=ExtResource("2_58avs")]
+layout_mode = 2
+
+[node name="StartButton" parent="VBoxContainer/Buttons/HBoxContainer" instance=ExtResource("3_g8a50")]
+layout_mode = 2
+
+[node name="NextButton" parent="VBoxContainer/Buttons/HBoxContainer" instance=ExtResource("4_ebbdu")]
+layout_mode = 2
+
+[connection signal="button_selected" from="VBoxContainer/Buttons/HBoxContainer/PreviousButton" to="." method="_on_previous_button_selected"]
+[connection signal="button_selected" from="VBoxContainer/Buttons/HBoxContainer/StartButton" to="." method="_on_start_button_selected"]
+[connection signal="button_selected" from="VBoxContainer/Buttons/HBoxContainer/NextButton" to="." method="_on_next_button_selected"]

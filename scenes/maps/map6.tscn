@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://fb0ff3yamnb8"]
+[gd_scene load_steps=9 format=3 uid="uid://fb0ff3yamnb8"]
 
-[ext_resource type="Script" path="res://scenes/maps/MapUI/scripts/map_scene.gd" id="1_5q387"]
 [ext_resource type="Texture2D" uid="uid://u2w48560j0mn" path="res://assets/maps/Clouds 7/1.png" id="1_gu0dg"]
+[ext_resource type="Script" path="res://scenes/maps/scripts/map_scene.gd" id="1_kyv71"]
 [ext_resource type="Texture2D" uid="uid://dqw52f3bcmmx" path="res://assets/maps/Clouds 7/2.png" id="2_ycmwh"]
 [ext_resource type="Texture2D" uid="uid://c06lo741kneo" path="res://assets/maps/Clouds 7/3.png" id="3_b7pq3"]
 [ext_resource type="Texture2D" uid="uid://btqvng2unvyuu" path="res://assets/maps/Clouds 7/4.png" id="4_w1lap"]
-[ext_resource type="PackedScene" uid="uid://5l57d7kpasn5" path="res://scenes/maps/MapUI/scenes/health_bar.tscn" id="6_33hmc"]
-[ext_resource type="PackedScene" uid="uid://bhyp2c1trdn4b" path="res://scenes/maps/MapUI/scenes/transform_bar.tscn" id="7_kn7ay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ifc"]
 size = Vector2(1282, 36)
@@ -19,7 +17,7 @@ size = Vector2(36.5, 720)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(640, 360)
-script = ExtResource("1_5q387")
+script = ExtResource("1_kyv71")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -84,32 +82,4 @@ shape = SubResource("RectangleShape2D_518by")
 position = Vector2(660, 0)
 shape = SubResource("RectangleShape2D_yl3bg")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("6_33hmc")]
-offset_left = 41.0
-offset_top = 20.0
-offset_right = 386.0
-offset_bottom = 48.0
-id = 1
-
-[node name="HealthBar2" parent="CanvasLayer" instance=ExtResource("6_33hmc")]
-offset_left = 903.0
-offset_top = 20.0
-offset_right = 1248.0
-offset_bottom = 48.0
-id = 2
-
-[node name="TransformBar" parent="CanvasLayer" instance=ExtResource("7_kn7ay")]
-offset_left = 42.0
-offset_top = 70.0
-offset_right = 387.0
-offset_bottom = 98.0
-id = 1
-
-[node name="TransformBar2" parent="CanvasLayer" instance=ExtResource("7_kn7ay")]
-offset_left = 902.0
-offset_top = 70.0
-offset_right = 1247.0
-offset_bottom = 98.0
-id = 2
+[node name="HUDLayer" type="CanvasLayer" parent="."]

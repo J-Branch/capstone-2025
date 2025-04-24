@@ -120,7 +120,7 @@ func _on_back_button_selected() -> void:
 
 func _on_start_button_selected() -> void:
 	if char1_selected and char2_selected:
-		Globals.current_game_scene["scene"] = "res://scenes/maps/map6.tscn"
-		get_tree().change_scene_to_file("res://scenes/maps/map6.tscn")
+		Globals.current_game_scene["scene"] = "res://UI/mainScenes/Map_select_screen.tscn"
+		get_tree().change_scene_to_file("res://UI/mainScenes/Map_select_screen.tscn")
 	else: 
 		pass

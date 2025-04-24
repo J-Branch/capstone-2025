@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://hd8y24hy54cl" path="res://assets/sprites/sheets/RoboFighter/RoboCharacterPreview.png" id="3_y2plt"]
 [ext_resource type="PackedScene" uid="uid://2llhpgjqp727" path="res://characters/SwordFighter/uiScenes/Swordsman_select_button.tscn" id="4_k4gb4"]
 [ext_resource type="PackedScene" uid="uid://cjb5w1yp1p5w2" path="res://characters/RoboFighter/uiScenes/Robot_select_button.tscn" id="5_2s4dv"]
-[ext_resource type="PackedScene" uid="uid://b6w7oonrh33u0" path="res://UI/extraScenes/Back_button.tscn" id="6_bysnp"]
+[ext_resource type="PackedScene" uid="uid://b6w7oonrh33u0" path="res://UI/extraScenes/Deselect_button.tscn" id="6_bysnp"]
 [ext_resource type="PackedScene" uid="uid://dv1b306mhr3bj" path="res://UI/extraScenes/Start_button.tscn" id="7_aq75b"]
 
 [node name="Character Select" type="Control"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqgukn7f3a8o0"]
+[gd_scene load_steps=10 format=3 uid="uid://cqgukn7f3a8o0"]
 
 [ext_resource type="Texture2D" uid="uid://c4dnnml01h5i5" path="res://assets/maps/Clouds 5/1.png" id="1_c6tnh"]
+[ext_resource type="Script" path="res://scenes/maps/scripts/map_scene.gd" id="1_rmmp8"]
 [ext_resource type="Texture2D" uid="uid://bkqsgtlhdqoqi" path="res://assets/maps/Clouds 5/2.png" id="2_c0jco"]
 [ext_resource type="Texture2D" uid="uid://ctnc2gi2rsdbi" path="res://assets/maps/Clouds 5/3.png" id="3_xhavv"]
 [ext_resource type="Texture2D" uid="uid://c1ybnfceqpk3h" path="res://assets/maps/Clouds 5/4.png" id="4_ebm3r"]
@@ -17,6 +18,7 @@ size = Vector2(36.5, 720)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(640, 360)
+script = ExtResource("1_rmmp8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -92,3 +94,5 @@ shape = SubResource("RectangleShape2D_ob5fd")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(660, 0)
 shape = SubResource("RectangleShape2D_m04uh")
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]

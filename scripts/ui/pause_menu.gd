@@ -7,6 +7,9 @@ extends CanvasLayer
 
 var current_selection = 0
 
+signal resume_requested
+signal rematch_requested
+
 func _ready():
 	set_current_selection(0)
 
@@ -22,13 +25,18 @@ func _process(delta):
 
 func handle_selection(_current_selection): 
 	if _current_selection == 0:
-		##get_parent().add_child(test_scene.instantiate())
-		##queue_free()
-		get_tree().change_scene_to_file(Globals.current_game_scene["scene"])
+		emit_signal("resume_requested")
+	# Rematch
+	# NOT DOING REMATCH
 	elif _current_selection == 1: 
-		get_tree().change_scene_to_file("")
+		pass
 	# Player Select
-	elif _current_selection == 2: 
+	elif _current_selection == 2:
+		# Reset globals
+		Globals.css["char_1"] = ""
+		Globals.css["char_2"] = ""
+		get_tree().paused = false
+		
 		get_tree().change_scene_to_file("res://UI/mainScenes/CS_screen.tscn")
 	## set up when finished player select scene
 	elif _current_selection == 3: 

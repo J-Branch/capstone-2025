@@ -1,15 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbndgwj5sk0l"]
+[gd_scene load_steps=11 format=3 uid="uid://cbndgwj5sk0l"]
 
 [ext_resource type="Texture2D" uid="uid://1uf64001aqe4" path="res://assets/maps/Clouds 8/1.png" id="1_lkth4"]
+[ext_resource type="Script" path="res://scenes/maps/scripts/map_scene.gd" id="1_ved8v"]
 [ext_resource type="Texture2D" uid="uid://daletqc8x4fau" path="res://assets/maps/Clouds 8/2.png" id="2_y3e6p"]
 [ext_resource type="Texture2D" uid="uid://dxci5ratnj6mj" path="res://assets/maps/Clouds 8/3.png" id="3_w3gbm"]
 [ext_resource type="Texture2D" uid="uid://bds2dgf2v764k" path="res://assets/maps/Clouds 8/4.png" id="4_hrg7y"]
 [ext_resource type="Texture2D" uid="uid://cjkjshmwk2o12" path="res://assets/maps/Clouds 8/5.png" id="5_30hq3"]
 [ext_resource type="Texture2D" uid="uid://dd7ng5m3mmjwo" path="res://assets/maps/Clouds 8/6.png" id="6_bxncy"]
-[ext_resource type="PackedScene" uid="uid://bolw870xg4wit" path="res://characters/SwordFighter/scenes/SwordFighter.tscn" id="7_vgxbd"]
-[ext_resource type="PackedScene" uid="uid://5hyxko2yc0ns" path="res://characters/RoboFighter/scenes/RoboFighter.tscn" id="8_s5t8s"]
-[ext_resource type="PackedScene" uid="uid://5l57d7kpasn5" path="res://scenes/maps/MapUI/scenes/health_bar.tscn" id="9_qujpc"]
-[ext_resource type="PackedScene" uid="uid://bhyp2c1trdn4b" path="res://scenes/maps/MapUI/scenes/transform_bar.tscn" id="11_prihg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6ifc"]
 size = Vector2(1282, 40)
@@ -22,6 +19,7 @@ size = Vector2(36.5, 720)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(640, 360)
+script = ExtResource("1_ved8v")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -110,40 +108,4 @@ shape = SubResource("RectangleShape2D_dbfyg")
 position = Vector2(660, 0)
 shape = SubResource("RectangleShape2D_xmp2f")
 
-[node name="SwordFighter" parent="." instance=ExtResource("7_vgxbd")]
-position = Vector2(-473, 315)
-id = 2
-
-[node name="RoboFighter" parent="." instance=ExtResource("8_s5t8s")]
-position = Vector2(318, 289)
-id = 1
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("9_qujpc")]
-offset_left = 41.0
-offset_top = 20.0
-offset_right = 386.0
-offset_bottom = 48.0
-id = 2
-
-[node name="HealthBar2" parent="CanvasLayer" instance=ExtResource("9_qujpc")]
-offset_left = 903.0
-offset_top = 20.0
-offset_right = 1248.0
-offset_bottom = 48.0
-id = 1
-
-[node name="TransformBar" parent="CanvasLayer" instance=ExtResource("11_prihg")]
-offset_left = 42.0
-offset_top = 70.0
-offset_right = 387.0
-offset_bottom = 98.0
-id = 2
-
-[node name="TransformBar2" parent="CanvasLayer" instance=ExtResource("11_prihg")]
-offset_left = 902.0
-offset_top = 70.0
-offset_right = 1247.0
-offset_bottom = 98.0
-id = 1
+[node name="HUDLayer" type="CanvasLayer" parent="."]

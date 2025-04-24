@@ -23,8 +23,6 @@ func _process(delta):
 
 func handle_selection(_current_selection): 
 	if _current_selection == 0:
-		##get_parent().add_child(test_scene.instantiate())
-		##queue_free()
 		get_tree().change_scene_to_file("res://UI/mainScenes/CS_screen.tscn")
 	elif _current_selection == 2: 
 		get_tree().quit()
