@@ -444,7 +444,7 @@ func get_transition(delta):
 			parent.position = pos
 
 		states.HITSTUN:
-			# Code for bounce
+			# Code for 
 			if parent.knockback >= 3: # If knockback is more than a certain amount you can bounce of the ground
 				var bounce = parent.move_and_collide(parent.velocity * delta)
 				#if parent.in_on_floor() and parent.is_on_wall():
@@ -469,7 +469,7 @@ func get_transition(delta):
 				parent.velocity.x -= parent.hdecay*0.4 * Engine.time_scale
 				parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
 				
-			if parent.frame == parent.hitstun:
+			if parent.frame >= parent.hitstun:
 				parent._frame()
 				return states.AIR
 			elif parent.frame > 60 * 5:
@@ -479,7 +479,7 @@ func get_transition(delta):
 func Landing():
 	if state_includes([states.AIR, states.AIR_ATTACK, states.A_DOWN, states.A_SIDE, states.A_NEUTRAL, states.T_A_DOWN, states.T_A_SIDE, states.T_A_NEUTRAL]):
 		if (parent.GroundL.is_colliding()) or parent.GroundR.is_colliding():
-			parent.frame = 0
+			parent._frame()
 			parent.velocity.y = 0
 			return true
 

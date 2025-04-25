@@ -469,7 +469,7 @@ func get_transition(delta):
 				parent.velocity.x -= parent.hdecay*0.4 * Engine.time_scale
 				parent.velocity.x = clamp(parent.velocity.x, 0, parent.velocity.x)
 				
-			if parent.frame == parent.hitstun:
+			if parent.frame >= parent.hitstun:
 				parent._frame()
 				return states.AIR
 			elif parent.frame > 60 * 5:
