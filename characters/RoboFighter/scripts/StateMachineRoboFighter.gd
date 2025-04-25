@@ -14,6 +14,11 @@ var time_since_last_dash = dash_cooldown_time
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Set up global health variables
+	if id == 1:
+		parent.health = Globals.player_1["health"]
+	elif id == 2:
+		parent.health = Globals.player_2["health"]
 	# NORMAL STATES
 	add_state('STAND')
 	add_state('DASH')
@@ -75,7 +80,11 @@ func get_transition(delta):
 		parent.emit_signal("transform_changed", parent.transform_mana)
 		
 	if parent.transform_mana <= parent.transform_mana_max and transform == 0:
-		parent.transform_mana += parent.transform_recovery + ((abs(parent.health-100))/85)
+		parent.transform_mana += parent.transform_recovery
+		if id == 1:
+			parent.transform_mana += ((abs(Globals.player_1["health"]-100))/85)
+		elif id == 2:
+			parent.transform_mana += ((abs(Globals.player_2["health"]-100))/85)
 		parent.transform_mana = clampf(parent.transform_mana, 0, parent.transform_mana_max)
 		parent.emit_signal("transform_changed", parent.transform_mana)
 	

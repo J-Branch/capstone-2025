@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://byhat7rbyb1bv"]
 
-[ext_resource type="Script" path="res://next_button.gd" id="1_a55qc"]
+[ext_resource type="Script" path="res://UI/extraScenes/scripts/next_button.gd" id="1_a55qc"]
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(100, 80)

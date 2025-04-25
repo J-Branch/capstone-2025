@@ -66,6 +66,16 @@ func Hitbox_Collide(body):
 		charstate = body.get_node("StateMachine")
 		weight = body.weight
 		body.health -= damage
+		if body.id == 1:
+			Globals.player_1["health"] = body.health
+			print("player1 health")
+			print(body.health)
+			print(Globals.player_1["health"])
+		elif body.id == 2:
+			Globals.player_2["health"] = body.health
+			print("player2 health")
+			print(body.health)
+			print(Globals.player_2["health"])
 		knockbackVal = knockback(body.health, damage, weight, kb_scaling, base_kb, 1)
 		charstate.state = charstate.states.HITFREEZE
 		charstate.hitfreeze(hitlag(damage, hitlag_modifier), angle_flipperV2(Vector2(body.velocity.x, body.velocity.y), body.global_position))

@@ -43,6 +43,7 @@ func _on_next_button_selected() -> void:
 
 
 func _on_start_button_selected() -> void:
+	current_map_instance.scale = Vector2(1, 1)
 	var map_scene = maps[current_index]
 	Globals.current_game_scene["scene"] = map_scene
 	var inst = map_scene.instantiate()
