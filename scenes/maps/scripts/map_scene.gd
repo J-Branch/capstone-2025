@@ -23,11 +23,13 @@ func _input(event):
 
 func _resume_game():
 	pause_menu.hide()
+	pause_menu.set_process_input(true)
 	get_tree().paused = false
 
 func _pause_game():
-	get_tree().paused = true
 	pause_menu.show()
+	pause_menu.set_process_input(false)
+	get_tree().paused = true
 
 func _ready():
 	pause_menu = preload("res://UI/mainScenes/pause_menu.tscn").instantiate()

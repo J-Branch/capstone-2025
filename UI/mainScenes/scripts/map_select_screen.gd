@@ -4,7 +4,8 @@ extends Control
 
 var current_index = 0
 var current_map_instance = null
-
+var current_scene_instance = null
+var map_num = 0
 var maps = [
 	preload("res://scenes/maps/map1.tscn"),
 	preload("res://scenes/maps/map2.tscn"),
@@ -43,10 +44,12 @@ func _on_next_button_selected() -> void:
 
 
 func _on_start_button_selected() -> void:
-	current_map_instance.scale = Vector2(1, 1)
-	var map_scene = maps[current_index]
-	Globals.current_game_scene["scene"] = map_scene
-	var inst = map_scene.instantiate()
-	add_child(inst)
-	await get_tree().process_frame
-	inst.emit_signal("game_ready")
+	if map_num == 0:
+		current_map_instance.scale = Vector2(1, 1)
+		var map_scene = maps[current_index]
+		Globals.current_game_scene["scene"] = map_scene
+		current_scene_instance = map_scene.instantiate()
+		add_child(current_scene_instance)
+		current_scene_instance.emit_signal("game_ready")
+		await get_tree().process_frame
+		map_num += 1

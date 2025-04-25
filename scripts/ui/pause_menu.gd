@@ -1,9 +1,10 @@
-extends CanvasLayer
+extends Control
 
 @onready var selector_one = $menuBox/bottom/VBoxContainer/option1/HBoxContainer/Selector
 @onready var selector_two = $menuBox/bottom/VBoxContainer/option2/HBoxContainer/Selector
 @onready var selector_three = $menuBox/bottom/VBoxContainer/option3/HBoxContainer/Selector
 @onready var selector_four = $menuBox/bottom/VBoxContainer/option4/HBoxContainer/Selector
+@onready var menu_box: Panel = $menuBox
 
 var current_selection = 0
 
@@ -11,17 +12,21 @@ signal resume_requested
 signal rematch_requested
 
 func _ready():
+	set_process_input(false)
 	set_current_selection(0)
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_down") and current_selection < 3:
-		current_selection += 1 
-		set_current_selection(current_selection)
-	elif Input.is_action_just_pressed("ui_up") and current_selection > 0: 
-		current_selection -= 1 
-		set_current_selection(current_selection)
-	elif Input.is_action_just_pressed("ui_accept"):
-		handle_selection(current_selection)
+	if menu_box.visible == false:
+		pass
+	if menu_box.visible:
+		if Input.is_action_just_pressed("ui_down") and current_selection < 3:
+			current_selection += 1 
+			set_current_selection(current_selection)
+		elif Input.is_action_just_pressed("ui_up") and current_selection > 0: 
+			current_selection -= 1 
+			set_current_selection(current_selection)
+		elif Input.is_action_just_pressed("ui_accept"):
+			handle_selection(current_selection)
 
 func handle_selection(_current_selection): 
 	if _current_selection == 0:
