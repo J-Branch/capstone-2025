@@ -127,4 +127,3 @@ func _on_start_gameplay():
 	else:
 		char1.transform_changed.connect(transformbar2._set_transform)
 		char2.transform_changed.connect(transformbar1._set_transform)
-		

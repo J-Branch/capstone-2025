@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://btmb5uawi6ugc"]
+
+[sub_resource type="GDScript" id="GDScript_3ag10"]
+script/source = "extends Area2D
+
+@export var width = 300
+@export var height = 400
+@onready var hitbox = get_node(\"Hitbox_Shape\")
+
+
+func set_parameters(width, height, pos, parent=get_parent()):
+	parent.append()
+	self.position = Vector2(0,0)
+	self.position = pos
+	update_extents()
+
+func update_extents():
+	hitbox.shape.size = Vector2(width,height)
+
+func _physics_process(delta):
+	pass
+
+func _ready() -> void:
+	hitbox.shape = RectangleShape2D.new()
+	set_physics_process(false)
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_832yy"]
+
+[node name="Hitbox" type="Area2D"]
+script = SubResource("GDScript_3ag10")
+
+[node name="Hitbox_Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_832yy")
