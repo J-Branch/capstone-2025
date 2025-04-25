@@ -60,6 +60,8 @@ func _process(delta: float) -> void:
 	pass
 
 func Hitbox_Collide(body):
+	if body.is_invulnerable:
+		return
 	if !(body in player_list):
 		player_list.append(body)
 		var charstate

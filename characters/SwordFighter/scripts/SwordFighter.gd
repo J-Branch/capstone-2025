@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 @export var id: int
 
+# Variable for dash invulnerability
+var is_invulnerable = false
+
 var dash_duration = 25
 
 @export var air_jump_max = 1

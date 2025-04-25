@@ -8,9 +8,12 @@ var just_jumped = false
 # Variables for dash cooldown
 var dash_cooldown_time = 1.5
 var time_since_last_dash = dash_cooldown_time
-
+# Variables for attack cooldown
+var attack_cooldown = 0.4
+var time_since_last_attack = attack_cooldown
 
 @onready var id = get_parent().id
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,6 +37,7 @@ func _ready() -> void:
 	add_state('A_DOWN')
 	add_state('A_NEUTRAL')
 	add_state('A_SIDE')
+	add_state('JUMP')
 	# TRANSFORMED STATES
 	add_state('T_B_DOWN')
 	add_state('T_B_SIDE')
@@ -54,9 +58,7 @@ func _process(delta: float) -> void:
 func state_logic(delta):
 	parent.updateframes(delta)
 	parent._physics_process(delta)
-	#if parent.regrab > 0:
-		#parent.regrab -= 1
-	#parent._hit_pause(delta)
+	parent._hit_pause(delta)
 
 func get_transition(delta):
 	parent.set_velocity(parent.velocity)
@@ -64,12 +66,14 @@ func get_transition(delta):
 	parent.move_and_slide()
 	# For dash timer
 	time_since_last_dash += delta
+	# For attack timer
+	time_since_last_attack += delta
 	
 	# FOR TRANSFORM TESTING
 	if parent.transform_mana <= 0 and transform == 1:
 		_transform()
 		time_since_last_transform = 0
-	
+		
 	time_since_last_transform += delta
 	if parent.transform_mana > 0 and Input.is_action_pressed('transformation%s' % id) and time_since_last_transform > transform_cooldown_time:
 		_transform()
@@ -96,7 +100,8 @@ func get_transition(delta):
 	if Falling() == true:
 		return states.AIR
 
-	if Input.is_action_pressed('attack%s' % id) and Ground():
+	if Input.is_action_pressed('attack%s' % id) and Ground() and time_since_last_attack >= attack_cooldown:
+		time_since_last_attack = 0
 		parent._frame()
 		return states.GROUND_ATTACK
 	
@@ -133,10 +138,10 @@ func get_transition(delta):
 				parent.velocity.x += parent.TRACTION
 				parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
 			return states.STAND
-			
 		states.AIR:
 			AIRMOVEMENT()
-			if Input.is_action_pressed("attack%s" %id):
+			if Input.is_action_pressed("attack%s" %id) and time_since_last_attack >= attack_cooldown:
+				time_since_last_attack = 0
 				parent._frame()
 				return states.AIR_ATTACK
 			if Input.is_action_pressed("dash%s" %id) and parent.air_dash_num > 0:
@@ -175,6 +180,7 @@ func get_transition(delta):
 				return states.STAND
 				
 		states.DASH:
+			parent.is_invulnerable = true
 			# 5 frames to decide which direction to go
 			if parent.frame < 5:
 				if Input.is_action_pressed("move_left%s" %id):
@@ -186,15 +192,18 @@ func get_transition(delta):
 			# When you are in the dash state you cannot go into any other state
 			# You must wait for the dash state to finish
 			if parent.frame >= parent.dash_duration-1:
+				parent.is_invulnerable = false
 				return states.STAND
 			else:
 				return states.DASH
 				
 		states.AIRDASH:
+			parent.is_invulnerable = true
 			AIRMOVEMENT()
 			if (parent.GroundL.is_colliding()) or parent.GroundR.is_colliding():
 				parent.velocity.y = 0
 				parent._frame()
+				parent.is_invulnerable = false
 				return states.STAND
 			# 5 frames to decide which direction to go
 			if parent.frame < 5:
@@ -207,6 +216,7 @@ func get_transition(delta):
 			# When you are in the dash state you cannot go into any other state
 			# You must wait for the dash state to finish
 			if parent.frame >= parent.dash_duration-1:
+				parent.is_invulnerable = false
 				return states.AIR
 			else:
 				return states.AIRDASH
@@ -217,7 +227,7 @@ func get_transition(delta):
 				just_jumped = true
 				parent._frame()
 				return states.AIR
-			if Input.is_action_pressed("dash%s" %id)  and time_since_last_dash >= dash_cooldown_time:
+			if Input.is_action_pressed("dash%s" %id) and time_since_last_dash >= dash_cooldown_time:
 				parent._frame()
 				time_since_last_dash = 0.0
 				return states.DASH
@@ -446,9 +456,11 @@ func get_transition(delta):
 			parent.position = pos
 
 		states.HITSTUN:
-			# Code for bounce
+			# Code for 
 			if parent.knockback >= 3: # If knockback is more than a certain amount you can bounce of the ground
 				var bounce = parent.move_and_collide(parent.velocity * delta)
+				#if parent.in_on_floor() and parent.is_on_wall():
+					#pass
 				if parent.is_on_wall() and not parent.is_on_floor():
 					parent.velocity.x = kbx - parent.velocity.x
 					parent.velocity = parent.velocity.bounce(parent.get_wall_normal()) * 0.8
@@ -479,7 +491,7 @@ func get_transition(delta):
 func Landing():
 	if state_includes([states.AIR, states.AIR_ATTACK, states.A_DOWN, states.A_SIDE, states.A_NEUTRAL, states.T_A_DOWN, states.T_A_SIDE, states.T_A_NEUTRAL]):
 		if (parent.GroundL.is_colliding()) or parent.GroundR.is_colliding():
-			parent.frame = 0
+			parent._frame()
 			parent.velocity.y = 0
 			return true
 
