@@ -96,9 +96,8 @@ layout_mode = 2
 text = ">"
 
 [node name="OptionName" type="Label" parent="menuBox/bottom/VBoxContainer/option2/HBoxContainer"]
-custom_minimum_size = Vector2(99, 0)
 layout_mode = 2
-text = "Rematch"
+text = "Player Select"
 
 [node name="option3" type="CenterContainer" parent="menuBox/bottom/VBoxContainer"]
 layout_mode = 2
@@ -112,21 +111,6 @@ layout_mode = 2
 text = ">"
 
 [node name="OptionName" type="Label" parent="menuBox/bottom/VBoxContainer/option3/HBoxContainer"]
-layout_mode = 2
-text = "Player Select"
-
-[node name="option4" type="CenterContainer" parent="menuBox/bottom/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="menuBox/bottom/VBoxContainer/option4"]
-layout_mode = 2
-
-[node name="Selector" type="Label" parent="menuBox/bottom/VBoxContainer/option4/HBoxContainer"]
-custom_minimum_size = Vector2(7, 0)
-layout_mode = 2
-text = ">"
-
-[node name="OptionName" type="Label" parent="menuBox/bottom/VBoxContainer/option4/HBoxContainer"]
 custom_minimum_size = Vector2(99, 0)
 layout_mode = 2
 text = "Main Menu"

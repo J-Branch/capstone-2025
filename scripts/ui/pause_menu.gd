@@ -3,7 +3,6 @@ extends Control
 @onready var selector_one = $menuBox/bottom/VBoxContainer/option1/HBoxContainer/Selector
 @onready var selector_two = $menuBox/bottom/VBoxContainer/option2/HBoxContainer/Selector
 @onready var selector_three = $menuBox/bottom/VBoxContainer/option3/HBoxContainer/Selector
-@onready var selector_four = $menuBox/bottom/VBoxContainer/option4/HBoxContainer/Selector
 @onready var menu_box: Panel = $menuBox
 @onready var pause_menu: Control = $"."
 
@@ -32,12 +31,8 @@ func _process(delta):
 func handle_selection(_current_selection): 
 	if _current_selection == 0:
 		emit_signal("resume_requested")
-	# Rematch
-	# NOT DOING REMATCH
-	elif _current_selection == 1: 
-		pass
 	# Player Select
-	elif _current_selection == 2:
+	elif _current_selection == 1:
 		# Reset globals
 		Globals.css["char_1"] = ""
 		Globals.css["char_2"] = ""
@@ -47,19 +42,23 @@ func handle_selection(_current_selection):
 		
 		get_tree().change_scene_to_file("res://UI/mainScenes/CS_screen.tscn")
 	## set up when finished player select scene
-	elif _current_selection == 3: 
+	elif _current_selection == 2: 
+		# Reset globals
+		Globals.css["char_1"] = ""
+		Globals.css["char_2"] = ""
+		Globals.player_1["health"] = 100
+		Globals.player_2["health"] = 100
+		get_tree().paused = false
+		
 		get_tree().change_scene_to_file("res://UI/mainScenes/main_menu.tscn")
 
 func set_current_selection(_current_selection): 
 	selector_one.text = ""
 	selector_two.text = ""
 	selector_three.text = ""
-	selector_four.text = ""
 	if _current_selection == 0: 
 		selector_one.text = ">"
 	elif _current_selection == 1:
 		selector_two.text = ">"
 	elif _current_selection == 2:
 		selector_three.text = ">"
-	elif _current_selection == 3:
-		selector_four.text = ">"
