@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://twhpmsqg61hf"]
+
+[ext_resource type="Script" path="res://UI/mainScenes/scripts/death_menu.gd" id="1_njymx"]
+[ext_resource type="PackedScene" uid="uid://dv1b306mhr3bj" path="res://UI/extraScenes/Start_button.tscn" id="2_4dckt"]
+
+[node name="Death_menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_njymx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.122252, 0.122252, 0.122252, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="WinnerLabel" type="Label" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Player 1 Wins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="VBoxContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 2
+
+[node name="ButtonControl" type="Control" parent="VBoxContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(480, 500)
+layout_mode = 2
+
+[node name="Button Container" type="VBoxContainer" parent="VBoxContainer/Control2/HBoxContainer/ButtonControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RematchButton" parent="VBoxContainer/Control2/HBoxContainer/ButtonControl/Button Container" instance=ExtResource("2_4dckt")]
+layout_mode = 2
+
+[node name="Button Control" parent="VBoxContainer/Control2/HBoxContainer/ButtonControl/Button Container" instance=ExtResource("2_4dckt")]
+layout_mode = 2
+
+[node name="Control3" type="Control" parent="VBoxContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.0941176)
+
+[connection signal="button_hovered" from="VBoxContainer/Control2/HBoxContainer/ButtonControl/Button Container/RematchButton" to="." method="_on_rematch_button_button_hovered"]

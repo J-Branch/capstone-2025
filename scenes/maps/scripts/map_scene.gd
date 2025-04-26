@@ -13,7 +13,19 @@ var spawn_point_2 = Vector2(400, 250)
 signal game_ready
 
 var pause_menu
+var death_menu
 
+func _process(delta):
+	if Globals.player_1["health"] <= 0:
+		show_death_scene("Player 2")
+	if Globals.player_2["health"] <= 0:
+		show_death_scene("Player 1")
+
+func show_death_scene(winner_name: String):
+	death_menu = preload("res://UI/mainScenes/Death_menu.tscn").instantiate()
+	add_child(death_menu)
+	death_menu.get_node("VBoxContainer/LabelControl/WinnerLabel").text = "%s Wins!" % winner_name
+	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if get_tree().paused:
