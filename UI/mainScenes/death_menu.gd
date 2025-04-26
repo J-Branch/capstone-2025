@@ -1,6 +1,6 @@
 extends Control
 
-#var rematch_button
+signal rematch_pressed()
 
 func _ready():
 	var rematch_button = get_node("VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer/RematchButton")
@@ -11,11 +11,10 @@ func _ready():
 	
 	var main_menu_button = get_node("VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer/MainMenuButton")
 	main_menu_button.set_button_text("Main Menu")
-
+	
 
 func _on_rematch_button_selected() -> void:
-	pass # Replace with function body.
-
+	emit_signal("rematch_pressed")
 
 func _on_player_select_button_selected() -> void:
 	# Reset globals

@@ -22,9 +22,16 @@ func _process(delta):
 		show_death_scene("Player 1")
 
 func show_death_scene(winner_name: String):
-	death_menu = preload("res://UI/mainScenes/Death_menu.tscn").instantiate()
-	add_child(death_menu)
 	death_menu.get_node("VBoxContainer/LabelControl/WinnerLabel").text = "%s Wins!" % winner_name
+	death_menu.show()
+	death_menu.set_process_input(true)
+	# Clears everything from the scene
+	for f in get_tree().get_nodes_in_group("fighters"):
+		f.queue_free()
+	for h in get_tree().get_nodes_in_group("healthbars"):
+		h.queue_free()
+	for t in get_tree().get_nodes_in_group("transformbars"):
+		t.queue_free()
 	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -52,6 +59,12 @@ func _ready():
 	pause_menu.hide()
 	pause_menu.set_process_input(false)
 	pause_menu.resume_requested.connect(_on_resume_game)
+	
+	death_menu = preload("res://UI/mainScenes/Death_menu.tscn").instantiate()
+	add_child(death_menu)
+	death_menu.hide()
+	death_menu.set_process_input(false)
+	death_menu.rematch_pressed.connect(restart_game)
 	
 	connect("game_ready", Callable(self, "_on_start_gameplay"))
 
@@ -89,7 +102,6 @@ func _on_start_gameplay():
 		instance2.id = 2
 		instance2.position = spawn_point_2
 		add_child(instance2)
-		print("added robot")
 		instance2.turn(true)
 		
 	# Instantiate Health & Transform Bars
@@ -143,3 +155,17 @@ func _on_start_gameplay():
 	else:
 		char1.transform_changed.connect(transformbar2._set_transform)
 		char2.transform_changed.connect(transformbar1._set_transform)
+
+func restart_game():
+	# Reset Health
+	Globals.player_1["health"] = 100
+	Globals.player_2["health"] = 100
+	
+	# Hide Death Menu
+	death_menu.hide()
+	death_menu.set_process_input(false)
+	
+	# Re-initialize game
+	_on_start_gameplay()
+	
+	
