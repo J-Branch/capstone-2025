@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://hd8y24hy54cl" path="res://assets/sprites/sheets/RoboFighter/RoboCharacterPreview.png" id="3_y2plt"]
 [ext_resource type="PackedScene" uid="uid://2llhpgjqp727" path="res://characters/SwordFighter/uiScenes/Swordsman_select_button.tscn" id="4_k4gb4"]
 [ext_resource type="PackedScene" uid="uid://cjb5w1yp1p5w2" path="res://characters/RoboFighter/uiScenes/Robot_select_button.tscn" id="5_2s4dv"]
-[ext_resource type="PackedScene" uid="uid://b6w7oonrh33u0" path="res://UI/extraScenes/Deselect_button.tscn" id="6_bysnp"]
 [ext_resource type="PackedScene" uid="uid://dv1b306mhr3bj" path="res://UI/extraScenes/Start_button.tscn" id="7_aq75b"]
+[ext_resource type="PackedScene" path="res://UI/extraScenes/Deselect_button.tscn" id="7_p3qkd"]
 
 [node name="Character Select" type="Control"]
 layout_mode = 3
@@ -130,10 +130,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackButton" parent="CSS Sections/Char Select/VBoxContainer/Start Controls/ButtonContainer" instance=ExtResource("6_bysnp")]
+[node name="StartButton" parent="CSS Sections/Char Select/VBoxContainer/Start Controls/ButtonContainer" instance=ExtResource("7_aq75b")]
 layout_mode = 2
 
-[node name="StartButton" parent="CSS Sections/Char Select/VBoxContainer/Start Controls/ButtonContainer" instance=ExtResource("7_aq75b")]
+[node name="Button Control" parent="CSS Sections/Char Select/VBoxContainer/Start Controls/ButtonContainer" instance=ExtResource("7_p3qkd")]
 layout_mode = 2
 
 [node name="Char Preview2" type="Control" parent="CSS Sections"]
@@ -177,5 +177,4 @@ grow_vertical = 2
 [connection signal="character_dehovered" from="CSS Sections/Char Select/VBoxContainer/Control/GridContainer/Character Button" to="." method="_on_character_dehovered"]
 [connection signal="character_hovered" from="CSS Sections/Char Select/VBoxContainer/Control/GridContainer/Character Button" to="." method="_on_character_hovered"]
 [connection signal="character_selected" from="CSS Sections/Char Select/VBoxContainer/Control/GridContainer/Character Button" to="." method="_on_character_selected"]
-[connection signal="button_selected" from="CSS Sections/Char Select/VBoxContainer/Start Controls/ButtonContainer/BackButton" to="." method="_on_back_button_selected"]
 [connection signal="button_selected" from="CSS Sections/Char Select/VBoxContainer/Start Controls/ButtonContainer/StartButton" to="." method="_on_start_button_selected"]
