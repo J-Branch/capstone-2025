@@ -21,21 +21,24 @@ func _input(event):
 		else:
 			_pause_game()
 
+# Code for when resume is pressed
 func _resume_game():
-	pause_menu.hide()
-	pause_menu.set_process_input(true)
-	get_tree().paused = false
+	pause_menu.hide() # Hide the pause menu
+	pause_menu.set_process_input(false) # Don't allow it to recieve input
+	get_tree().paused = false # Unpause the game
 
+# Code when pause menu is up
 func _pause_game():
-	pause_menu.show()
-	pause_menu.set_process_input(false)
-	get_tree().paused = true
+	pause_menu.show() # Show the pause menu
+	pause_menu.set_process_input(true) # Allow it to recieve input
+	get_tree().paused = true # Pause the game
 
 func _ready():
 	pause_menu = preload("res://UI/mainScenes/pause_menu.tscn").instantiate()
 	pause_menu.name = "PauseMenu"
 	add_child(pause_menu)
 	pause_menu.hide()
+	pause_menu.set_process_input(false)
 	pause_menu.resume_requested.connect(_on_resume_game)
 	
 	connect("game_ready", Callable(self, "_on_start_gameplay"))
@@ -43,6 +46,7 @@ func _ready():
 func _on_resume_game():
 	pause_menu.hide()
 	get_tree().paused = false
+	pause_menu.set_process_input(false)
 
 func _on_start_gameplay():
 	# Instantiate characters

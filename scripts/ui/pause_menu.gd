@@ -5,6 +5,7 @@ extends Control
 @onready var selector_three = $menuBox/bottom/VBoxContainer/option3/HBoxContainer/Selector
 @onready var selector_four = $menuBox/bottom/VBoxContainer/option4/HBoxContainer/Selector
 @onready var menu_box: Panel = $menuBox
+@onready var pause_menu: Control = $"."
 
 var current_selection = 0
 
@@ -16,9 +17,9 @@ func _ready():
 	set_current_selection(0)
 
 func _process(delta):
-	if menu_box.visible == false:
+	if pause_menu.visible == false:
 		pass
-	if menu_box.visible:
+	if pause_menu.visible:
 		if Input.is_action_just_pressed("ui_down") and current_selection < 3:
 			current_selection += 1 
 			set_current_selection(current_selection)
@@ -40,6 +41,8 @@ func handle_selection(_current_selection):
 		# Reset globals
 		Globals.css["char_1"] = ""
 		Globals.css["char_2"] = ""
+		Globals.player_1["health"] = 100
+		Globals.player_2["health"] = 100
 		get_tree().paused = false
 		
 		get_tree().change_scene_to_file("res://UI/mainScenes/CS_screen.tscn")
