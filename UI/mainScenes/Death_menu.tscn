@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddchp8x23ygyg"]
+
+[ext_resource type="Script" path="res://UI/mainScenes/death_menu.gd" id="1_rst06"]
+[ext_resource type="PackedScene" uid="uid://d522vv118uh0" path="res://UI/extraScenes/death_scene_buttons.tscn" id="2_tvbcv"]
+
+[node name="DeathMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rst06")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelControl" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="WinnerLabel" type="Label" parent="VBoxContainer/LabelControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/LabelControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.666569, 0.666569, 0.666569, 0.282353)
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BufferTop" type="Control" parent="VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="RematchButton" parent="VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer" instance=ExtResource("2_tvbcv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="PlayerSelectButton" parent="VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer" instance=ExtResource("2_tvbcv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="MainMenuButton" parent="VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer" instance=ExtResource("2_tvbcv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="BufferBottom" type="Control" parent="VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Control3" type="Control" parent="VBoxContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[connection signal="button_selected" from="VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer/RematchButton" to="." method="_on_rematch_button_selected"]
+[connection signal="button_selected" from="VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer/PlayerSelectButton" to="." method="_on_player_select_button_selected"]
+[connection signal="button_selected" from="VBoxContainer/Control/HBoxContainer/Control2/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_selected"]

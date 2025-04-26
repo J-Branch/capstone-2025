@@ -13,7 +13,26 @@ var spawn_point_2 = Vector2(400, 250)
 signal game_ready
 
 var pause_menu
+var death_menu
 
+func _process(delta):
+	if Globals.player_1["health"] <= 0:
+		show_death_scene("Player 2")
+	if Globals.player_2["health"] <= 0:
+		show_death_scene("Player 1")
+
+func show_death_scene(winner_name: String):
+	death_menu.get_node("VBoxContainer/LabelControl/WinnerLabel").text = "%s Wins!" % winner_name
+	death_menu.show()
+	death_menu.set_process_input(true)
+	# Clears everything from the scene
+	for f in get_tree().get_nodes_in_group("fighters"):
+		f.queue_free()
+	for h in get_tree().get_nodes_in_group("healthbars"):
+		h.queue_free()
+	for t in get_tree().get_nodes_in_group("transformbars"):
+		t.queue_free()
+	
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if get_tree().paused:
@@ -21,28 +40,38 @@ func _input(event):
 		else:
 			_pause_game()
 
+# Code for when resume is pressed
 func _resume_game():
-	pause_menu.hide()
-	pause_menu.set_process_input(true)
-	get_tree().paused = false
+	pause_menu.hide() # Hide the pause menu
+	pause_menu.set_process_input(false) # Don't allow it to recieve input
+	get_tree().paused = false # Unpause the game
 
+# Code when pause menu is up
 func _pause_game():
-	pause_menu.show()
-	pause_menu.set_process_input(false)
-	get_tree().paused = true
+	pause_menu.show() # Show the pause menu
+	pause_menu.set_process_input(true) # Allow it to recieve input
+	get_tree().paused = true # Pause the game
 
 func _ready():
 	pause_menu = preload("res://UI/mainScenes/pause_menu.tscn").instantiate()
 	pause_menu.name = "PauseMenu"
 	add_child(pause_menu)
 	pause_menu.hide()
+	pause_menu.set_process_input(false)
 	pause_menu.resume_requested.connect(_on_resume_game)
+	
+	death_menu = preload("res://UI/mainScenes/Death_menu.tscn").instantiate()
+	add_child(death_menu)
+	death_menu.hide()
+	death_menu.set_process_input(false)
+	death_menu.rematch_pressed.connect(restart_game)
 	
 	connect("game_ready", Callable(self, "_on_start_gameplay"))
 
 func _on_resume_game():
 	pause_menu.hide()
 	get_tree().paused = false
+	pause_menu.set_process_input(false)
 
 func _on_start_gameplay():
 	# Instantiate characters
@@ -73,7 +102,6 @@ func _on_start_gameplay():
 		instance2.id = 2
 		instance2.position = spawn_point_2
 		add_child(instance2)
-		print("added robot")
 		instance2.turn(true)
 		
 	# Instantiate Health & Transform Bars
@@ -127,3 +155,17 @@ func _on_start_gameplay():
 	else:
 		char1.transform_changed.connect(transformbar2._set_transform)
 		char2.transform_changed.connect(transformbar1._set_transform)
+
+func restart_game():
+	# Reset Health
+	Globals.player_1["health"] = 100
+	Globals.player_2["health"] = 100
+	
+	# Hide Death Menu
+	death_menu.hide()
+	death_menu.set_process_input(false)
+	
+	# Re-initialize game
+	_on_start_gameplay()
+	
+	

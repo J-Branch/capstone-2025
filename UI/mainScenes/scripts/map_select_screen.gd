@@ -5,7 +5,9 @@ extends Control
 var current_index = 0
 var current_map_instance = null
 var current_scene_instance = null
+# map_num used to stop map select from recieving input in game
 var map_num = 0
+
 var maps = [
 	preload("res://scenes/maps/map1.tscn"),
 	preload("res://scenes/maps/map2.tscn"),
@@ -34,13 +36,15 @@ func load_map(index):
 	map_preview.add_child(current_map_instance)
 
 func _on_previous_button_selected() -> void:
-	current_index = (current_index - 1) % maps.size()
-	load_map(current_index)
+	if map_num == 0:
+		current_index = (current_index - 1) % maps.size()
+		load_map(current_index)
 
 
 func _on_next_button_selected() -> void:
-	current_index = (current_index + 1) % maps.size()
-	load_map(current_index)
+	if map_num == 0:
+		current_index = (current_index + 1) % maps.size()
+		load_map(current_index)
 
 
 func _on_start_button_selected() -> void:
