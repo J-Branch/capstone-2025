@@ -36,8 +36,8 @@ func handle_selection(_current_selection):
 		# Reset globals
 		Globals.css["char_1"] = ""
 		Globals.css["char_2"] = ""
-		Globals.player_1["health"] = 100
-		Globals.player_2["health"] = 100
+		Globals.player_1["health"] = 150
+		Globals.player_2["health"] = 150
 		get_tree().paused = false
 		
 		get_tree().change_scene_to_file("res://UI/mainScenes/CS_screen.tscn")
@@ -46,8 +46,8 @@ func handle_selection(_current_selection):
 		# Reset globals
 		Globals.css["char_1"] = ""
 		Globals.css["char_2"] = ""
-		Globals.player_1["health"] = 100
-		Globals.player_2["health"] = 100
+		Globals.player_1["health"] = 150
+		Globals.player_2["health"] = 150
 		get_tree().paused = false
 		
 		get_tree().change_scene_to_file("res://UI/mainScenes/main_menu.tscn")

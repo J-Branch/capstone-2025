@@ -158,8 +158,8 @@ func _on_start_gameplay():
 
 func restart_game():
 	# Reset Health
-	Globals.player_1["health"] = 100
-	Globals.player_2["health"] = 100
+	Globals.player_1["health"] = 150
+	Globals.player_2["health"] = 150
 	
 	# Hide Death Menu
 	death_menu.hide()

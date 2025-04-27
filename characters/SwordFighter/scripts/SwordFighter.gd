@@ -28,7 +28,7 @@ var lag_frames = 0
 var selfState
 
 # Attributes
-@export var health = 100
+@export var health = 150
 @export var weight = 100
 var freezeframes = 0
 

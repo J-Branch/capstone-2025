@@ -11,11 +11,11 @@ var css = {
 }
 
 var player_1 = {
-	"health" : 100,
+	"health" : 150,
 }
 
 var player_2 = {
-	"health" : 100,
+	"health" : 150,
 }
 
 var current_game_scene = {

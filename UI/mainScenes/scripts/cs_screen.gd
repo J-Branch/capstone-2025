@@ -15,14 +15,6 @@ func _process(delta):
 		get_tree().change_scene_to_file("res://UI/mainScenes/main_menu.tscn")
 
 
-func _on_character_deselected(character: Variant) -> void:
-		# If both characters are selected
-		if char1_selected and char2_selected:
-			char2_selected = false
-		else:
-			char1_selected = false
-
-
 func _on_character_selected(character: Variant) -> void:
 	match character:
 		'SWORDSMAN':
@@ -89,11 +81,9 @@ func _on_character_hovered(character: Variant) -> void:
 func _on_character_dehovered(character: Variant) -> void:
 	match character:
 		'SWORDSMAN':
-			pass
-		'ROBOT':
 			# If we have not selected the first character yet
 			if char1_selected == false:
-				pass
+				hover_texture_1.texture = null
 				
 			## If we have selected both
 			
@@ -101,7 +91,19 @@ func _on_character_dehovered(character: Variant) -> void:
 				pass
 				# If we have selected just the first one
 			else:
+				hover_texture_2.texture = null
+		'ROBOT':
+			# If we have not selected the first character yet
+			if char1_selected == false:
+				hover_texture_1.texture = null
+				
+			## If we have selected both
+			
+			elif char1_selected and char2_selected:
 				pass
+				# If we have selected just the first one
+			else:
+				hover_texture_2.texture = null
 
 
 func _on_back_button_selected() -> void:
