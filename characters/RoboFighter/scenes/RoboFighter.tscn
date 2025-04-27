@@ -1,9 +1,15 @@
-[gd_scene load_steps=142 format=3 uid="uid://5hyxko2yc0ns"]
+[gd_scene load_steps=144 format=3 uid="uid://5hyxko2yc0ns"]
 
 [ext_resource type="Script" path="res://characters/RoboFighter/scripts/Robo.gd" id="1_m2vta"]
 [ext_resource type="PackedScene" uid="uid://cg5bgqctecfyo" path="res://scripts/hitbox.tscn" id="2_bh7t4"]
 [ext_resource type="Script" path="res://characters/RoboFighter/scripts/StateMachineRoboFighter.gd" id="3_cirxa"]
+[ext_resource type="Shader" uid="uid://6rtdbydds0nh" path="res://assets/shaders/RoboFighter.tres" id="4_alcp6"]
 [ext_resource type="Texture2D" uid="uid://dofux883e1nks" path="res://assets/sprites/sheets/RoboFighter/Robo-Sheet.png" id="4_dxm1j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohdk6"]
+shader = ExtResource("4_alcp6")
+shader_parameter/OutlineColor = Color(0.171249, 0.221656, 0.772296, 1)
+shader_parameter/Width = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_saf7r"]
 atlas = ExtResource("4_dxm1j")
@@ -1651,6 +1657,7 @@ hitbox = ExtResource("2_bh7t4")
 script = ExtResource("3_cirxa")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ohdk6")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hyuo0")
 animation = &"Idle"
