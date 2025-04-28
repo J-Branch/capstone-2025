@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=36 format=3 uid="uid://6rtdbydds0nh"]
+[gd_resource type="VisualShader" load_steps=36 format=3 uid="uid://bagwp671lmh6t"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_va6nn"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]

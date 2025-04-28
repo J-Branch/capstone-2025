@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://characters/SwordFighter/scripts/SwordFighter.gd" id="1_rs5pp"]
 [ext_resource type="PackedScene" uid="uid://cg5bgqctecfyo" path="res://scripts/hitbox.tscn" id="2_acy5m"]
 [ext_resource type="Script" path="res://characters/SwordFighter/scripts/StateMachineSwordFighter.gd" id="2_si42g"]
-[ext_resource type="Shader" uid="uid://dm616d8m7kmpn" path="res://assets/shaders/swordFighter.tres" id="4_jx83b"]
+[ext_resource type="Shader" uid="uid://mgqp72oqh8ox" path="res://assets/shaders/swordFighter.tres" id="4_jx83b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4sr2x"]
 shader = ExtResource("4_jx83b")

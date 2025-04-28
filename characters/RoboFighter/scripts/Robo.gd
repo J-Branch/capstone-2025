@@ -125,15 +125,15 @@ func _hit_pause(delta):
 # Ground Attacks
 func B_DOWN():
 	if frame == 5:
-		create_hitbox(39,23,2, 75, 3, 100, 6, 'normal', Vector2(34,20.5), 0, 1)
+		create_hitbox(39,23,2, 90, 3, 110, 6, 'normal', Vector2(34,20.5), 0, 1)
 	if frame == 12:
-		create_hitbox(44.5,30,4, 75, 3, 100, 8, 'normal', Vector2(36.75,17), 0, 1)
+		create_hitbox(48.25,37.265,4, 90, 3, 110, 8, 'normal', Vector2(335.875,16.868), 0, 1)
 	if frame >= 20:
 		return true
 		
 func B_SIDE():
 	if frame == 4:
-		create_hitbox(21.25,24,5, 60, 3, 120, 20, 'normal', Vector2(16,12), 0, 1)
+		create_hitbox(41.176,28.7,5, 60, 3, 120, 20, 'normal', Vector2(12.35,9.65), 0, 1)
 	if frame >= 24:
 		return true
 
@@ -143,26 +143,26 @@ func B_NEUTRAL():
 	if frame == 8:
 		create_hitbox(37.5,34,2, 0, 3, 100, 2, 'normal', Vector2(32.25,-3), 0, 1)
 	if frame == 10:
-		create_hitbox(50.5,39,3, 0, 3, 100, 8, 'normal', Vector2(38.75,-4.5), 0, 1)
+		create_hitbox(53.5,47,3, 25, 3, 100, 8, 'normal', Vector2(36.675,-4), 0, 1)
 	if frame >= 20:
 		return true
 
 # Air Attacks
 func A_DOWN():
-	if frame == 11:
-		create_hitbox(18,32.5,4, 270, 3, 100, 9, 'normal', Vector2(0,48.75), 0, 1)
+	if frame == 9:
+		create_hitbox(28.2,45.9,4, 270, 3, 120, 11, 'normal', Vector2(0,48.824), 0, 1)
 	if frame == 20:
 		return true
 
 func A_SIDE():
 	if frame == 1:
-		create_hitbox(39,12,4, 0, 3, 100, 11, 'normal', Vector2(47.5,11), 0, 1)
+		create_hitbox(45.824,20.59,4, 345, 3, 100, 11, 'normal', Vector2(44.1,10.9), 0, 1)
 	if frame >= 12:
 		return true
 
 func A_NEUTRAL():
 	if frame == 10:
-		create_hitbox(64,26,4, 0, 3, 110, 12, 'normal', Vector2(0,14), 0, 1)
+		create_hitbox(66.7,39.4,4, 0, 3, 110, 12, 'normal', Vector2(-1.353,16.765), 0, 1)
 	if frame >= 22:
 		return true
 	
@@ -173,7 +173,7 @@ func T_B_DOWN():
 	if frame == 10:
 		create_hitbox(52.25,28.5,3, 80, 3, 100, 3, 'normal', Vector2(36.875,18.25), 0, 1)
 	if frame == 13:
-		create_hitbox(52.25,37.5,5, 80, 3, 100, 7, 'normal', Vector2(36.875,13.75), 0, 1)
+		create_hitbox(58.662,42.94,5, 80, 3, 120, 7, 'normal', Vector2(40.08,12.059), 0, 1)
 	if frame >= 20:
 		return true
 	
@@ -189,14 +189,14 @@ func T_B_NEUTRAL():
 	if frame == 6:
 		create_hitbox(22.563,24.5,2, 40, 3, 60, 2, 'normal', Vector2(38,9), 0, 1)
 	if frame == 8:
-		create_hitbox(33,40,8, 40, 5, 60, 8, 'normal', Vector2(34.5,11), 0, 1)
+		create_hitbox(44.1,47.65,8, 40, 5, 110, 8, 'normal', Vector2(32.647,11.47), 0, 1)
 	if frame >= 16:
 		return true
 
 # Air Attacks
 func T_A_DOWN():
 	if frame == 11:
-		create_hitbox(43.5,40,5, 270, 3, 115, 9, 'normal', Vector2(-2.75,40), 0, 1)
+		create_hitbox(50,50.588,5, 270, 3, 120, 9, 'normal', Vector2(-2.06,38.235), 0, 1)
 	if frame >= 20:
 		return true
 
