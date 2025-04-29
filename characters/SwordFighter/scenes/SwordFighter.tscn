@@ -1,9 +1,15 @@
-[gd_scene load_steps=181 format=3 uid="uid://bolw870xg4wit"]
+[gd_scene load_steps=183 format=3 uid="uid://bolw870xg4wit"]
 
 [ext_resource type="Texture2D" uid="uid://brxpq4vtj3pe3" path="res://assets/sprites/sheets/SwordFighter/CapstoneFighter-Sheet.png" id="1_3mfqu"]
 [ext_resource type="Script" path="res://characters/SwordFighter/scripts/SwordFighter.gd" id="1_rs5pp"]
 [ext_resource type="PackedScene" uid="uid://cg5bgqctecfyo" path="res://scripts/hitbox.tscn" id="2_acy5m"]
 [ext_resource type="Script" path="res://characters/SwordFighter/scripts/StateMachineSwordFighter.gd" id="2_si42g"]
+[ext_resource type="Shader" uid="uid://mgqp72oqh8ox" path="res://assets/shaders/swordFighter.tres" id="4_jx83b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4sr2x"]
+shader = ExtResource("4_jx83b")
+shader_parameter/OutlineColor = Color(0.539997, 0.0968564, 0.0466607, 1)
+shader_parameter/Width = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iavde"]
 atlas = ExtResource("1_3mfqu")
@@ -1985,7 +1991,7 @@ hitbox = ExtResource("2_acy5m")
 script = ExtResource("2_si42g")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 0)
+material = SubResource("ShaderMaterial_4sr2x")
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1h5p4")
 animation = &"Idle"
