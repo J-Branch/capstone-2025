@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc5vn3tkfanrv"]
+[gd_scene load_steps=11 format=3 uid="uid://ccn2o5l5hmhfn"]
 
 [ext_resource type="Script" path="res://scenes/maps/scripts/map_scene.gd" id="1_qwud8"]
 [ext_resource type="Texture2D" uid="uid://csge1k3u7f4b" path="res://assets/maps/Clouds 6/1.png" id="1_vxsav"]

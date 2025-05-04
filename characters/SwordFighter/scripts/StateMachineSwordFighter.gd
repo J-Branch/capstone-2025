@@ -87,9 +87,9 @@ func get_transition(delta):
 	if parent.transform_mana <= parent.transform_mana_max and transform == 0:
 		parent.transform_mana += parent.transform_recovery
 		if id == 1:
-			parent.transform_mana += ((abs(Globals.player_1["health"]-100))/85)
+			parent.transform_mana += ((abs(Globals.player_1["health"]-150))/85)
 		elif id == 2:
-			parent.transform_mana += ((abs(Globals.player_2["health"]-100))/85)
+			parent.transform_mana += ((abs(Globals.player_2["health"]-150))/85)
 		parent.transform_mana = clampf(parent.transform_mana, 0, parent.transform_mana_max)
 		parent.emit_signal("transform_changed", parent.transform_mana)
 	

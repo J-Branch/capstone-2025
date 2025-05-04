@@ -1694,6 +1694,5 @@ offset_bottom = -16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(40.0809, 12.0588)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0ncsu")
 disabled = true
