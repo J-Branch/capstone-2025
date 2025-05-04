@@ -25,7 +25,7 @@ The game features animated characters, unique attacks, and responsive controls.
 
 ## 💽 Installation
 
-windows only - download they .exe file and enjoy
+windows only - download the .exe file and enjoy
 
 ## 🚀 How to Play
 
@@ -36,4 +36,4 @@ windows only - download they .exe file and enjoy
 
 Player 1: WASD to move, C for attakcs, Q for transformation, and V for dashing
 
-Player 2: Arrow keys to move, B for attacks, M for transformations, and N for dashing
+Player 2: Arrow keys to move, B for attacks, M for transformations, and N for dashing (can also use a controller Xbox/Playstation)
