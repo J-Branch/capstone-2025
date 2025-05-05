@@ -26,9 +26,9 @@ The game features animated characters, unique attacks, and responsive controls.
 
 ![Main menu](assets/screenshots/Picture1.png)
 
-![Character select](assets/screenshots/Picture2.png)
+![Character select](assets/screenshots/Picture3.png)
 
-![Gameplay scene](assets/screenshots/Picture3.png)
+![Gameplay scene](assets/screenshots/Picture2.png)
 
 
 ## 💽 Installation
