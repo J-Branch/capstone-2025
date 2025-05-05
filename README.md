@@ -42,6 +42,8 @@ windows only - download the .exe file and enjoy
 
 ## Controls:
 
+Menu: arrow keys to navigate and enter to select
+
 Player 1: WASD to move, C for attakcs, Q for transformation, and V for dashing
 
 Player 2: Arrow keys to move, B for attacks, M for transformations, and N for dashing (can also use a controller Xbox/Playstation)
