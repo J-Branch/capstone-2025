@@ -33,7 +33,7 @@ The game features animated characters, unique attacks, and responsive controls.
 
 ## 💽 Installation
 
-windows only - download the .exe file and enjoy
+windows only - download the .exe file from releases and enjoy
 
 ## 🚀 How to Play
 
