@@ -22,6 +22,14 @@ The game features animated characters, unique attacks, and responsive controls.
 
 ![Robo character](assets/screenshots/Robo.gif)
 
+![SwordFighter](assets/screenshots/CapstoneFighter-Sheet.gif)
+
+![Main menu](assets/screenshots/Picture1.png)
+
+![Character select](assets/screenshots/Picture2.png)
+
+![Gameplay scene](assets/screenshots/Picture3.png)
+
 
 ## 💽 Installation
 
